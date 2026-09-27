@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة التحكم - مدرسة ومسجد سيدنا أمير حمزة</title>
+    <style>
+        body { font-family: 'Cairo', Tahoma, sans-serif; background-color: #f4f6f9; margin: 0; padding: 30px; direction: rtl; text-align: right; }
+        .container { max-width: 950px; background: #fff; margin: 0 auto; padding: 35px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        h1 { color: #0b4f6c; margin-top: 0; border-bottom: 3px solid #01baef; padding-bottom: 12px; font-size: 24px; }
+        p.subtitle { color: #555; font-size: 15px; margin-bottom: 25px; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; }
+        .menu-item { background: #f9f9f9; border: 1px solid #e1e8ed; padding: 18px 20px; border-radius: 8px; text-decoration: none; color: #333; font-weight: bold; display: flex; align-items: center; justify-content: space-between; transition: all 0.2s ease; border-right: 5px solid #0b4f6c; }
+        .menu-item:hover { background: #e0f7fa; border-color: #01baef; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); color: #0b4f6c; }
+        .footer { margin-top: 30px; text-align: center; font-size: 13px; color: #777; border-top: 1px solid #eee; padding-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>مدرسة ومسجد سيدنا أمير حمزة (قائم شد 1891م)</h1>
+        <p class="subtitle">لوحة التحكم الإدارية المركزية - اختر القسم المطلوب للانتقال إليه:</p>
+        
+        <div class="menu-grid">
+            <a href="academic.html" class="menu-item"><span>🎓 شؤون الطلاب والأكاديمية</span> ⬅</a>
+            <a href="quran.html" class="menu-item"><span>📖 مجمع القرآن الكريم</span> ⬅</a>
+            <a href="students.html" class="menu-item"><span>👥 إدارة الطلاب</span> ⬅</a>
+            <a href="students_money.html" class="menu-item"><span>💳 مصروفات الطلاب</span> ⬅</a>
+            <a href="lab.html" class="menu-item"><span>💻 معمل الحاسب الآلي</span> ⬅</a>
+            <a href="hostel.html" class="menu-item"><span>🏠 السكن الداخلي (الهوستل)</span> ⬅</a>
+            <a href="store.html" class="menu-item"><span>📦 المستودع والمخزن</span> ⬅</a>
+            <a href="mosque.html" class="menu-item"><span>🕌 حسابات وتشغيل المسجد</span> ⬅</a>
+            <a href="donations.html" class="menu-item"><span>💰 التبرعات الذكية والواتساب</span> ⬅</a>
+            <a href="teachers.html" class="menu-item"><span>👨‍🏫 شؤون المعلمين والكادر</span> ⬅</a>
+            <a href="certificates.html" class="menu-item"><span>📜 الشهادات والتقارير</span> ⬅</a>
+        </div>
+
+        <div class="footer">
+            جميع Rights Reserved &copy; 2026 - نظام الإدارة المتكامل
+        </div>
+    </div>
+</body>
+</html>

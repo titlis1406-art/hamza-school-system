@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageMainTitle">إدارة الطلاب الشاملة - مدرسة ومسجد سيدنا أمير حمزة</title>
+    <!-- استدعاء خطوط عربية وأردية رسمية فاخرة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-navy: #0b4f6c;
+            --primary-light: #01baef;
+            --secondary-dark: #083b50;
+            --accent-gold: #d4af37;
+            --bg-body: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
+            --danger-red: #e74c3c;
+            --success-green: #27ae60;
+            --warning-orange: #f39c12;
+        }
+
+        body {
+            font-family: 'Cairo', Tahoma, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 25px;
+            direction: rtl;
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        /* تنسيق خاص بالنصوص الأردية لتبدو أصيلة وفاخرة */
+        html[lang="ur"] body {
+            font-family: 'Noto Nastaliq Urdu', 'Cairo', Tahoma, sans-serif;
+            line-height: 2.2;
+        }
+
+        .container {
+            max-width: 1350px;
+            background: var(--bg-card);
+            margin: 0 auto;
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(11, 79, 108, 0.08);
+            border-top: 6px solid var(--primary-navy);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            font-family: 'Amiri', 'Cairo', serif;
+            color: var(--primary-navy);
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 6px;
+        }
+
+        .lang-btn {
+            padding: 7px 16px;
+            background: var(--bg-body);
+            color: var(--primary-navy);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--primary-navy);
+            color: #ffffff;
+            border-color: var(--primary-navy);
+            box-shadow: 0 3px 8px rgba(11, 79, 108, 0.2);
+        }
+
+        .form-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .form-box h3 {
+            margin-top: 0;
+            color: var(--primary-navy);
+            font-size: 18px;
+            border-bottom: 2px dashed #cbd5e1;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            font-size: 13.5px;
+        }
+
+        .req-star {
+            color: var(--danger-red);
+            font-weight: 900;
+            font-size: 15px;
+            margin-right: 2px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 13px;
+            color: var(--text-main);
+            background: #ffffff;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(1, 186, 239, 0.15);
+        }
+
+        /* تاريخ الميلاد السهل المنسق */
+        .dob-group {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dob-group select {
+            flex: 1;
+            font-size: 12.5px;
+            padding: 8px 4px;
+        }
+
+        .checkbox-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            align-items: center;
+            background: #ffffff;
+            padding: 12px 18px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--secondary-dark);
+        }
+
+        .checkbox-row label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .conditions-box {
+            background: #fdfdfd;
+            padding: 18px 22px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            max-height: 220px;
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+            border-right: 5px solid var(--accent-gold);
+        }
+
+        .conditions-box h4 {
+            margin-top: 0;
+            color: var(--primary-navy);
+            font-size: 15px;
+        }
+
+        .conditions-box ol {
+            font-size: 12px;
+            margin: 0;
+            padding-right: 20px;
+            line-height: 1.8;
+            color: #334155;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--primary-navy), #083b50);
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 14.5px;
+            box-shadow: 0 4px 12px rgba(11, 79, 108, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-light);
+            color: var(--primary-navy);
+            transform: translateY(-1px);
+        }
+
+        .btn-cancel {
+            background: #94a3b8;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            display: none;
+            margin-right: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 9px 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background: var(--primary-navy);
+            color: white;
+            font-weight: 700;
+            font-size: 12.5px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+        }
+
+        .edit-btn {
+            background: var(--warning-orange);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .delete-btn {
+            background: var(--danger-red);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .print-btn {
+            background: var(--success-green);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .back-btn {
+            background: #64748b;
+            color: white;
+            padding: 8px 18px;
+            text-decoration: none;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 25px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        
+        .back-btn:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- شريط الرأس مع أزرار اللغات الثلاث -->
+        <div class="header-top">
+            <h2 id="t_header">👥 إدارة الطلاب والشؤون الشاملة</h2>
+            <div class="lang-switch">
+                <button type="button" class="lang-btn" onclick="switchLanguage('ar')">العربية</button>
+                <button type="button" class="lang-btn" onclick="switchLanguage('ur')">اردو</button>
+                <button type="button" class="lang-btn" onclick="switchLanguage('en')">English</button>
+            </div>
+        </div>
+
+        <p id="t_desc" style="color: var(--text-muted); margin-top: -15px; margin-bottom: 25px; font-size: 13.5px;">تسجيل بيانات الطلاب، الأنشطة المصاحبة، المرافق، وشروط الالتحاق الرسمية.</p>
+        
+        <!-- نموذج تسجيل وتعديل طالب -->
+        <div class="form-box">
+            <h3 id="t_formTitle">تسجيل طالب جديد</h3>
+            <form id="studentForm" onsubmit="handleStudentForm(event)">
+                <input type="hidden" id="editIndex" value="-1">
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label id="t_lblDate">تاريخ الالتحاق (ميلادي):</label>
+                        <input type="date" id="sDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="t_lblSeat">رقم الجلوس (تلقائي):</label>
+                        <input type="text" id="sSeatNo" readonly style="background:#f1f5f9; font-weight:bold; color:var(--primary-navy);" value="HM1891-01">
+                    </div>
+                    <div class="form-group">
+                        <label id="t_lblName">اسم الطالب الكامل: <span class="req-star">*</span></label>
+                        <input type="text" id="sName" required placeholder="أدخل اسم الطالب الرباعي">
+                    </div>
+                    <div class="form-group">
+                        <label id="t_lblId">رقم الهوية الرسمي: <span class="req-star">*</span></label>
+                        <input type="text" id="sId" required placeholder="أدخل رقم الهوية">
+                    </div>
+
+                    <!-- تاريخ الميلاد السهل عبر قوائم اختيار منسدلة -->
+                    <div class="form-group">
+                        <label id="t_lblBirth">تاريخ الميلاد (سهل):</label>
+                        <div class="dob-group">
+                            <select id="dobDay" onchange="calculateAgeEasy()" required>
+                                <option value="">اليوم</option>
+                            </select>
+                            <select id="dobMonth" onchange="calculateAgeEasy()" required>
+                                <option value="">الشهر</option>
+                                <option value="1">1 - يناير</option>
+                                <option value="2">2 - فبراير</option>
+                                <option value="3">3 - مارس</option>
+                                <option value="4">4 - أبريل</option>
+                                <option value="5">5 - مايو</option>
+                                <option value="6">6 - يونيو</option>
+                                <option value="7">7 - يوليو</option>
+                                <option value="8">8 - أغسطس</option>
+                                <option value="9">9 - سبتمبر</option>
+                                <option value="10">10 - أكتوبر</option>
+                                <option value="11">11 - نوفمبر</option>
+                                <option value="12">12 - ديسمبر</option>
+                            </select>
+                            <select id="dobYear" onchange="calculateAgeEasy()" required>
+                                <option value="">السنة</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label id="t_lblAge">عمر الطالب (تلقائي):</label>
+                        <input type="text" id="sAgeCalc" readonly style="background:#f1f5f9; font-weight:bold; color:var(--primary-navy);" placeholder="يُحسب فور اختيار الميلاد">
+                    </div>
+                    <div class="form-group">
+                        <label id="t_lblProgram">نوع البرنامج:</label>
+                        <select id="sStudyType">
+                            <option value="حفظ" id="opt_prog1">حفظ</option>
+                            <option value="تسميع" id="opt_prog2">تسميع</option>
+                            <option value="تأسيس القاعدة النورانية" id="opt_prog3">تأسيس القاعدة النورانية</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label id="t_lblStatus">حالة الطالب:</label>
+                        <select id="sStatus">
+                            <option value="مقيم" id="opt_st1">مقيم</option>
+                            <option value="غير مقيم" id="opt_st2">غير مقيم</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label id="t_lblPhone">رقم تواصل ولي الأمر:</label>
+                        <input type="text" id="sPhone" placeholder="+92XXXXXXXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label id="t_lblHalaqa">اسم الحلقة:</label>
+                        <input type="text" id="sHalaqa" placeholder="مثال: حلقة الإمام أبو حنيفة">
+                    </div>
+                    <div class="form-group">
+                        <label id="t_lblTeacher">اسم المعلم:</label>
+                        <input type="text" id="sTeacher" placeholder="مثال: الشيخ أحمد">
+                    </div>
+                </div>
+
+                <!-- الأنشطة المصاحبة والمرافق -->
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label id="t_lblFacilitiesRow">الأنشطة المصاحبة والمرافق:</label>
+                    <div class="checkbox-row">
+                        <label><input type="checkbox" id="sAcademic"> <span id="t_academic">دراسة أكاديمية</span></label>
+                        <label><input type="checkbox" id="sLab"> <span id="t_lab">معمل الحاسب</span></label>
+                        <label><input type="checkbox" id="sHostel"> <span id="t_hostel">الهوستل (السكن)</span></label>
+                    </div>
+                </div>
+
+                <!-- شروط الالتحاق الرسمية -->
+                <div class="conditions-box">
+                    <h4 id="t_condHead">شروط الالتحاق والوكالة:</h4>
+                    <ol id="t_condList">
+                        <li id="cond_1">ضرورة حضور ولي الأمر / السير مع الطالب وقت التسجيل والقبول.</li>
+                        <li id="cond_2">إحضار صورة شخصية واحدة (بخلفية زرقاء) باللباس التقليدي مع الطاقية.</li>
+                        <li id="cond_3">إرفاق نسخة من بطاقة هوية ولي الأمر مع الاستمارة.</li>
+                        <li id="cond_4">إرفاق صورة من شهادة الميلاد (فارم ب) أو بطاقة هوية الطالب.</li>
+                        <li id="cond_5">توقيع الطالب ولي الأمر على الاستمارة ودليل التعليمات.</li>
+                        <li id="cond_6">الزام الطالب بمواعيد المدرسة ومراعاة آداب المساجد وأدوات طلب العلم.</li>
+                        <li id="cond_7">عند وجود أي شكوى، يُراجع مدير المدرسة (مهتمم) أو نائبه فوراً.</li>
+                        <li id="cond_8">المحافظة على الصلوات فرض، وأن يكون المظهر مطابقاً للشريعة.</li>
+                        <li id="cond_9">احترام المعلمين وأولياء الأمور شرط أساسي.</li>
+                        <li id="cond_10">يُمنع الطلاب منعاً باتاً من المشاركة في أي محافل سياسية.</li>
+                        <li id="cond_11">يحق لمدير المدرسة تفتيش أمتعة أي طالب في أي وقت.</li>
+                        <li id="cond_12">يُفصل الطالب في حال صدور أي إساءة أو سوء أدب تجاه الإدارة.</li>
+                        <li id="cond_13">يُمنع استخدام أو إحضار الهواتف المحمولة أو الأسلحة منعاً باتاً.</li>
+                        <li id="cond_14">المدرسة غير مسؤولة عن مشاجرات الطلاب المحليين خارج أوقات الدوام.</li>
+                        <li id="cond_15">لا يجوز للطالب مغادرة المدرسة قبل انتهاء الاختبارات إلا بإذن رسمي.</li>
+                        <li id="cond_16"><strong>التفويض والوكالة:</strong> أقر بأنني أفوض وأمنح الإذن من قبله لمدير المدرسة (مهتمم) أو نائبه في الجامعة لقبض الزكاة، الصدقات، الفطرات، الهبات، التبرعات، والنقد، وجلود الأضاحي، وصرفها في كافة احتياجات الطلاب ورواتب الموظفين واحتياجات المدرسة أو وقفها لصالحها، وأعتبرهم وكلاء عامين عني.</li>
+                    </ol>
+                </div>
+
+                <button type="submit" class="btn-submit" id="t_btnSubmit">حفظ وإضافة الطالب للقائمة</button>
+                <button type="button" class="btn-cancel" id="btnCancelEdit" onclick="cancelEditMode()">إلغاء التعديل</button>
+            </form>
+        </div>
+
+        <!-- جدول عرض الطلاب -->
+        <h3 id="t_tableTitle" style="color: var(--primary-navy); border-bottom: 2px solid var(--primary-light); padding-bottom: 8px; margin-top: 35px;">قائمة الطلاب المسجلين</h3>
+        <table id="studentsTable">
+            <thead>
+                <tr>
+                    <th id="th_date">تاريخ الالتحاق</th>
+                    <th id="th_seat">رقم الجلوس</th>
+                    <th id="th_name">اسم الطالب</th>
+                    <th id="th_id">رقم الهوية</th>
+                    <th id="th_age">العمر</th>
+                    <th id="th_program">نوع البرنامج</th>
+                    <th id="th_status">الحالة</th>
+                    <th id="th_phone">ولي الأمر</th>
+                    <th id="th_halaqa">اسم الحلقة</th>
+                    <th id="th_teacher">اسم المعلم</th>
+                    <th id="th_activities">الأنشطة والمرافق</th>
+                    <th id="th_action">لوحة المشرف (إجراءات)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- يتم التحميل ديناميكياً من التخزين -->
+            </tbody>
+        </table>
+
+        <a href="index.html" class="back-btn" id="t_back">⬅ عودة للرئيسية</a>
+    </div>
+
+    <!-- نافذة الطباعة الرسمية المعتمدة -->
+    <div id="officialPrintArea" style="display:none; direction: rtl; text-align: right; padding: 25px; font-family: Tahoma, sans-serif;">
+        <h2 style="text-align: center; color: #0b4f6c; margin-bottom: 5px;">مدرسة ومسجد سيدنا أمير حمزة رضي الله عنه (تأسست 1891م)</h2>
+        <h3 style="text-align: center; color: #555; margin-top: 0;">استمارة القبول وتسجيل الطلاب - شروط الالتحاق والوكالة الشرعية</h3>
+        <hr style="border: 1px solid #0b4f6c; margin-bottom: 15px;">
+        
+        <p><strong>تاريخ الالتحاق:</strong> <span id="p_date"></span> | <strong>رقم الجلوس:</strong> <span id="p_seat" style="color:#0b4f6c; font-weight:bold;"></span></p>
+        <p><strong>اسم الطالب:</strong> <span id="p_name"></span> | <strong>رقم الهوية:</strong> <span id="p_id"></span> | <strong>العمر:</strong> <span id="p_age"></span></p>
+        <p><strong>نوع البرنامج:</strong> <span id="p_program"></span> | <strong>حالة السكن:</strong> <span id="p_status"></span> | <strong>هاتف ولي الأمر:</strong> <span id="p_phone"></span></p>
+        <p><strong>اسم الحلقة:</strong> <span id="p_halaqa"></span> | <strong>اسم المعلم:</strong> <span id="p_teacher"></span></p>
+        
+        <h4 style="color: #0b4f6c; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 20px;">شروط الالتحاق والوكالة الرسمية:</h4>
+        <ol style="font-size: 11px; line-height: 1.6;">
+            <li>ضرورة حضور ولي الأمر / السير مع الطالب وقت التسجيل والقبول.</li>
+            <li>إحضار صورة شخصية واحدة (بخلفية زرقاء) باللباس التقليدي مع الطاقية.</li>
+            <li>إرفاق نسخة من بطاقة هوية ولي الأمر مع الاستمارة.</li>
+            <li>إرفاق صورة من شهادة الميلاد (فارم ب) أو بطاقة هوية الطالب.</li>
+            <li>توقيع الطالب ولي الأمر على الاستمارة ودليل التعليمات.</li>
+            <li>الزام الطالب بمواعيد المدرسة ومراعاة آداب المساجد وأدوات طلب العلم.</li>
+            <li>عند وجود أي شكوى، يُراجع مدير المدرسة (مهتمم) أو نائبه فوراً.</li>
+            <li>المحافظة على الصلوات فرض، وأن يكون المظهر مطابقاً للشريعة.</li>
+            <li>احترام المعلمين وأولياء الأمور شرط أساسي.</li>
+            <li>يُمنع الطلاب منعاً باتاً من المشاركة في أي محافل سياسية.</li>
+            <li>يحق لمدير المدرسة تفتيش أمتعة أي طالب في أي وقت.</li>
+            <li>يُفصل الطالب في حال صدور أي إساءة أو سوء أدب تجاه الإدارة.</li>
+            <li>يُمنع استخدام أو إحضار الهواتف المحمولة أو الأسلحة منعاً باتاً.</li>
+            <li>المدرسة غير مسؤولة عن مشاجرات الطلاب المحليين خارج أوقات الدوام.</li>
+            <li>لا يجوز للطالب مغادرة المدرسة قبل انتهاء الاختبارات إلا بإذن رسمي.</li>
+            <li><strong>التفويض والوكالة:</strong> أقر بأنني أفوض وأمنح الإذن من قبله لمدير المدرسة (مهتمم) أو نائبه في الجامعة لقبض الزكاة، الصدقات، الفطرات، الهبات، التبرعات، والنقد، وجلود الأضاحي، وصرفها في كافة احتياجات الطلاب ورواتب الموظفين واحتياجات المدرسة أو وقفها لصالحها، وأعتبرهم وكلاء عامين عني.</li>
+        </ol>
+
+        <p style="font-size: 11px; background: #f9f9f9; padding: 10px; border: 1px solid #ddd; margin-top: 15px;">
+            <strong>التصديق (تعهد ولي الأمر والطالب):</strong><br>
+            "أقر بأنني قرأت وفهمت جميع شروط الالتحاق، وسألتزم بها دائماً إن شاء الله، ولن أرتكب أي مخالفة."
+        </p>
+
+        <div style="display: flex; justify-content: space-between; margin-top: 40px; font-size: 13px; font-weight: bold;">
+            <div>
+                <p>توقيع ولي الأمر / الطالب:</p>
+                <br><br>
+                <p>.............................................</p>
+            </div>
+            <div>
+                <p>رئيس المدرسة (المهتمم) أو من ينوب عنه:</p>
+                <br><br>
+                <p>الشيخ / محمد بن حق نواز بن محمد نواز اسراء</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- استدعاء ملف النواة الموحدة app.js -->
+    <script src="app.js"></script>
+
+    <script>
+        function initDOBOptions() {
+            let daySel = document.getElementById('dobDay');
+            for(let d = 1; d <= 31; d++) {
+                let opt = document.createElement('option');
+                opt.value = d;
+                opt.innerText = d;
+                daySel.appendChild(opt);
+            }
+
+            let yearSel = document.getElementById('dobYear');
+            let currentYear = new Date().getFullYear();
+            for(let y = currentYear - 4; y >= currentYear - 30; y--) {
+                let opt = document.createElement('option');
+                opt.value = y;
+                opt.innerText = y;
+                yearSel.appendChild(opt);
+            }
+        }
+
+        function calculateAgeEasy() {
+            let d = document.getElementById('dobDay').value;
+            let m = document.getElementById('dobMonth').value;
+            let y = document.getElementById('dobYear').value;
+
+            if(d && m && y) {
+                let birthDate = new Date(y, m - 1, d);
+                let today = new Date();
+                let age = today.getFullYear() - birthDate.getFullYear();
+                let monthDiff = today.getMonth() - birthDate.getMonth();
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                document.getElementById('sAgeCalc').value = age + " سنة";
+            } else {
+                document.getElementById('sAgeCalc').value = "";
+            }
+        }
+
+        function renderStudentsTable() {
+            let students = (typeof getStudents === 'function') ? getStudents() : [];
+            let tbody = document.getElementById('studentsTable').getElementsByTagName('tbody')[0];
+            tbody.innerHTML = '';
+
+            students.forEach((s) => {
+                let row = tbody.insertRow();
+                row.innerHTML = `
+                    <td>${s.date}</td>
+                    <td><strong style="color:var(--primary-navy);">${s.seatNo}</strong></td>
+                    <td><strong>${s.name}</strong></td>
+                    <td>${s.idNum}</td>
+                    <td>${s.age}</td>
+                    <td>${s.program}</td>
+                    <td>${s.status}</td>
+                    <td>${s.phone || '-'}</td>
+                    <td>${s.halaqa || '-'}</td>
+                    <td>${s.teacher || '-'}</td>
+                    <td>أكاديمي: ${s.academic} | معمل: ${s.lab} | هوستل: ${s.hostel}</td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="edit-btn" onclick="startEditStudent('${s.seatNo}')">تعديل ✏️</button>
+                            <button class="delete-btn" onclick="deleteStudentAction('${s.seatNo}')">حذف 🗑️</button>
+                            <button class="print-btn" onclick="printOfficialFile('${s.seatNo}')">طباعة 🖨️</button>
+                        </div>
+                    </td>
+                `;
+            });
+
+            if (document.getElementById('editIndex').value === "-1") {
+                if (typeof getNextSeatNumber === 'function') {
+                    document.getElementById('sSeatNo').value = getNextSeatNumber();
+                }
+            }
+            if (!document.getElementById('sDate').value) {
+                document.getElementById('sDate').value = new Date().toISOString().slice(0, 10);
+            }
+        }
+
+        function handleStudentForm(event) {
+            event.preventDefault();
+            let editIndex = document.getElementById('editIndex').value;
+            let students = getStudents();
+
+            let studentData = {
+                date: document.getElementById('sDate').value,
+                seatNo: document.getElementById('sSeatNo').value,
+                name: document.getElementById('sName').value,
+                idNum: document.getElementById('sId').value,
+                age: document.getElementById('sAgeCalc').value || 'غير محدد',
+                program: document.getElementById('sStudyType').value,
+                status: document.getElementById('sStatus').value,
+                phone: document.getElementById('sPhone').value,
+                halaqa: document.getElementById('sHalaqa').value || '-',
+                teacher: document.getElementById('sTeacher').value || '-',
+                academic: document.getElementById('sAcademic').checked ? 'نعم' : 'لا',
+                lab: document.getElementById('sLab').checked ? 'نعم' : 'لا',
+                hostel: document.getElementById('sHostel').checked ? 'نعم' : 'لا'
+            };
+
+            if (editIndex === "-1") {
+                addStudentToDB(studentData);
+                alert('تم تسجيل الطالب (' + studentData.name + ') بنجاح!');
+            } else {
+                let idx = students.findIndex(s => s.seatNo === editIndex);
+                if (idx !== -1) {
+                    students[idx] = studentData;
+                    saveStudentsList(students);
+                    alert('تم تعديل بيانات الطالب (' + studentData.name + ') بنجاح!');
+                }
+                cancelEditMode();
+            }
+
+            renderStudentsTable();
+            resetForm();
+        }
+
+        function startEditStudent(seatNo) {
+            let students = getStudents();
+            let s = students.find(item => item.seatNo === seatNo);
+            if (!s) return;
+
+            document.getElementById('editIndex').value = seatNo;
+            document.getElementById('sDate').value = s.date;
+            document.getElementById('sSeatNo').value = s.seatNo;
+            document.getElementById('sName').value = s.name;
+            document.getElementById('sId').value = s.idNum;
+            document.getElementById('sAgeCalc').value = s.age;
+            document.getElementById('sStudyType').value = s.program;
+            document.getElementById('sStatus').value = s.status;
+            document.getElementById('sPhone').value = (s.phone === '-' ? '' : s.phone);
+            document.getElementById('sHalaqa').value = (s.halaqa === '-' ? '' : s.halaqa);
+            document.getElementById('sTeacher').value = (s.teacher === '-' ? '' : s.teacher);
+
+            document.getElementById('sAcademic').checked = (s.academic === 'نعم');
+            document.getElementById('sLab').checked = (s.lab === 'نعم');
+            document.getElementById('sHostel').checked = (s.hostel === 'نعم');
+
+            document.getElementById('t_formTitle').innerText = "✏️ تعديل بيانات الطالب: " + s.name;
+            document.getElementById('t_btnSubmit').innerText = "حفظ التعديلات";
+            document.getElementById('t_btnSubmit').style.background = "linear-gradient(135deg, var(--warning-orange), #d35400)";
+            document.getElementById('btnCancelEdit').style.display = "inline-block";
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function cancelEditMode() {
+            document.getElementById('editIndex').value = "-1";
+            document.getElementById('t_formTitle').innerText = "تسجيل طالب جديد";
+            document.getElementById('t_btnSubmit').innerText = "حفظ وإضافة الطالب للقائمة";
+            document.getElementById('t_btnSubmit').style.background = "linear-gradient(135deg, var(--primary-navy), #083b50)";
+            document.getElementById('btnCancelEdit').style.display = "none";
+            resetForm();
+            if (typeof getNextSeatNumber === 'function') {
+                document.getElementById('sSeatNo').value = getNextSeatNumber();
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('studentForm').reset();
+            document.getElementById('sAgeCalc').value = "";
+            document.getElementById('sDate').value = new Date().toISOString().slice(0, 10);
+            document.getElementById('dobDay').value = "";
+            document.getElementById('dobMonth').value = "";
+            document.getElementById('dobYear').value = "";
+        }
+
+        function deleteStudentAction(seatNo) {
+            if (confirm('هل أنت متأكد من حذف الطالب صاحب رقم الجلوس: ' + seatNo + ' نهائياً من النظام؟')) {
+                if (typeof deleteStudentFromDB === 'function') {
+                    deleteStudentFromDB(seatNo);
+                }
+                renderStudentsTable();
+            }
+        }
+
+        function printOfficialFile(seatNo) {
+            let students = getStudents();
+            let student = students.find(s => s.seatNo === seatNo);
+            if (!student) return;
+
+            document.getElementById('p_date').innerText = student.date;
+            document.getElementById('p_seat').innerText = student.seatNo;
+            document.getElementById('p_name').innerText = student.name;
+            document.getElementById('p_id').innerText = student.idNum;
+            document.getElementById('p_age').innerText = student.age;
+            document.getElementById('p_program').innerText = student.program;
+            document.getElementById('p_status').innerText = student.status;
+            document.getElementById('p_phone').innerText = student.phone || '-';
+            document.getElementById('p_halaqa').innerText = student.halaqa || '-';
+            document.getElementById('p_teacher').innerText = student.teacher || '-';
+
+            let printContents = document.getElementById('officialPrintArea').innerHTML;
+            let printWindow = window.open('', '_blank', 'width=900,height=750');
+            printWindow.document.write(`
+                <html lang="ar" dir="rtl">
+                <head>
+                    <title>طباعة استمارة القبول والوكالة - ${student.name}</title>
+                    <style>
+                        body { font-family: 'Cairo', Tahoma, sans-serif; padding: 25px; direction: rtl; text-align: right; }
+                        h2, h3, h4 { margin: 5px 0; font-family: 'Amiri', Tahoma, serif; }
+                    </style>
+                </head>
+                <body>${printContents}</body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.focus();
+            setTimeout(() => {
+                printWindow.print();
+                printWindow.close();
+            }, 300);
+        }
+
+        const translations = {
+            ar: {
+                dir: "rtl",
+                t_header: "👥 إدارة الطلاب والشؤون الشاملة",
+                t_desc: "تسجيل بيانات الطلاب، الأنشطة المصاحبة، المرافق، وشروط الالتحاق الرسمية.",
+                t_formTitle: "تسجيل طالب جديد",
+                t_lblDate: "تاريخ الالتحاق (ميلادي):",
+                t_lblSeat: "رقم الجلوس (تلقائي):",
+                t_lblName: "اسم الطالب الكامل: <span class='req-star'>*</span>",
+                t_lblId: "رقم الهوية الرسمي: <span class='req-star'>*</span>",
+                t_lblBirth: "تاريخ الميلاد (سهل):",
+                t_lblAge: "عمر الطالب (تلقائي):",
+                t_lblProgram: "نوع البرنامج:",
+                t_lblStatus: "حالة الطالب:",
+                t_lblPhone: "رقم تواصل ولي الأمر:",
+                t_lblHalaqa: "اسم الحلقة:",
+                t_lblTeacher: "اسم المعلم:",
+                t_lblFacilitiesRow: "الأنشطة المصاحبة والمرافق:",
+                t_academic: "دراسة أكاديمية",
+                t_lab: "معمل الحاسب",
+                t_hostel: "الهوستل (السكن)",
+                t_condHead: "شروط الالتحاق والوكالة:",
+                t_btnSubmit: "حفظ وإضافة الطالب للقائمة",
+                t_tableTitle: "قائمة الطلاب المسجلين",
+                th_date: "تاريخ الالتحاق",
+                th_seat: "رقم الجلوس",
+                th_name: "اسم الطالب",
+                th_id: "رقم الهوية",
+                th_age: "العمر",
+                th_program: "نوع البرنامج",
+                th_status: "الحالة",
+                th_phone: "ولي الأمر",
+                th_halaqa: "اسم الحلقة",
+                th_teacher: "اسم المعلم",
+                th_activities: "الأنشطة والمرافق",
+                th_action: "لوحة المشرف (إجراءات)",
+                t_back: "⬅ عودة للرئيسية",
+                opt_prog1: "حفظ",
+                opt_prog2: "تسميع",
+                opt_prog3: "تأسيس القاعدة النورانية",
+                opt_st1: "مقيم",
+                opt_st2: "غير مقيم"
+            },
+            ur: {
+                dir: "rtl",
+                t_header: "👥 طلبہ کا انتظام اور جامع امور",
+                t_desc: "طلبہ کا ڈیٹا، سرگرمیاں، سہولیات اور داخلے کی شرائط درج کریں۔",
+                t_formTitle: "نئے طالب علم کا اندراج",
+                t_lblDate: "داخلہ کی تاریخ (عیسوی):",
+                t_lblSeat: "رول نمبر (خودکار):",
+                t_lblName: "طالب علم کا نام: <span class='req-star'>*</span>",
+                t_lblId: "شناختی کارڈ نمبر: <span class='req-star'>*</span>",
+                t_lblBirth: "تاریخ پیدائش (آسان):",
+                t_lblAge: "عمر (خودکار):",
+                t_lblProgram: "پروگرام کی قسم:",
+                t_lblStatus: "طالب علم کی حالت:",
+                t_lblPhone: "سرپرست کا رابطہ نمبر:",
+                t_lblHalaqa: "حلقہ کا نام:",
+                t_lblTeacher: "استاد کا نام:",
+                t_lblFacilitiesRow: "معاون سرگرمیاں اور سہولیات:",
+                t_academic: "تعلیمی مطالعہ",
+                t_lab: "کمپیوٹر لیب",
+                t_hostel: "ہاسٹل (رہائش)",
+                t_condHead: "داخلے کی شرائط اور وکالت نامہ:",
+                t_btnSubmit: "محفوظ کریں اور فہرست میں شامل کریں",
+                t_tableTitle: "رجسٹر شدہ طلبہ کی فہرست",
+                th_date: "داخلہ تاریخ",
+                th_seat: "رول نمبر",
+                th_name: "نام",
+                th_id: "شناختی کارڈ",
+                th_age: "عمر",
+                th_program: "پروگرام",
+                th_status: "حالت",
+                th_phone: "سرپرست",
+                th_halaqa: "حلقہ",
+                th_teacher: "استاد",
+                th_activities: "سرگرمیاں اور سہولیات",
+                th_action: "نگران پینل (کارروائی)",
+                t_back: "⬅ واپس مرکزی صفحہ",
+                opt_prog1: "حفظ",
+                opt_prog2: "تسمیع",
+                opt_prog3: "قاعدہ نورانیہ کی بنیاد",
+                opt_st1: "مقیم",
+                opt_st2: "غیر مقيم"
+            },
+            en: {
+                dir: "ltr",
+                t_header: "👥 Comprehensive Student Management",
+                t_desc: "Register student data, activities, facilities, and official admission conditions.",
+                t_formTitle: "Register New Student",
+                t_lblDate: "Enrollment Date:",
+                t_lblSeat: "Seat No (Auto):",
+                t_lblName: "Full Student Name: <span class='req-star'>*</span>",
+                t_lblId: "National ID: <span class='req-star'>*</span>",
+                t_lblBirth: "Birth Date (Easy):",
+                t_lblAge: "Age (Auto):",
+                t_lblProgram: "Program Type:",
+                t_lblStatus: "Status:",
+                t_lblPhone: "Guardian Phone:",
+                t_lblHalaqa: "Halaqa Name:",
+                t_lblTeacher: "Teacher Name:",
+                t_lblFacilitiesRow: "Activities & Facilities:",
+                t_academic: "Academic Study",
+                t_lab: "Computer Lab",
+                t_hostel: "Hostel (Accommodation)",
+                t_condHead: "Admission Conditions & Power of Attorney:",
+                t_btnSubmit: "Save & Add Student",
+                t_tableTitle: "Registered Students List",
+                th_date: "Enrollment Date",
+                th_seat: "Seat No",
+                th_name: "Student Name",
+                th_id: "National ID",
+                th_age: "Age",
+                th_program: "Program",
+                th_status: "Status",
+                th_phone: "Guardian",
+                th_halaqa: "Halaqa",
+                th_teacher: "Teacher",
+                th_activities: "Activities & Facilities",
+                th_action: "Admin Actions",
+                t_back: "Back to Home",
+                opt_prog1: "Hifz",
+                opt_prog2: "Tasmee'",
+                opt_prog3: "Noorani Qaida",
+                opt_st1: "Resident",
+                opt_st2: "Non-Resident"
+            }
+        };
+
+        function switchLanguage(lang) {
+            if (typeof setSavedLanguage === 'function') setSavedLanguage(lang);
+            let t = translations[lang];
+            document.getElementById('htmlRoot').setAttribute('dir', t.dir);
+            document.getElementById('htmlRoot').setAttribute('lang', lang);
+            
+            // تحديد الزر النشط
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            if (lang === 'ar') document.querySelectorAll('.lang-btn')[0].classList.add('active');
+            if (lang === 'ur') document.querySelectorAll('.lang-btn')[1].classList.add('active');
+            if (lang === 'en') document.querySelectorAll('.lang-btn')[2].classList.add('active');
+
+            for (let key in t) {
+                if (key !== 'dir') {
+                    let el = document.getElementById(key);
+                    if (el) el.innerHTML = t[key];
+                }
+            }
+        }
+
+        window.onload = function() {
+            initDOBOptions();
+            renderStudentsTable();
+            let initialLang = (typeof getSavedLanguage === 'function') ? getSavedLanguage() : 'ar';
+            switchLanguage(initialLang);
+        };
+    </script>
+</body>
+</html>

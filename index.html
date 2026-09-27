@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">لوحة التحكم - مدرسة ومسجد سيدنا أمير حمزة</title>
+    <!-- استدعاء خطوط رسمية فاخرة وواضحة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@500;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-navy: #0b4f6c;
+            --primary-light: #01baef;
+            --secondary-dark: #083b50;
+            --accent-gold: #d4af37;
+            --bg-body: #f4f6f9;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
+        }
+
+        body {
+            font-family: 'Cairo', Tahoma, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 30px;
+            direction: rtl;
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        html[lang="ur"] body {
+            font-family: 'Noto Nastaliq Urdu', 'Cairo', Tahoma, sans-serif;
+            line-height: 2.2;
+        }
+
+        html[lang="en"] body {
+            direction: ltr;
+            text-align: left;
+        }
+
+        .container {
+            max-width: 1000px;
+            background: var(--bg-card);
+            margin: 0 auto;
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(11, 79, 108, 0.08);
+            border-top: 6px solid var(--accent-gold);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--primary-light);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--primary-navy);
+            margin: 0;
+            font-size: 26px;
+            font-family: 'Amiri', 'Cairo', serif;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 6px;
+        }
+
+        .lang-btn {
+            padding: 6px 14px;
+            background: #f1f5f9;
+            color: var(--primary-navy);
+            border: 1.5px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12.5px;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--primary-navy);
+            color: #ffffff;
+            border-color: var(--primary-navy);
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .menu-item {
+            background: #f8fafc;
+            border: 1.5px solid var(--border-color);
+            padding: 16px 20px;
+            border-radius: 9px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+            border-right: 5px solid var(--primary-navy);
+            font-size: 14.5px;
+        }
+
+        html[lang="en"] .menu-item {
+            border-right: 1.5px solid var(--border-color);
+            border-left: 5px solid var(--primary-navy);
+        }
+
+        .menu-item:hover {
+            background: #e0f7fa;
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(11, 79, 108, 0.08);
+            color: var(--primary-navy);
+        }
+
+        .footer {
+            margin-top: 35px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            padding-top: 18px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-top">
+            <h1 id="mainTitle">مدرسة ومسجد سيدنا أمير حمزة (قائم شد 1891م)</h1>
+            <div class="lang-switch">
+                <button type="button" class="lang-btn active" onclick="switchLanguage('ar')">العربية</button>
+                <button type="button" class="lang-btn" onclick="switchLanguage('ur')">اردو</button>
+                <button type="button" class="lang-btn" onclick="switchLanguage('en')">English</button>
+            </div>
+        </div>
+        
+        <p class="subtitle" id="subTitle">لوحة التحكم الإدارية المركزية - اختر القسم المطلوب للانتقال إليه:</p>
+        
+        <div class="menu-grid">
+            <a href="teachers.html" class="menu-item"><span id="m1">👨‍🏫 شؤون المعلمين والكادر</span> ⬅</a>
+            <a href="students.html" class="menu-item"><span id="m2">👥 إدارة الطلاب</span> ⬅</a>
+            <a href="quran.html" class="menu-item"><span id="m3">📖 مجمع القرآن الكريم</span> ⬅</a>
+            <a href="academic.html" class="menu-item"><span id="m4">🎓 شؤون الطلاب والأكاديمية</span> ⬅</a>
+            <a href="lab.html" class="menu-item"><span id="m5">💻 معمل الحاسب الآلي</span> ⬅</a>
+            <a href="hostel.html" class="menu-item"><span id="m6">🏠 السكن الداخلي (الهوستل)</span> ⬅</a>
+            <a href="certificates.html" class="menu-item"><span id="m7">📜 الشهادات والتقارير</span> ⬅</a>
+            <a href="donations.html" class="menu-item"><span id="m8">💰 التبرعات الذكية والواتساب</span> ⬅</a>
+            <a href="store.html" class="menu-item"><span id="m9">📦 المستودع والمخزن</span> ⬅</a>
+            <a href="mosque.html" class="menu-item"><span id="m10">🕌 حسابات وتشغيل المسجد</span> ⬅</a>
+            <a href="reports.html" class="menu-item" style="border-right-color: var(--accent-gold); grid-column: 1 / -1; background: #fffbeb;"><span id="m11">📊 لوحة تقارير عامة للمدير العام</span> ⬅</a>
+        </div>
+
+        <div class="footer" id="footerText">
+            جميع الحقوق محفوظة &copy; 2026 - مدرسة ومسجد سيدنا أمير حمزة رضي الله عنه
+        </div>
+    </div>
+
+    <script>
+        const indexTranslations = {
+            ar: {
+                dir: "rtl",
+                mainTitle: "مدرسة ومسجد سيدنا أمير حمزة (قائم شد 1891م)",
+                subTitle: "لوحة التحكم الإدارية المركزية - اختر القسم المطلوب للانتقال إليه:",
+                m1: "👨‍🏫 شؤون المعلمين والكادر",
+                m2: "👥 إدارة الطلاب",
+                m3: "📖 مجمع القرآن الكريم",
+                m4: "🎓 شؤون الطلاب والأكاديمية",
+                m5: "💻 معمل الحاسب الآلي",
+                m6: "🏠 السكن الداخلي (الهوستل)",
+                m7: "📜 الشهادات والتقارير",
+                m8: "💰 التبرعات الذكية والواتساب",
+                m9: "📦 المستودع والمخزن",
+                m10: "🕌 حسابات وتشغيل المسجد",
+                m11: "📊 لوحة تقارير عامة للمدير العام",
+                footerText: "جميع الحقوق محفوظة &copy; 2026 - مدرسة ومسجد سيدنا أمير حمزة رضي الله عنه"
+            },
+            ur: {
+                dir: "rtl",
+                mainTitle: "مدرسہ و مسجد سیدنا امیر حمزہ (قائم شد 1891ء)",
+                subTitle: "مرکزی انتظامی ڈیش بورڈ - مطلوبہ سیکشن منتخب کریں:",
+                m1: "👨‍🏫 اساتذہ کا عملہ",
+                m2: "👥 طلباء کا انتظام",
+                m3: "📖 شعبہ قرآن کریم",
+                m4: "🎓 طلباء کے امور اور اکیڈمک",
+                m5: "💻 کمپیوٹر لیب",
+                m6: "🏠 ہاسٹل (رہائش)",
+                m7: "📜 سرٹیفکیٹ اور رپورٹس",
+                m8: "💰 عطیات اور واٹس ایپ",
+                m9: "📦 گودام اور اسٹور",
+                m10: "🕌 مسجد کے حسابات",
+                m11: "📊 ڈائریکٹر جنرل کی عام رپورٹ",
+                footerText: "جملہ حقوق محفوظ ہیں &copy; 2026 - مدرسہ و مسجد سیدنا امیر حمزہ"
+            },
+            en: {
+                dir: "ltr",
+                mainTitle: "Syedna Amir Hamza School & Mosque (Est. 1891)",
+                subTitle: "Central Management Dashboard - Select a section to proceed:",
+                m1: "👨‍🏫 Teachers & Staff Affairs",
+                m2: "👥 Students Management",
+                m3: "📖 Quran Complex",
+                m4: "🎓 Student & Academic Affairs",
+                m5: "💻 Computer Lab",
+                m6: "🏠 Hostel (Boarding)",
+                m7: "📜 Certificates & Reports",
+                m8: "💰 Smart Donations & WhatsApp",
+                m9: "📦 Store & Warehouse",
+                m10: "🕌 Mosque Accounts & Operations",
+                m11: "📊 General Director Public Reports Dashboard",
+                footerText: "All Rights Reserved &copy; 2026 - Syedna Amir Hamza School & Mosque"
+            }
+        };
+
+        function switchLanguage(lang) {
+            localStorage.setItem('hamza_sys_lang', lang);
+            let t = indexTranslations[lang] || indexTranslations.ar;
+            document.getElementById('htmlRoot').setAttribute('dir', t.dir);
+            document.getElementById('htmlRoot').setAttribute('lang', lang);
+            
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            if (lang === 'ar') document.querySelectorAll('.lang-btn')[0].classList.add('active');
+            if (lang === 'ur') document.querySelectorAll('.lang-btn')[1].classList.add('active');
+            if (lang === 'en') document.querySelectorAll('.lang-btn')[2].classList.add('active');
+
+            for (let key in t) {
+                if (key !== 'dir') {
+                    let el = document.getElementById(key);
+                    if (el) el.innerHTML = t[key];
+                }
+            }
+        }
+
+        window.onload = function() {
+            let initialLang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            switchLanguage(initialLang);
+        };
+    </script>
+</body>
+</html>

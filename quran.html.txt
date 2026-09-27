@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حلقات القرآن الكريم - مدرسة ومسجد سيدنا أمير حمزة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0b4f6c;
+            --secondary-green: #01baef;
+            --success-green: #20bf55;
+            --danger-red: #ef476f;
+            --warning-yellow: #ffd166;
+            --bg-white: #ffffff;
+            --text-dark: #333333;
+            --light-gray: #f4f6f9;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 900px;
+            background-color: var(--bg-white);
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid var(--primary-blue);
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .back-btn {
+            background-color: #6c757d;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        h2 {
+            color: var(--primary-blue);
+            margin: 0;
+        }
+
+        .track-badge {
+            background-color: var(--secondary-green);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--primary-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        .attendance-btns button {
+            border: none;
+            padding: 6px 10px;
+            margin: 0 2px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .btn-present { background-color: #e2f0d9; color: #385723; }
+        .btn-absent { background-color: #fce4d6; color: #c65911; }
+        .btn-late { background-color: #fff2cc; color: #7f6000; }
+
+        .btn-present.active { background-color: var(--success-green); color: white; }
+        .btn-absent.active { background-color: var(--danger-red); color: white; }
+        .btn-late.active { background-color: var(--warning-yellow); color: #333; }
+
+        select.eval-select {
+            padding: 6px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .save-all-btn {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: background 0.3s;
+        }
+
+        .save-all-btn:hover {
+            background-color: #083b50;
+        }
+
+        .note-24h {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-nav">
+            <h2>إدارة حلقات القرآن الكريم والتسميع</h2>
+            <a href="index.html" class="back-btn">⬅ عودة للرئيسية</a>
+        </div>
+
+        <span class="track-badge">حلقة الشيخ: حفظ كامل / القاعدة النورانية</span>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>رقم القيد</th>
+                    <th>اسم الطالب</th>
+                    <th>حالة الحضور</th>
+                    <th>التسميع اليومي (المقدار)</th>
+                    <th>التقييم</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HM1891-01</td>
+                    <td>محمد عبد الله</td>
+                    <td class="attendance-btns">
+                        <button class="btn-present active" onclick="setStatus(this)">حاضر</button>
+                        <button class="btn-absent" onclick="setStatus(this)">غائب</button>
+                        <button class="btn-late" onclick="setStatus(this)">متأخر</button>
+                    </td>
+                    <td>
+                        <input type="text" placeholder="من سورة البقرة 1-10" style="padding: 6px; width: 90%; border: 1px solid #ccc; border-radius: 4px;">
+                    </td>
+                    <td>
+                        <select class="eval-select">
+                            <option value="Excellent">⭐ ممتاز</option>
+                            <option value="Very_Good">👍 جيد جداً</option>
+                            <option value="Needs_Improvement">🔄 يحتاج إعادة</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>HM1891-02</td>
+                    <td>أحمد بلال</td>
+                    <td class="attendance-btns">
+                        <button class="btn-present active" onclick="setStatus(this)">حاضر</button>
+                        <button class="btn-absent" onclick="setStatus(this)">غائب</button>
+                        <button class="btn-late" onclick="setStatus(this)">متأخر</button>
+                    </td>
+                    <td>
+                        <input type="text" placeholder="القاعدة النورانية - الدرس 3" style="padding: 6px; width: 90%; border: 1px solid #ccc; border-radius: 4px;">
+                    </td>
+                    <td>
+                        <select class="eval-select">
+                            <option value="Excellent">⭐ ممتاز</option>
+                            <option value="Very_Good">👍 جيد جداً</option>
+                            <option value="Needs_Improvement">🔄 يحتاج إعادة</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="save-all-btn" onclick="saveSession()">حفظ التقييم والحضور (إرسال فوري)</button>
+        <div class="note-24h">ملاحظة نظامية: تتيح القاعدة تعديل هذه البيانات خلال 24 ساعة فقط من وقت الحفظ.</div>
+    </div>
+
+    <script>
+        function setStatus(btn) {
+            const parent = btn.parentElement;
+            parent.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function saveSession() {
+            alert("تم حفظ سجل الحضور والتسميع بنجاح وتم ربطه بقاعدة البيانات النظامية!");
+        }
+    </script>
+</body>
+</html>

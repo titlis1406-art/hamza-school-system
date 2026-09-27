@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageMainTitle">معمل الحاسب الآلي وتكنولوجيا المعلومات - مدرسة ومسجد سيدنا أمير حمزة</title>
+    <!-- استدعاء خطوط رسمية فاخرة وواضحة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@500;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-navy: #0b4f6c;
+            --primary-light: #01baef;
+            --secondary-dark: #083b50;
+            --accent-gold: #d4af37;
+            --bg-body: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
+            --danger-red: #e74c3c;
+            --success-green: #27ae60;
+            --warning-orange: #f39c12;
+
+            --pc-bg: #f0fdfa;
+            --pc-border: #99f6e4;
+            --task-bg: #f0f9ff;
+            --task-border: #bae6fd;
+        }
+
+        body {
+            font-family: 'Cairo', Tahoma, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 15px;
+            direction: rtl;
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        html[lang="ur"] body {
+            font-family: 'Noto Nastaliq Urdu', 'Cairo', Tahoma, sans-serif;
+            line-height: 2.3;
+        }
+
+        .container {
+            max-width: 1780px;
+            background: var(--bg-card);
+            margin: 0 auto;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(11, 79, 108, 0.08);
+            border-top: 6px solid var(--primary-navy);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-family: 'Amiri', 'Cairo', serif;
+            color: var(--primary-navy);
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 6px;
+        }
+
+        .lang-btn {
+            padding: 7px 16px;
+            background: var(--bg-body);
+            color: var(--primary-navy);
+            border: 1.5px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13.5px;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--primary-navy);
+            color: #ffffff;
+            border-color: var(--primary-navy);
+            box-shadow: 0 3px 8px rgba(11, 79, 108, 0.2);
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            background: #eef2f7;
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .date-display {
+            font-weight: bold;
+            color: var(--primary-navy);
+            font-size: 14.5px;
+        }
+
+        .filter-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+            background: #f8fafc;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            border-right: 5px solid var(--accent-gold);
+        }
+
+        .filter-box select {
+            padding: 8px 12px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 6px;
+            min-width: 230px;
+            font-weight: bold;
+            font-size: 13px;
+            font-family: inherit;
+            color: var(--primary-navy);
+            background: #fff;
+        }
+
+        .exam-nav-btns {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .btn-exam-nav {
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 12.5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-exam-monthly { background: #0b4f6c; }
+        .btn-exam-semi { background: #083b50; border: 1.5px solid var(--accent-gold); }
+
+        .btn-exam-nav:hover {
+            transform: translateY(-1px);
+            background: var(--primary-light);
+            color: var(--primary-navy);
+        }
+
+        .btn-add-module {
+            background: var(--accent-gold);
+            color: #1e293b;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 12.5px;
+            transition: all 0.2s;
+        }
+        .btn-add-module:hover { background: #c59b27; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 8px 5px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: var(--primary-navy);
+            color: white;
+            font-weight: 700;
+            font-size: 12.5px;
+            padding: 10px 5px;
+        }
+
+        tr:nth-child(even) { background-color: #f8fafc; }
+        tr:hover { background-color: #f1f5f9; }
+
+        .unified-col-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-width: 230px;
+            height: 145px;
+            padding: 6px;
+            border-radius: 8px;
+            box-sizing: border-box;
+            border: 1.5px solid transparent;
+        }
+
+        .box-pc {
+            background: var(--pc-bg);
+            border-color: var(--pc-border);
+        }
+
+        .box-task {
+            background: var(--task-bg);
+            border-color: var(--task-border);
+        }
+
+        .top-spacer {
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .unified-col-box select.main-select {
+            width: 100%;
+            padding: 5px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 12px;
+            font-family: inherit;
+            background: #ffffff;
+            color: var(--primary-navy);
+            font-weight: 700;
+        }
+
+        .details-row {
+            display: flex;
+            gap: 4px;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .device-type-select {
+            padding: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            border: 1.5px solid #0d9488;
+            border-radius: 4px;
+            background: #fff;
+            color: #0f766e;
+        }
+
+        .inp-pc-num {
+            width: 55px;
+            padding: 4px 2px;
+            text-align: center;
+            border: 1.5px solid #0d9488;
+            border-radius: 4px;
+            font-size: 11.5px;
+            background: #ffffff;
+            font-weight: bold;
+            color: #0f766e;
+        }
+
+        .inp-task-desc {
+            width: 98%;
+            padding: 5px;
+            text-align: center;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 11px;
+            background: #ffffff;
+            box-sizing: border-box;
+        }
+
+        .status-select {
+            padding: 5px;
+            font-size: 11px;
+            font-weight: 800;
+            border-radius: 5px;
+            border: 1.5px solid #94a3b8;
+            background: #ffffff;
+            color: var(--primary-navy);
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .final-eval-badge {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 12.5px;
+            color: white;
+            background: #27ae60;
+            min-width: 85px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .map-btn {
+            background: #0284c7;
+            color: #fff;
+            border: none;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10.5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 2px;
+        }
+        .map-btn:hover { background: #0369a1; }
+
+        .attendance-btn {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 12px;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .status-present { background-color: var(--success-green); }
+        .status-absent { background-color: var(--danger-red); }
+        .status-late { background-color: var(--warning-orange); }
+
+        .save-btn {
+            background: var(--primary-navy);
+            color: white;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .save-btn:hover {
+            background: var(--primary-light);
+            color: var(--primary-navy);
+        }
+
+        .locked-badge {
+            background: #64748b;
+            color: white;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 10.5px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .back-btn {
+            background: #64748b;
+            color: white;
+            padding: 9px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: 700;
+            font-size: 13.5px;
+        }
+
+        .back-btn:hover { background: #475569; }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 79, 108, 0.65);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-card {
+            background: #fff;
+            width: 100%;
+            max-width: 1380px;
+            max-height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            overflow-y: auto;
+            padding: 25px;
+            direction: rtl;
+            border-top: 6px solid var(--accent-gold);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+        }
+
+        .close-modal-btn {
+            background: #e2e8f0;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            padding: 6px 14px;
+            cursor: pointer;
+            color: #334155;
+        }
+
+        .close-modal-btn:hover {
+            background: var(--danger-red);
+            color: #fff;
+        }
+
+        .exam-score-inp {
+            width: 55px;
+            padding: 4px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            border: 1.5px solid var(--border-color);
+            border-radius: 4px;
+            background: #fff;
+        }
+
+        .action-cell-btns {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+        }
+        .btn-table-print {
+            background: #0b4f6c;
+            color: #fff;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .btn-table-pdf {
+            background: #27ae60;
+            color: #fff;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- شريط الرأس واللغات -->
+        <div class="header-top">
+            <h2 id="t_header">💻 معمل الحاسب الآلي وتكنولوجيا المعلومات</h2>
+            <div class="lang-switch">
+                <button type="button" class="lang-btn" onclick="switchLanguage('ar')">العربية</button>
+                <button type="button" class="lang-btn" onclick="switchLanguage('ur')">اردو</button>
+                <button type="button" class="lang-btn" onclick="switchLanguage('en')">English</button>
+            </div>
+        </div>
+
+        <div class="top-bar">
+            <div class="date-display" id="currentDateText">📅 جاري تحديث التاريخ...</div>
+            <span style="font-size: 13px; color: var(--text-muted); font-weight: bold;" id="t_sys_badge">نظام إدارة المعامل والتطبيقات التقنية</span>
+        </div>
+
+        <p id="t_desc" style="color: var(--text-muted); margin-top: -10px; margin-bottom: 15px; font-size: 13.5px;">تثبيت المسار التقني للطالب، تسجيل عنوان درس/تمرين اليوم، واحتساب التقييم تلقائياً حسب حالة الإنجاز.</p>
+        
+        <!-- شريط الإجراءات والفلترة وزر إضافة برنامج جديد -->
+        <div class="filter-box">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <label for="selectTrack" id="t_lblFilter" style="font-weight: bold; color: var(--primary-navy); font-size: 13.5px;">تصفية المسار التقني:</label>
+                <select id="selectTrack" onchange="filterLabStudents()">
+                    <option value="all" id="opt_allTracks">-- كافة المسارات التدريبية --</option>
+                    <option value="أساسيات" id="opt_t1">أساسيات الحاسب ونظام التشغيل</option>
+                    <option value="الطباعة" id="opt_t2">مهارات وسرعة الطباعة</option>
+                    <option value="النصوص" id="opt_t3">معالجة النصوص (MS Word)</option>
+                    <option value="الجداول" id="opt_t4">الجداول الحسابية (MS Excel)</option>
+                    <option value="العروض" id="opt_t5">العروض التقديمية (PowerPoint)</option>
+                    <option value="البرمجة" id="opt_t6">مبادئ البرمجة للمبتدئين</option>
+                </select>
+                <button type="button" class="btn-add-module" onclick="addNewCustomModule()" id="btnAddModule">＋ إضافة برنامج تقني جديد</button>
+            </div>
+
+            <!-- أزرار كشوفات الدرجات (محمية بكلمة مرور المدير 1891) -->
+            <div class="exam-nav-btns">
+                <button type="button" class="btn-exam-nav btn-exam-monthly" onclick="promptAdminPassword('monthly')" id="btnMonthlyModal">
+                    🔒 📅 كشف اختبارات المعمل الشهرية
+                </button>
+                <button type="button" class="btn-exam-nav btn-exam-semi" onclick="promptAdminPassword('semi')" id="btnSemiModal">
+                    🔒 🏆 كشف الاختبار الشامل النصف سنوي
+                </button>
+            </div>
+        </div>
+
+        <!-- جدول معمل الحاسب الآلي -->
+        <table id="labTable">
+            <thead>
+                <tr>
+                    <th id="th_no">م</th>
+                    <th id="th_seat">رقم الجلوس</th>
+                    <th id="th_name">اسم الطالب</th>
+                    <th id="th_pc_assigned">الجهاز (PC / Laptop)</th>
+                    <th id="th_attendance">الحضور بالمعمل</th>
+                    <th id="th_module">المسار التقني الثابت (للأسبوع/الشهر)</th>
+                    <th id="th_task">التطبيق العملي وحالة الإنجاز اليومي</th>
+                    <th id="th_eval">التقييم التقني التلقائي</th>
+                    <th id="th_status24">حالة الجلسة</th>
+                    <th id="th_action">الإجراء</th>
+                </tr>
+            </thead>
+            <tbody id="labTbody">
+                <!-- يُملأ ديناميكياً من الطلاب المسجلين بمعمل الحاسب -->
+            </tbody>
+        </table>
+
+        <a href="index.html" class="back-btn" id="t_back">⬅ عودة للرئيسية</a>
+    </div>
+
+    <!-- نافذة المودال: خريطة رحلة المسارات التقنية -->
+    <div id="learningMapModalOverlay" class="modal-overlay">
+        <div class="modal-card" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3 id="mapModalTitle" style="margin:0; color:var(--primary-navy);">🗺️ خريطة رحلة المسارات التقنية للطالب</h3>
+                <button type="button" class="close-modal-btn" onclick="closeLearningMapModal()">✕ إغلاق</button>
+            </div>
+            <div id="learningMapBody" style="font-size: 14px; padding: 10px;">
+                <!-- يُملأ برمجياً -->
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة المودال: كشوفات درجات معمل الحاسب الآلي -->
+    <div id="labExamModalOverlay" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div>
+                    <h3 id="t_modalTitle" style="margin:0; color:var(--primary-navy); font-size:20px;">كشف درجات معمل الحاسب الآلي</h3>
+                    <small id="t_modalSub" style="color:var(--text-muted); font-size:12.5px;">توزيع الدرجات بين العملي (200)، النظري (100)، الطباعة (100)، والانضباط (100) = 500 درجة.</small>
+                </div>
+                <button type="button" class="close-modal-btn" onclick="closeLabExamModal()">✕ إغلاق</button>
+            </div>
+
+            <div id="monthlySelectorWrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:15px; background:#f8fafc; padding:12px 16px; border-radius:8px; border:1px solid #e2e8f0;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <strong id="t_lblMonthSelect">اختر الشهر: </strong>
+                    <select id="activeMonthSelect" onchange="loadLabExamGridData()" style="padding:6px 12px; border-radius:5px; font-weight:bold; font-size:12.5px; border:1.5px solid var(--border-color); color:var(--primary-navy);">
+                        <option value="m_1">اختبار المعمل - الشهر الأول (المجموع 100)</option>
+                        <option value="m_2">اختبار المعمل - الشهر الثاني (المجموع 100)</option>
+                        <option value="m_3">اختبار المعمل - الشهر الثالث (المجموع 100)</option>
+                        <option value="m_4">اختبار المعمل - الشهر الرابع (المجموع 100)</option>
+                        <option value="m_5">اختبار المعمل - الشهر الخامس (المجموع 100)</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="button" onclick="saveAllLabExamScores()" style="background:var(--success-green); color:#fff; border:none; padding:8px 20px; border-radius:6px; cursor:pointer; font-weight:800; font-size:13px;">💾 حفظ درجات المعمل</button>
+                </div>
+            </div>
+
+            <table class="exam-grid-table" id="labExamGridTable">
+                <thead>
+                    <tr>
+                        <th id="th_modal_seat">رقم الجلوس</th>
+                        <th id="th_modal_name">اسم الطالب</th>
+                        <th id="th_m_practical">الاختبار العملي</th>
+                        <th id="th_m_theory">المفاهيم والنظري</th>
+                        <th id="th_m_typing">سرعة ودقة الطباعة</th>
+                        <th id="th_m_care">سلامة الجهاز والانضباط</th>
+                        <th id="th_modal_tot">المجموع</th>
+                        <th id="th_modal_pct">النسبة %</th>
+                        <th id="th_modal_grade">التقدير</th>
+                        <th id="th_modal_action">كشف رسمي</th>
+                    </tr>
+                </thead>
+                <tbody id="labExamGridTbody">
+                    <!-- يتم بناؤه برمجياً بالطلاب المسجلين -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- استدعاء ملف الربط المشترك app.js -->
+    <script src="app.js"></script>
+
+    <script>
+        let currentModalMode = 'semi';
+
+        const defaultModules = {
+            ar: [
+                "1. أساسيات الحاسب ونظام التشغيل",
+                "2. مهارات وسرعة الطباعة",
+                "3. معالجة النصوص (MS Word)",
+                "4. الجداول الحسابية (MS Excel)",
+                "5. العروض التقديمية (PowerPoint)",
+                "6. الإنترنت والبحث الآمن",
+                "7. مبادئ البرمجة للمبتدئين"
+            ],
+            ur: [
+                "1. کمپیوٹر کی بنیادی باتیں اور ونڈوز",
+                "2. ٹائپنگ کی رفتار اور مہارت",
+                "3. ایم ایس ورڈ (MS Word)",
+                "4. ایم ایس ایکسل (MS Excel)",
+                "5. پاور پوائنٹ (PowerPoint)",
+                "6. انٹرنیٹ اور محفوظ براؤزنگ",
+                "7. بنیادی پروگرامنگ (کوڈنگ)"
+            ],
+            en: [
+                "1. Computer Basics & OS",
+                "2. Typing Speed & Skills",
+                "3. Word Processing (MS Word)",
+                "4. Spreadsheets (MS Excel)",
+                "5. Presentations (PowerPoint)",
+                "6. Internet & Safe Browsing",
+                "7. Coding Basics for Beginners"
+            ]
+        };
+
+        function getActiveModules() {
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let custom = localStorage.getItem('hamza_custom_lab_modules');
+            if (custom) {
+                try { return JSON.parse(custom); } catch(e) {}
+            }
+            return defaultModules[lang] || defaultModules.ar;
+        }
+
+        function addNewCustomModule() {
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = translations[lang] || translations.ar;
+            let newMod = prompt(t.prompt_new_module);
+            if (newMod && newMod.trim() !== "") {
+                let mods = getActiveModules();
+                mods.push(newMod.trim());
+                localStorage.setItem('hamza_custom_lab_modules', JSON.stringify(mods));
+                loadLabStudents();
+                alert(t.msg_module_added);
+            }
+        }
+
+        function fetchSystemStudents() {
+            let data = localStorage.getItem('hamza_students_db');
+            if (data) {
+                try { return JSON.parse(data); } catch(e) {}
+            }
+            return [
+                { seatNo: "HM1891-01", name: "محمد أحمد الفكي", lab: "نعم", level: "المستوى الأول", teacher: "الشيخ أحمد" },
+                { seatNo: "HM1891-02", name: "إبراهيم عثمان حمزة", lab: "نعم", level: "المستوى التأسيسي (KG)", teacher: "الشيخ محمود" }
+            ];
+        }
+
+        function setTodayDate() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date();
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let locale = (lang === 'en') ? 'en-US' : (lang === 'ur') ? 'ur-PK' : 'ar-SA';
+            let el = document.getElementById('currentDateText');
+            if (el) el.innerText = "📅 " + today.toLocaleDateString(locale, options);
+        }
+
+        function promptAdminPassword(mode) {
+            let pwd = prompt("🔐 أدخل كلمة مرور المدير العام / المشرف لفتح سجل الاختبارات:");
+            if (pwd === "1891") {
+                openLabExamModal(mode);
+            } else if (pwd !== null) {
+                alert("❌ كلمة المرور غير صحيحة! الصلاحية مقتصرة على المشرف العام.");
+            }
+        }
+
+        function loadLabStudents() {
+            let students = fetchSystemStudents();
+            let tbody = document.getElementById('labTbody');
+            tbody.innerHTML = '';
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = translations[lang] || translations.ar;
+
+            let labStudents = students.filter(s => s.lab === 'نعم');
+
+            if (labStudents.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="10" style="padding:25px; color:#64748b; font-weight:bold; font-size:13.5px;">لا يوجد طلاب ملتحقون بمعمل الحاسب الآلي حالياً. (تأكد من تفعيل خيار "معمل الحاسب" عند تسجيل الطالب في صفحة الطلاب).</td></tr>`;
+                return;
+            }
+
+            let modulesList = getActiveModules();
+            let moduleOptions = modulesList.map(mod => `<option value="${mod}">${mod}</option>`).join('');
+
+            labStudents.forEach((s, idx) => {
+                let saved = localStorage.getItem('lab_log_' + s.seatNo);
+                let defaultDeviceType = "PC";
+                let defaultDeviceNum = "0" + (idx + 1);
+                let logData = saved ? JSON.parse(saved) : { 
+                    deviceType: defaultDeviceType, deviceNum: defaultDeviceNum, modName: modulesList[0], taskDesc: '', taskStatus: 'progress',
+                    att: t.att_present 
+                };
+
+                let attClass = logData.att.includes('غائب') || logData.att.includes('Absent') ? 'status-absent' :
+                               logData.att.includes('متأخر') || logData.att.includes('Late') ? 'status-late' : 'status-present';
+
+                let row = tbody.insertRow();
+                row.innerHTML = `
+                    <td class="row-index">${idx + 1}</td>
+                    <td><strong style="color:var(--primary-navy); font-size:13px;">${s.seatNo}</strong></td>
+                    <td><strong style="font-size:13px;">${s.name}</strong></td>
+                    
+                    <td>
+                        <div class="details-row">
+                            <select id="device_type_${s.seatNo}" class="device-type-select">
+                                <option value="PC" ${logData.deviceType === 'PC' ? 'selected' : ''}>PC</option>
+                                <option value="Laptop" ${logData.deviceType === 'Laptop' ? 'selected' : ''}>Laptop</option>
+                            </select>
+                            <input type="text" id="device_num_${s.seatNo}" class="inp-pc-num" value="${logData.deviceNum || defaultDeviceNum}" placeholder="رقم">
+                        </div>
+                    </td>
+
+                    <td>
+                        <button type="button" class="attendance-btn ${attClass}" onclick="toggleAttendance(this)">${t.att_present}</button>
+                    </td>
+
+                    <!-- 1. المسار التقني الثابت (يستمر معه طوال الأسبوع/الشهر ولا يتغير إلا بقرار المدرب) -->
+                    <td>
+                        <div class="unified-col-box box-pc">
+                            <div class="top-spacer">
+                                <span style="font-size:11px; font-weight:bold; color:#0f766e;">🖥️ ${t.lbl_module_title}</span>
+                            </div>
+                            <select id="mod_select_${s.seatNo}" class="main-select">
+                                <option value="">${t.opt_sel_module}</option>
+                                ${moduleOptions}
+                            </select>
+                            <button type="button" class="map-btn" onclick="openLearningMap('${s.seatNo}', '${s.name}')">${t.btn_map_view}</button>
+                        </div>
+                    </td>
+
+                    <!-- 2. التطبيق العملي اليومي (عنوان الدرس/التمرين) وحالة الإنجاز -->
+                    <td>
+                        <div class="unified-col-box box-task">
+                            <div class="top-spacer">
+                                <span style="font-size:11px; font-weight:bold; color:#0369a1;">⌨️ ${t.lbl_task_title}</span>
+                            </div>
+                            <input type="text" id="task_desc_${s.seatNo}" class="inp-task-desc" placeholder="${t.ph_task_input}" value="${logData.taskDesc || ''}">
+                            <div class="details-row" style="margin-top:2px; width:100%;">
+                                <select id="task_status_${s.seatNo}" class="status-select" onchange="calculateLabAutoGrade('${s.seatNo}')">
+                                    <option value="done" ${logData.taskStatus === 'done' ? 'selected' : ''}>${t.status_done}</option>
+                                    <option value="progress" ${logData.taskStatus === 'progress' ? 'selected' : ''}>${t.status_progress}</option>
+                                    <option value="review" ${logData.taskStatus === 'review' ? 'selected' : ''}>${t.status_review}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </td>
+
+                    <!-- 3. التقييم التقني المؤتوت المنضبط 100% -->
+                    <td>
+                        <span id="final_badge_${s.seatNo}" class="final-eval-badge">ممتاز</span>
+                    </td>
+                    <td><span class="locked-badge" style="background:#27ae60;">${t.status_open}</span></td>
+                    <td><button type="button" class="save-btn" onclick="saveLabProgress('${s.seatNo}', '${s.name}')">${t.btn_save}</button></td>
+                </tr>
+                `;
+
+                if(logData.modName) document.getElementById(`mod_select_${s.seatNo}`).value = logData.modName;
+                calculateLabAutoGrade(s.seatNo);
+            });
+        }
+
+        // ضبط المنطق السليم: أتمها = ممتاز | قيد التطبيق = جيد جداً | تحتاج إعادة = يحتاج متابعة
+        function calculateLabAutoGrade(seatNo) {
+            let statusSelect = document.getElementById(`task_status_${seatNo}`);
+            let statusVal = statusSelect ? statusSelect.value : 'progress';
+            let badge = document.getElementById(`final_badge_${seatNo}`);
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = translations[lang] || translations.ar;
+
+            if (statusVal === 'done') {
+                badge.innerText = t.eval_1; // ممتاز
+                badge.style.background = "#27ae60"; // أخضر
+            } else if (statusVal === 'progress') {
+                badge.innerText = t.eval_2; // جيد جداً
+                badge.style.background = "#2980b9"; // أزرق
+            } else if (statusVal === 'review') {
+                badge.innerText = t.eval_4; // يحتاج متابعة
+                badge.style.background = "#e74c3c"; // أحمر
+            }
+        }
+
+        function saveLabProgress(seatNo, name) {
+            let deviceType = document.getElementById(`device_type_${seatNo}`).value;
+            let deviceNum = document.getElementById(`device_num_${seatNo}`).value;
+            let modName = document.getElementById(`mod_select_${seatNo}`).value;
+            let taskDesc = document.getElementById(`task_desc_${seatNo}`).value;
+            let taskStatus = document.getElementById(`task_status_${seatNo}`).value;
+            let attBtn = document.querySelector(`button[onclick*="toggleAttendance(this)"]`);
+            
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = translations[lang] || translations.ar;
+
+            let logData = {
+                seatNo: seatNo,
+                studentName: name,
+                deviceType: deviceType,
+                deviceNum: deviceNum,
+                modName: modName,
+                taskDesc: taskDesc,
+                taskStatus: taskStatus,
+                att: attBtn ? attBtn.innerText : t.att_present,
+                date: new Date().toISOString().slice(0, 10)
+            };
+
+            localStorage.setItem('lab_log_' + seatNo, JSON.stringify(logData));
+            let finalScore = document.getElementById(`final_badge_${seatNo}`).innerText;
+            alert(t.msg_saved + " (" + name + ") - التقييم التقني: " + finalScore);
+        }
+
+        function toggleAttendance(btn) {
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = translations[lang] || translations.ar;
+            if(btn.classList.contains('status-present')) {
+                btn.className = 'attendance-btn status-absent';
+                btn.innerText = t.att_absent;
+            } else if(btn.classList.contains('status-absent')) {
+                btn.className = 'attendance-btn status-late';
+                btn.innerText = t.att_late;
+            } else {
+                btn.className = 'attendance-btn status-present';
+                btn.innerText = t.att_present;
+            }
+        }
+
+        function filterLabStudents() {
+            let selectedTrack = document.getElementById('selectTrack').value;
+            let rows = document.querySelectorAll('#labTable tbody tr');
+            let counter = 1;
+            
+            rows.forEach(row => {
+                let selEl = row.querySelector('.box-pc select');
+                let trackVal = selEl ? selEl.value : '';
+                if (selectedTrack === 'all' || trackVal.includes(selectedTrack)) {
+                    row.style.display = "";
+                    let idx = row.querySelector('.row-index');
+                    if (idx) idx.innerText = counter++;
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+
+        function openLearningMap(seatNo, name) {
+            let modal = document.getElementById('learningMapModalOverlay');
+            let body = document.getElementById('learningMapBody');
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = translations[lang] || translations.ar;
+            let modules = getActiveModules();
+
+            let savedLog = JSON.parse(localStorage.getItem('lab_log_' + seatNo) || '{}');
+            let currentMod = savedLog.modName || modules[0];
+            let currentIndex = modules.indexOf(currentMod);
+
+            let html = `<p><strong>${t.th_name}:</strong> ${name} (رقم الجلوس: ${seatNo})</p>`;
+            html += `<p style="color:var(--primary-navy); font-weight:bold;">${t.map_active_track}: ${currentMod}</p><hr style="border:0; border-top:1px solid #e2e8f0; margin:15px 0;">`;
+            html += `<ul style="list-style:none; padding:0; margin:0;">`;
+
+            modules.forEach((mod, idx) => {
+                let isCurrent = (mod === currentMod);
+                let isDone = (idx < currentIndex);
+                let badgeStyle = isCurrent ? "background:#0b4f6c; color:#fff;" : (isDone ? "background:#dcfce7; color:#166534;" : "background:#e2e8f0; color:#334155;");
+                let statusText = isCurrent ? t.map_status_active : (isDone ? t.map_status_done : t.map_status_upcoming);
+                
+                html += `<li style="padding:10px 14px; margin-bottom:8px; border-radius:6px; ${badgeStyle} display:flex; justify-content:space-between; align-items:center;">
+                    <span>${mod}</span>
+                    <strong style="font-size:11px;">${statusText}</strong>
+                </li>`;
+            });
+
+            html += `</ul>`;
+            body.innerHTML = html;
+            modal.style.display = 'flex';
+        }
+
+        function closeLearningMapModal() {
+            document.getElementById('learningMapModalOverlay').style.display = 'none';
+        }
+
+        function openLabExamModal(mode) {
+            currentModalMode = mode;
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = translations[lang] || translations.ar;
+
+            let titleEl = document.getElementById('t_modalTitle');
+            let subEl = document.getElementById('t_modalSub');
+            let monthWrap = document.getElementById('monthlySelectorWrap');
+
+            if (mode === 'monthly') {
+                titleEl.innerText = t.title_modal_monthly;
+                subEl.innerText = t.sub_modal_monthly;
+                monthWrap.style.display = 'flex';
+                document.getElementById('th_m_practical').innerText = t.th_m_practical_m;
+                document.getElementById('th_m_theory').innerText = t.th_m_theory_m;
+                document.getElementById('th_m_typing').innerText = t.th_m_typing_m;
+                document.getElementById('th_m_care').innerText = t.th_m_care_m;
+            } else {
+                titleEl.innerText = t.title_modal_semi;
+                subEl.innerText = t.sub_modal_semi;
+                monthWrap.style.display = 'none';
+                document.getElementById('th_m_practical').innerText = t.th_m_practical_s;
+                document.getElementById('th_m_theory').innerText = t.th_m_theory_s;
+                document.getElementById('th_m_typing').innerText = t.th_m_typing_s;
+                document.getElementById('th_m_care').innerText = t.th_m_care_s;
+            }
+
+            document.getElementById('labExamModalOverlay').style.display = 'flex';
+            loadLabExamGridData();
+        }
+
+        function closeLabExamModal() {
+            document.getElementById('labExamModalOverlay').style.display = 'none';
+        }
+
+        function enforceMaxScore(input, maxAllowed) {
+            let val = parseInt(input.value);
+            if (isNaN(val) || val < 0) {
+                input.value = 0;
+            } else if (val > maxAllowed) {
+                input.value = maxAllowed;
+            }
+        }
+
+        function loadLabExamGridData() {
+            let students = fetchSystemStudents().filter(s => s.lab === 'نعم');
+            let tbody = document.getElementById('labExamGridTbody');
+            tbody.innerHTML = '';
+            
+            let isSemi = (currentModalMode === 'semi');
+            let storageKeyPrefix = isSemi ? 'lab_exam_semi_annual_' : ('lab_exam_' + document.getElementById('activeMonthSelect').value + '_');
+
+            students.forEach(s => {
+                let savedScoresKey = storageKeyPrefix + s.seatNo;
+                let scoresData = localStorage.getItem(savedScoresKey);
+                
+                let scores = scoresData ? JSON.parse(scoresData) : (isSemi ? {
+                    practical: 180, theory: 90, typing: 90, care: 95
+                } : {
+                    practical: 36, theory: 27, typing: 14, care: 14
+                });
+
+                let maxPrac = isSemi ? 200 : 40;
+                let maxTheo = isSemi ? 100 : 30;
+                let maxTyp = isSemi ? 100 : 15;
+                let maxCare = isSemi ? 100 : 15;
+
+                let row = tbody.insertRow();
+                row.innerHTML = `
+                    <td><strong>${s.seatNo}</strong></td>
+                    <td><strong>${s.name}</strong></td>
+                    <td><input type="number" class="exam-score-inp" id="sc_prac_${s.seatNo}" value="${Math.min(maxPrac, scores.practical)}" max="${maxPrac}" min="0" oninput="enforceMaxScore(this, ${maxPrac}); recalcLabRow('${s.seatNo}')"></td>
+                    <td><input type="number" class="exam-score-inp" id="sc_theo_${s.seatNo}" value="${Math.min(maxTheo, scores.theory)}" max="${maxTheo}" min="0" oninput="enforceMaxScore(this, ${maxTheo}); recalcLabRow('${s.seatNo}')"></td>
+                    <td><input type="number" class="exam-score-inp" id="sc_typ_${s.seatNo}" value="${Math.min(maxTyp, scores.typing)}" max="${maxTyp}" min="0" oninput="enforceMaxScore(this, ${maxTyp}); recalcLabRow('${s.seatNo}')"></td>
+                    <td><input type="number" class="exam-score-inp" style="border-color:#083b50; background:#f0fdf4;" id="sc_care_${s.seatNo}" value="${Math.min(maxCare, scores.care)}" max="${maxCare}" min="0" oninput="enforceMaxScore(this, ${maxCare}); recalcLabRow('${s.seatNo}')"></td>
+                    <td><strong id="lab_tot_${s.seatNo}" style="color:var(--primary-navy);">0</strong></td>
+                    <td><strong id="lab_pct_${s.seatNo}" style="color:var(--success-green);">0%</strong></td>
+                    <td><span id="lab_grd_${s.seatNo}" style="padding:3px 8px; border-radius:4px; font-weight:bold; font-size:11px;">-</span></td>
+                    <td>
+                        <div class="action-cell-btns">
+                            <button type="button" class="btn-table-print" onclick="printLabReportCard('${s.seatNo}', '${s.name}', '${s.level || 'المستوى التقني الأول'}')">🖨️ طباعة</button>
+                            <button type="button" class="btn-table-pdf" onclick="printLabReportCard('${s.seatNo}', '${s.name}', '${s.level || 'المستوى التقني الأول'}')">📄 PDF</button>
+                        </div>
+                    </td>
+                `;
+                recalcLabRow(s.seatNo);
+            });
+        }
+
+        function recalcLabRow(seatNo) {
+            let isSemi = (currentModalMode === 'semi');
+            let maxTotal = isSemi ? 500 : 100;
+
+            let mPrac = parseInt(document.getElementById(`sc_prac_${seatNo}`).value) || 0;
+            let mTheo = parseInt(document.getElementById(`sc_theo_${seatNo}`).value) || 0;
+            let mTyp = parseInt(document.getElementById(`sc_typ_${seatNo}`).value) || 0;
+            let mCare = parseInt(document.getElementById(`sc_care_${seatNo}`).value) || 0;
+
+            let total = mPrac + mTheo + mTyp + mCare;
+            let pct = Math.min(100, Math.round((total / maxTotal) * 100));
+
+            document.getElementById(`lab_tot_${seatNo}`).innerText = total + " / " + maxTotal;
+            document.getElementById(`lab_pct_${seatNo}`).innerText = pct + '%';
+
+            let grdEl = document.getElementById(`lab_grd_${seatNo}`);
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = translations[lang] || translations.ar;
+
+            if (pct >= 85) {
+                grdEl.innerText = t.eval_1;
+                grdEl.style.background = "#dcfce7";
+                grdEl.style.color = "#166534";
+            } else if (pct >= 70) {
+                grdEl.innerText = t.eval_2;
+                grdEl.style.background = "#e0f2fe";
+                grdEl.style.color = "#0369a1";
+            } else if (pct >= 50) {
+                grdEl.innerText = t.eval_3;
+                grdEl.style.background = "#fef3c7";
+                grdEl.style.color = "#b45309";
+            } else {
+                grdEl.innerText = t.eval_fail;
+                grdEl.style.background = "#fee2e2";
+                grdEl.style.color = "#b91c1c";
+            }
+        }
+
+        function saveAllLabExamScores() {
+            let students = fetchSystemStudents().filter(s => s.lab === 'نعم');
+            let isSemi = (currentModalMode === 'semi');
+            let storageKeyPrefix = isSemi ? 'lab_exam_semi_annual_' : ('lab_exam_' + document.getElementById('activeMonthSelect').value + '_');
+
+            students.forEach(s => {
+                let scores = {
+                    practical: parseInt(document.getElementById(`sc_prac_${s.seatNo}`).value) || 0,
+                    theory: parseInt(document.getElementById(`sc_theo_${s.seatNo}`).value) || 0,
+                    typing: parseInt(document.getElementById(`sc_typ_${s.seatNo}`).value) || 0,
+                    care: parseInt(document.getElementById(`sc_care_${s.seatNo}`).value) || 0
+                };
+                localStorage.setItem(storageKeyPrefix + s.seatNo, JSON.stringify(scores));
+            });
+            alert('تم حفظ كافة درجات معمل الحاسب الآلي بنجاح!');
+        }
+
+        function printLabReportCard(seatNo, name, level) {
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = translations[lang] || translations.ar;
+            let isSemi = (currentModalMode === 'semi');
+
+            let maxPrac = isSemi ? 200 : 40;
+            let maxTheo = isSemi ? 100 : 30;
+            let maxTyp = isSemi ? 100 : 15;
+            let maxCare = isSemi ? 100 : 15;
+            let maxTotal = isSemi ? 500 : 100;
+
+            let mPrac = document.getElementById(`sc_prac_${seatNo}`).value;
+            let mTheo = document.getElementById(`sc_theo_${seatNo}`).value;
+            let mTyp = document.getElementById(`sc_typ_${seatNo}`).value;
+            let mCare = document.getElementById(`sc_care_${seatNo}`).value;
+            let total = document.getElementById(`lab_tot_${seatNo}`).innerText.split('/')[0].trim();
+            let pct = document.getElementById(`lab_pct_${seatNo}`).innerText;
+            let grade = document.getElementById(`lab_grd_${seatNo}`).innerText.trim();
+
+            let currentExamTitle = isSemi ? t.title_semi_annual : t.title_monthly_exam;
+            let qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=65x65&data=HamzaSchool_LabReport_${seatNo}_${pct}`;
+            let deviceLabel = document.getElementById(`device_type_${seatNo}`).value + "-" + document.getElementById(`device_num_${seatNo}`).value;
+
+            let printWindow = window.open('', '_blank', 'width=920,height=950');
+            printWindow.document.write(`
+                <html lang="${lang}" dir="${t.dir}">
+                <head>
+                    <title>${t.t_report_title} - ${name}</title>
+                    <style>
+                        @page { size: A4 portrait; margin: 12mm 15mm 10mm 15mm; }
+                        body { 
+                            font-family: 'Cairo', Tahoma, sans-serif; 
+                            margin: 0; 
+                            padding: 0; 
+                            direction: ${t.dir}; 
+                            text-align: ${t.dir === 'rtl' ? 'right' : 'left'}; 
+                            color: #1e293b;
+                            background: #fff;
+                        }
+                        .page-a4 {
+                            min-height: 268mm;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            border: 3px double #0b4f6c;
+                            padding: 24px;
+                            box-sizing: border-box;
+                            border-radius: 8px;
+                            position: relative;
+                        }
+                        .rep-header { 
+                            display: flex; 
+                            justify-content: space-between; 
+                            align-items: center; 
+                            border-bottom: 2.5px solid #0b4f6c; 
+                            padding-bottom: 12px; 
+                            margin-bottom: 14px; 
+                        }
+                        h2 { margin: 0; color: #0b4f6c; font-family: 'Amiri', serif; font-size: 26px; }
+                        h3 { margin: 4px 0 0 0; color: #334155; font-size: 17px; }
+                        
+                        .info-grid {
+                            display: grid;
+                            grid-template-columns: repeat(4, 1fr);
+                            gap: 10px;
+                            background: #f8fafc;
+                            border: 1.5px solid #cbd5e1;
+                            padding: 10px 14px;
+                            border-radius: 6px;
+                            font-size: 13.5px;
+                            margin-bottom: 14px;
+                        }
+                        .info-item strong { color: #0b4f6c; }
+
+                        .awards-row {
+                            display: flex;
+                            gap: 18px;
+                            margin-bottom: 15px;
+                            justify-content: center;
+                        }
+                        .award-card {
+                            flex: 1;
+                            text-align: center;
+                            padding: 14px 10px;
+                            border-radius: 10px;
+                            color: white;
+                            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+                        }
+                        .award-pct { background: linear-gradient(135deg, #0b4f6c, #0284c7); border: 2px solid #0369a1; }
+                        .award-grd { background: linear-gradient(135deg, #047857, #10b981); border: 2px solid #059669; }
+                        .award-card span { font-size: 14px; font-weight: 700; display: block; margin-bottom: 4px; }
+                        .award-card strong { font-size: 26px; font-weight: 900; letter-spacing: 0.5px; }
+
+                        table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+                        th, td { border: 1px solid #475569; padding: 10px; text-align: center; }
+                        th { background: #0b4f6c; color: white; font-weight: bold; }
+                        
+                        .qr-box { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+                        .qr-box img { width: 65px; height: 65px; border: 1px solid #cbd5e1; padding: 2px; border-radius: 4px; }
+                        
+                        .signatures-block {
+                            margin-top: 25px;
+                            padding: 0 10px;
+                            font-size: 13px;
+                            font-weight: bold;
+                        }
+                        .teachers-row {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-bottom: 22px;
+                        }
+                        .principal-row {
+                            display: flex;
+                            justify-content: flex-end;
+                            text-align: ${t.dir === 'rtl' ? 'left' : 'right'};
+                        }
+
+                        .official-footer-notice {
+                            font-size: 11.5px;
+                            color: #475569;
+                            background: #f1f5f9;
+                            border-top: 1px dashed #94a3b8;
+                            padding: 8px;
+                            text-align: center;
+                            margin-top: 20px;
+                            border-radius: 4px;
+                            font-weight: 600;
+                        }
+
+                        @media print {
+                            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="page-a4">
+                        <div>
+                            <div class="rep-header">
+                                <div>
+                                    <h2>${t.school_name}</h2>
+                                    <h3>${currentExamTitle}</h3>
+                                </div>
+                                <div class="qr-box">
+                                    <img src="${qrCodeUrl}" alt="QR Code">
+                                    <span style="font-size:8.5px; color:#64748b;">VERIFIED QR</span>
+                                </div>
+                            </div>
+
+                            <div class="info-grid">
+                                <div class="info-item"><strong>${t.th_name}:</strong> ${name}</div>
+                                <div class="info-item"><strong>${t.th_seat}:</strong> ${seatNo}</div>
+                                <div class="info-item"><strong>${t.th_pc_assigned}:</strong> ${deviceLabel}</div>
+                                <div class="info-item"><strong>${t.th_level}:</strong> ${level}</div>
+                            </div>
+
+                            <div class="awards-row">
+                                <div class="award-card award-pct">
+                                    <span>${t.th_pct_label}</span>
+                                    <strong>${pct}</strong>
+                                </div>
+                                <div class="award-card award-grd">
+                                    <span>${t.th_grade_label}</span>
+                                    <strong>${grade}</strong>
+                                </div>
+                            </div>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>${t.th_lab_skill}</th>
+                                        <th>${t.th_max_score}</th>
+                                        <th>${t.th_obtained_score}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td style="font-weight:bold; color:#0b4f6c;">${t.skill_practical}</td><td>${maxPrac}</td><td>${mPrac}</td></tr>
+                                    <tr><td style="font-weight:bold; color:#0b4f6c;">${t.skill_theory}</td><td>${maxTheo}</td><td>${mTheo}</td></tr>
+                                    <tr><td style="font-weight:bold; color:#0b4f6c;">${t.skill_typing}</td><td>${maxTyp}</td><td>${mTyp}</td></tr>
+                                    <tr style="background:#f0fdf4; font-weight:bold;"><td style="color:#166534;">${t.skill_care}</td><td>${maxCare}</td><td>${mCare}</td></tr>
+                                    <tr style="background:#f8fafc; font-weight:bold; font-size:14.5px;">
+                                        <td>${t.th_total_final}</td><td>${maxTotal}</td><td style="color:#0b4f6c; font-size:16px;">${total}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div>
+                            <div class="signatures-block">
+                                <div class="teachers-row">
+                                    <div>
+                                        ${t.lbl_lab_teacher}: <span style="color:#475569; font-weight:normal;">المهندس / بلال طارق</span>
+                                    </div>
+                                    <div>
+                                        ${t.lbl_supervisor_sign}: <span style="color:#475569; font-weight:normal;">الشيخ / عثمان إبراهيم</span>
+                                    </div>
+                                </div>
+                                <div class="principal-row">
+                                    <div style="min-width:320px; text-align:center;">
+                                        <div style="font-size:13px; font-weight:bold; color:#0b4f6c; margin-bottom:5px;">${t.lbl_principal_sign}</div>
+                                        <div style="font-size:14.5px; font-weight:900; color:#1e293b;">الشيخ الدكتور محمد بن حق نواز بن محمد نواز اسراء</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="official-footer-notice">
+                                وثيقة رسمية معتمدة صادرة إلكترونياً من النظام الموحد للمدرسة ومزودة برمز تحقيق QR Code ولا تحتاج إلى توقيع ورقي.
+                            </div>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.focus();
+            setTimeout(() => {
+                printWindow.print();
+                printWindow.close();
+            }, 300);
+        }
+
+        const translations = {
+            ar: {
+                dir: "rtl",
+                t_header: "💻 معمل الحاسب الآلي وتكنولوجيا المعلومات",
+                t_sys_badge: "نظام إدارة المعامل والتطبيقات التقنية",
+                t_desc: "تثبيت المسار التقني للطالب، تسجيل عنوان درس/تمرين اليوم، واحتساب التقييم تلقائياً حسب حالة الإنجاز.",
+                t_lblFilter: "تصفية المسار التقني:",
+                opt_allTracks: "-- كافة المسارات التدريبية --",
+                opt_t1: "أساسيات الحاسب ونظام التشغيل",
+                opt_t2: "مهارات وسرعة الطباعة",
+                opt_t3: "معالجة النصوص (MS Word)",
+                opt_t4: "الجداول الحسابية (MS Excel)",
+                opt_t5: "العروض التقديمية (PowerPoint)",
+                opt_t6: "مبادئ البرمجة للمبتدئين",
+                btnAddModule: "＋ إضافة برنامج تقني جديد",
+                btnMonthlyModal: "🔒 📅 كشف اختبارات المعمل الشهرية",
+                btnSemiModal: "🔒 🏆 كشف الاختبار الشامل النصف سنوي",
+                title_modal_monthly: "📅 كشف اختبارات المعمل الشهرية (المجموع 100 درجة)",
+                sub_modal_monthly: "عملي مباشر (40) + مفاهيم ونظري (30) + سرعة طباعة (15) + سلامة الجهاز (15) = 100 درجة.",
+                title_modal_semi: "🏆 كشف الاختبار الشامل لمعمل الحاسب (المجموع 500 درجة)",
+                sub_modal_semi: "مشروع عملي (200) + اختبار نظري (100) + سرعة طباعة (100) + انضباط وسلامة جهاز (100) = 500 درجة.",
+                t_lblMonthSelect: "اختر الشهر: ",
+                th_no: "م",
+                th_seat: "رقم الجلوس",
+                th_name: "اسم الطالب",
+                th_pc_assigned: "الجهاز (PC / Laptop)",
+                th_level: "المستوى التقني",
+                th_attendance: "الحضور بالمعمل",
+                th_module: "المسار التقني الثابت (للأسبوع/الشهر)",
+                th_task: "التطبيق العملي وحالة الإنجاز اليومي",
+                th_eval: "التقييم التقني التلقائي",
+                th_status24: "حالة الجلسة",
+                th_action: "الإجراء",
+                t_back: "⬅ عودة للرئيسية",
+                lbl_module_title: "المسار الثابت",
+                lbl_task_title: "تطبيق اليوم العملي",
+                opt_sel_module: "-- اختر المسار --",
+                ph_task_input: "اسم درس اليوم / رقم التمرين..",
+                status_done: "🛠️ أتمها بنجاح (مكتمل)",
+                status_progress: "🔄 قيد التطبيق اليومي",
+                status_review: "⚠️ تحتاج إلى إعادة ومتابعة",
+                eval_1: "ممتاز",
+                eval_2: "جيد جداً",
+                eval_3: "جيد",
+                eval_4: "يحتاج متابعة",
+                eval_fail: "راسب",
+                att_present: "حاضر ✔",
+                att_absent: "غائب ❌",
+                att_late: "متأخر ⏱️",
+                status_open: "مفتوح (24س)",
+                btn_save: "حفظ الجلسة",
+                msg_saved: "تم حفظ إنجاز معمل الحاسب بنجاح للطالب",
+                th_modal_seat: "رقم الجلوس",
+                th_modal_name: "اسم الطالب",
+                th_m_practical_m: "الاختبار العملي (40)",
+                th_m_theory_m: "المفاهيم والنظري (30)",
+                th_m_typing_m: "سرعة الطباعة (15)",
+                th_m_care_m: "سلامة الجهاز (15)",
+                th_m_practical_s: "المشروع العملي (200)",
+                th_m_theory_s: "الاختبار النظري (100)",
+                th_m_typing_s: "سرعة الطباعة (100)",
+                th_m_care_s: "سلامة الجهاز والانضباط (100)",
+                th_modal_tot: "المجموع",
+                th_modal_pct: "النسبة %",
+                th_modal_grade: "التقدير",
+                th_modal_action: "كشف رسمي",
+                t_report_title: "كشف درجات معمل الحاسب الآلي المعتمد",
+                school_name: "مدرسة ومسجد سيدنا أمير حمزة رضي الله عنه (تأسست 1891م)",
+                title_semi_annual: "كشف درجات الاختبار الشامل لمعمل الحاسب",
+                title_monthly_exam: "كشف درجات الاختبار الشهري لمعمل الحاسب",
+                th_lab_skill: "المهارة والوحدة التقنية",
+                th_max_score: "الدرجة العظمى",
+                th_obtained_score: "الدرجة المحصلة",
+                th_total_final: "المجموع الكلي النهائي",
+                th_pct_label: "النسبة المئوية المحصلة",
+                th_grade_label: "التقدير العام المعتمد",
+                skill_practical: "المشروع العملي وتطبيق المهارات البرمجية",
+                skill_theory: "المفاهيم النظرية وأنظمة التشغيل",
+                skill_typing: "مهارات وسرعة ودقة الطباعة (WPM)",
+                skill_care: "الانضباط والمحافظة على سلامة الأجهزة",
+                lbl_lab_teacher: "معلم معمل الحاسب",
+                lbl_supervisor_sign: "المشرف التعليمي",
+                lbl_principal_sign: "مدير المدرسة (المهتمم)",
+                btn_map_view: "🗺️ خريطة رحلة المسارات",
+                map_active_track: "المسار التقني الثابت الحالي",
+                map_status_active: "📍 (المسار الحالي نشط)",
+                map_status_done: "✅ (مُنجز ومقفل)",
+                map_status_upcoming: "⏳ (قادم)",
+                prompt_new_module: "أدخل اسم المسار أو البرنامج التقني الجديد:",
+                msg_module_added: "تم إضافة البرنامج التقني بنجاح!"
+            },
+            ur: {
+                dir: "rtl",
+                t_header: "💻 کمپیوٹر لیب اور انفارمیشن ٹیکنالوجی",
+                t_sys_badge: "کمپیوٹر لیب اور تکنیکی نظم و نسق کا نظام",
+                t_desc: "طالب علم کا مستقل ٹریک، روزانہ کا سبق/مشق، اور تکمیل کے مطابق خودکار نتیجہ۔",
+                t_lblFilter: "تکنیکی شعبہ منتخب کریں:",
+                opt_allTracks: "-- تمام تکنیکی شعبے --",
+                opt_t1: "کمپیوٹر کی بنیادی باتیں اور ونڈوز",
+                opt_t2: "ٹائپنگ کی رفتار اور مہارت",
+                opt_t3: "ایم ایس ورڈ (MS Word)",
+                opt_t4: "ایم ایس ایکسل (MS Excel)",
+                opt_t5: "پاور پوائنٹ (PowerPoint)",
+                opt_t6: "بنیادی پروگرامنگ (کوڈنگ)",
+                btnAddModule: "＋ نیا تکنیکی پروگرام شامل کریں",
+                btnMonthlyModal: "🔒 📅 لیب کے ماہانہ امتحانات",
+                btnSemiModal: "🔒 🏆 ششماہی جامع امتحان",
+                title_modal_monthly: "📅 کمپیوٹر لیب کے ماہانہ امتحانات (میزان 100 نمبر)",
+                sub_modal_monthly: "عملی امتحان (40) + تھیوری (30) + ٹائپنگ رفتار (15) + کمپیوٹر کا خیال (15) = 100 نمبر۔",
+                title_modal_semi: "🏆 کمپیوٹر لیب ششماہی جامع امتحان (میزان 500 نمبر)",
+                sub_modal_semi: "عملی پروجیکٹ (200) + تحریری امتحان (100) + ٹائپنگ (100) + نظم و ضبط (100) = 500 نمبر۔",
+                t_lblMonthSelect: "مہینہ منتخب کریں: ",
+                th_no: "نمبر",
+                th_seat: "رول نمبر",
+                th_name: "طالب علم کا نام",
+                th_pc_assigned: "آلہ (PC / Laptop)",
+                th_level: "تکنیکی درجہ",
+                th_attendance: "لیب میں حاضری",
+                th_module: "مستقل تکنیکی ٹریک",
+                th_task: "روزانہ کی مشق اور تکمیل کی حالت",
+                th_eval: "خودکار تکنیکی نتیجہ",
+                th_status24: "سیشن کی حالت",
+                th_action: "کارروائی",
+                t_back: "⬅ واپس مرکزی صفحہ",
+                lbl_module_title: "مستقل ٹریک",
+                lbl_task_title: "آج کا عملی سبق",
+                opt_sel_module: "-- ٹریک منتخب کریں --",
+                ph_task_input: "آج کے سبق کا نام / مشق نمبر..",
+                status_done: "🛠️ کامیابی سے مکمل ✔",
+                status_progress: "🔄 کام جاری ہے",
+                status_review: "⚠️ دوبارہ مشق درکار ہے",
+                eval_1: "ممتاز",
+                eval_2: "بہت اچھا",
+                eval_3: "مناسب",
+                eval_4: "توجہ درکار ہے",
+                eval_fail: "ناکام",
+                att_present: "حاضر ✔",
+                att_absent: "غیر حاضر ❌",
+                att_late: "تاخیر ⏱️",
+                status_open: "کھلا ہے (24گھنٹے)",
+                btn_save: "محفوظ کریں",
+                msg_saved: "کمپیوٹر لیب کا ریکارڈ کامیابی سے محفوظ ہو گیا",
+                th_modal_seat: "رول نمبر",
+                th_modal_name: "طالب علم کا نام",
+                th_m_practical_m: "عملی امتحان (40)",
+                th_m_theory_m: "تھیوری و تصورات (30)",
+                th_m_typing_m: "ٹائپنگ رفتار (15)",
+                th_m_care_m: "کمپیوٹر کا تحفظ (15)",
+                th_m_practical_s: "عملی پروجیکٹ (200)",
+                th_m_theory_s: "تحریری امتحان (100)",
+                th_m_typing_s: "ٹائپنگ رفتار (100)",
+                th_m_care_s: "کمپیوٹر کا تحفظ (100)",
+                th_modal_tot: "کل نمبر",
+                th_modal_pct: "فیصد %",
+                th_modal_grade: "درجہ بندی",
+                th_modal_action: "سرکاری کارڈ",
+                t_report_title: "کمپیوٹر لیب کا تصدیق شدہ رزلٹ کارڈ",
+                school_name: "مدرسہ و مسجد سیدنا امیر حمزہ رضی اللہ عنہ (تاسیس 1891ء)",
+                title_semi_annual: "کمپیوٹر لیب ششماہی جامع امتحان کا نتیجہ",
+                title_monthly_exam: "کمپیوٹر لیب کا ماہانہ امتحانی نتیجہ",
+                th_lab_skill: "تکنیکی مہارت اور شعبہ",
+                th_max_score: "کل نمبر",
+                th_obtained_score: "حاصل کردہ نمبر",
+                th_total_final: "میزان کل نمبر",
+                th_pct_label: "حاصل کردہ فیصد %",
+                th_grade_label: "مجموعی درجہ بندی",
+                skill_practical: "عملی پروجیکٹ اور سافٹ ویئر کی مہارت",
+                skill_theory: "بنیادی تصورات اور ونڈوز",
+                skill_typing: "ٹائپنگ کی رفتار اور درستی (WPM)",
+                skill_care: "کمپیوٹر اور لیب کے سامان کا خیال",
+                lbl_lab_teacher: "کمپیوٹر استاد",
+                lbl_supervisor_sign: "تعلیمی نگران",
+                lbl_principal_sign: "مہتمم جامعہ",
+                btn_map_view: "🗺️ لرننگ میپ کا نقشہ",
+                map_active_track: "موجودہ فعال ٹریک",
+                map_status_active: "📍 (موجودہ ٹریک)",
+                map_status_done: "✅ (مکمل و مقفل)",
+                map_status_upcoming: "⏳ (آنے والا)",
+                prompt_new_module: "نیا تربیتی پروگرام کا نام درج کریں:",
+                msg_module_added: "نیا پروگرام کامیابی سے شامل کر دیا گیا!"
+            },
+            en: {
+                dir: "ltr",
+                t_header: "💻 Computer Lab & IT Department",
+                t_sys_badge: "Computer Lab & Tech Management System",
+                t_desc: "Fixed technical track, daily hands-on lesson/exercise name, and automated task-based evaluation.",
+                t_lblFilter: "Filter Tech Track:",
+                opt_allTracks: "-- All Training Tracks --",
+                opt_t1: "Computer Basics & Windows OS",
+                opt_t2: "Typing Speed & Skills",
+                opt_t3: "Word Processing (MS Word)",
+                opt_t4: "Spreadsheets (MS Excel)",
+                opt_t5: "Presentations (PowerPoint)",
+                opt_t6: "Coding Basics for Beginners",
+                btnAddModule: "＋ Add New Tech Program",
+                btnMonthlyModal: "🔒 📅 Monthly Lab Exams Report",
+                btnSemiModal: "🔒 🏆 Semi-Annual Comprehensive Exam",
+                title_modal_monthly: "📅 Monthly Exams Report Card (Total 100 Marks)",
+                sub_modal_monthly: "Hands-on Practical (40) + Theory (30) + Typing (15) + PC Care & Discipline (15) = 100 Marks.",
+                title_modal_semi: "🏆 Semi-Annual Lab Comprehensive Exam (Total 500 Marks)",
+                sub_modal_semi: "Practical Project (200) + Theory Exam (100) + Typing Speed (100) + PC Care (100) = 500 Marks.",
+                t_lblMonthSelect: "Select Month: ",
+                th_no: "No.",
+                th_seat: "Seat No",
+                th_name: "Student Name",
+                th_pc_assigned: "Device (PC / Laptop)",
+                th_level: "Tech Level",
+                th_attendance: "Lab Attendance",
+                th_module: "Fixed Track (Weekly/Monthly)",
+                th_task: "Hands-on Task & Progress Status",
+                th_eval: "Auto Tech Grade",
+                th_status24: "Session Status",
+                th_action: "Action",
+                t_back: "Back to Home",
+                lbl_module_title: "Fixed Track",
+                lbl_task_title: "Daily Practical Lesson",
+                opt_sel_module: "-- Select Track --",
+                ph_task_input: "Today lesson name / exercise no..",
+                status_done: "🛠️ Completed Successfully ✔",
+                status_progress: "🔄 In Progress (Ongoing)",
+                status_review: "⚠️ Needs Review & Retry",
+                eval_1: "Excellent",
+                eval_2: "Very Good",
+                eval_3: "Good",
+                eval_4: "Needs Improvement",
+                eval_fail: "Failed",
+                att_present: "Present ✔",
+                att_absent: "Absent ❌",
+                att_late: "Late ⏱️",
+                status_open: "Open (24h)",
+                btn_save: "Save Session",
+                msg_saved: "Computer lab record saved successfully for",
+                th_modal_seat: "Seat No",
+                th_modal_name: "Student Name",
+                th_m_practical_m: "Practical Exam (40)",
+                th_m_theory_m: "Concepts & Theory (30)",
+                th_m_typing_m: "Typing Speed (15)",
+                th_m_care_m: "PC Care & Discipline (15)",
+                th_m_practical_s: "Practical Project (200)",
+                th_m_theory_s: "Theory Exam (100)",
+                th_m_typing_s: "Typing Speed (100)",
+                th_m_care_s: "Discipline & PC Care (100)",
+                th_modal_tot: "Total",
+                th_modal_pct: "Percentage %",
+                th_modal_grade: "Grade",
+                th_modal_action: "Official Card",
+                t_report_title: "Certified Computer Lab Report Card",
+                school_name: "Syedna Amir Hamza School & Mosque (Est. 1891)",
+                title_semi_annual: "Semi-Annual Comprehensive Lab Exam Report",
+                title_monthly_exam: "Monthly Computer Lab Progress Report",
+                th_lab_skill: "Technical Skill & Module",
+                th_max_score: "Max Score",
+                th_obtained_score: "Obtained Score",
+                th_total_final: "Grand Total",
+                th_pct_label: "Obtained Percentage %",
+                th_grade_label: "Approved Grade",
+                skill_practical: "Hands-on Projects & Software Application",
+                skill_theory: "Theoretical Concepts & Windows OS",
+                skill_typing: "Typing Speed & Accuracy (WPM)",
+                skill_care: "Discipline & Computer Hardware Safety",
+                lbl_lab_teacher: "Computer Lab Instructor",
+                lbl_supervisor_sign: "Academic Supervisor",
+                lbl_principal_sign: "School Principal (Mohtamim)",
+                btn_map_view: "🗺️ Learning Map View",
+                map_active_track: "Active Track",
+                map_status_active: "📍 (Active Track)",
+                map_status_done: "✅ (Completed & Locked)",
+                map_status_upcoming: "⏳ (Upcoming)",
+                prompt_new_module: "Enter new training program name:",
+                msg_module_added: "New technical program added successfully!"
+            }
+        };
+
+        function switchLanguage(lang) {
+            localStorage.setItem('hamza_sys_lang', lang);
+            let t = translations[lang] || translations.ar;
+            document.getElementById('htmlRoot').setAttribute('dir', t.dir);
+            document.getElementById('htmlRoot').setAttribute('lang', lang);
+            
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            if (lang === 'ar') document.querySelectorAll('.lang-btn')[0].classList.add('active');
+            if (lang === 'ur') document.querySelectorAll('.lang-btn')[1].classList.add('active');
+            if (lang === 'en') document.querySelectorAll('.lang-btn')[2].classList.add('active');
+
+            for (let key in t) {
+                if (key !== 'dir' && !key.startsWith('eval_') && !key.startsWith('att_') && !key.startsWith('opt_') && !key.startsWith('ph_') && !key.startsWith('lbl_') && !key.startsWith('th_m_') && !key.startsWith('th_modal_') && key !== 'status_open' && key !== 'btn_save' && key !== 'msg_saved' && !key.startsWith('t_report_') && !key.startsWith('school_') && !key.startsWith('title_') && !key.startsWith('skill_') && key !== 'title_modal_monthly' && key !== 'sub_modal_monthly' && key !== 'title_modal_semi' && key !== 'sub_modal_semi' && key !== 't_lblMonthSelect' && key !== 'status_progress' && key !== 'status_review' && key !== 'status_done' && !key.startsWith('map_') && key !== 'btn_map_view' && key !== 'prompt_new_module' && key !== 'msg_module_added') {
+                    let el = document.getElementById(key);
+                    if (el) el.innerHTML = t[key];
+                }
+            }
+
+            let btnAdd = document.getElementById('btnAddModule');
+            if (btnAdd) btnAdd.innerText = t.btnAddModule;
+
+            if (currentModalMode === 'monthly') {
+                document.getElementById('th_m_practical').innerText = t.th_m_practical_m;
+                document.getElementById('th_m_theory').innerText = t.th_m_theory_m;
+                document.getElementById('th_m_typing').innerText = t.th_m_typing_m;
+                document.getElementById('th_m_care').innerText = t.th_m_care_m;
+            } else {
+                document.getElementById('th_m_practical').innerText = t.th_m_practical_s;
+                document.getElementById('th_m_theory').innerText = t.th_m_theory_s;
+                document.getElementById('th_m_typing').innerText = t.th_m_typing_s;
+                document.getElementById('th_m_care').innerText = t.th_m_care_s;
+            }
+
+            document.getElementById('th_modal_seat').innerText = t.th_modal_seat;
+            document.getElementById('th_modal_name').innerText = t.th_modal_name;
+            document.getElementById('th_modal_tot').innerText = t.th_modal_tot;
+            document.getElementById('th_modal_pct').innerText = t.th_modal_pct;
+            document.getElementById('th_modal_grade').innerText = t.th_modal_grade;
+            document.getElementById('th_modal_action').innerText = t.th_modal_action;
+
+            loadLabStudents();
+            setTodayDate();
+        }
+
+        window.onload = function() {
+            let initialLang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            switchLanguage(initialLang);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageMainTitle">لوحة التقارير الشاملة للمدير العام - مدرسة ومسجد سيدنا أمير حمزة</title>
+    <!-- استدعاء خطوط رسمية فاخرة وواضحة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@500;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-navy: #0b4f6c;
+            --primary-light: #01baef;
+            --secondary-dark: #083b50;
+            --accent-gold: #d4af37;
+            --bg-body: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
+            --success-green: #27ae60;
+            --danger-red: #e74c3c;
+        }
+
+        body {
+            font-family: 'Cairo', Tahoma, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 15px;
+            direction: rtl;
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        html[lang="ur"] body {
+            font-family: 'Noto Nastaliq Urdu', 'Cairo', Tahoma, sans-serif;
+            line-height: 2.2;
+        }
+
+        html[lang="en"] body {
+            direction: ltr;
+            text-align: left;
+        }
+
+        .container {
+            max-width: 1750px;
+            background: var(--bg-card);
+            margin: 0 auto;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(11, 79, 108, 0.08);
+            border-top: 6px solid var(--accent-gold);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            font-family: 'Amiri', 'Cairo', serif;
+            color: var(--primary-navy);
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 6px;
+        }
+
+        .lang-btn {
+            padding: 7px 16px;
+            background: var(--bg-body);
+            color: var(--primary-navy);
+            border: 1.5px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13.5px;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--primary-navy);
+            color: #ffffff;
+            border-color: var(--primary-navy);
+        }
+
+        .report-category-title {
+            font-family: 'Amiri', serif;
+            color: var(--primary-navy);
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .report-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .report-tab-btn {
+            padding: 9px 18px;
+            background: #e2e8f0;
+            color: var(--primary-navy);
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+        .report-tab-btn.active {
+            background: var(--primary-navy);
+            color: white;
+            box-shadow: 0 4px 12px rgba(11, 79, 108, 0.2);
+        }
+
+        .report-section-box {
+            background: #f8fafc;
+            border: 1.5px solid var(--border-color);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .search-filter-bar {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 12.5px;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 10px 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: var(--primary-navy);
+            color: white;
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) { background-color: #f8fafc; }
+
+        .btn-print {
+            background: var(--primary-navy);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 13.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 15px;
+        }
+        .btn-print:hover { background: var(--primary-light); color: var(--primary-navy); }
+
+        .back-btn {
+            background: #64748b;
+            color: white;
+            padding: 9px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 25px;
+            font-weight: 700;
+            font-size: 13.5px;
+        }
+
+        #printReportArea { display: none; }
+
+        @media print {
+            body * { visibility: hidden; }
+            #printReportArea, #printReportArea * { visibility: visible; }
+            #printReportArea {
+                display: block !important;
+                position: absolute;
+                top: 0; right: 0;
+                width: 100%;
+                background: white;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- شريط الرأس واللغات -->
+        <div class="header-top">
+            <h2 id="t_header">📊 لوحة التقارير الشاملة للمدير العام (متابعة عن بُعد)</h2>
+            <div class="lang-switch">
+                <button type="button" class="lang-btn active" onclick="switchLanguage('ar')">العربية</button>
+                <button type="button" class="lang-btn" onclick="switchLanguage('ur')">اردو</button>
+                <button type="button" class="lang-btn" onclick="switchLanguage('en')">English</button>
+            </div>
+        </div>
+
+        <!-- القسم الأول: تقارير المعلمين -->
+        <div class="report-category-title" id="t_cat_teachers">👨‍🏫 تقارير المعلمين</div>
+        <div class="report-tabs">
+            <button type="button" class="report-tab-btn active" onclick="switchReportTab('teachers_att')" id="tabTeaAtt">📅 تقرير حضور المعلمين الشهري</button>
+            <button type="button" class="report-tab-btn" onclick="switchReportTab('salaries')" id="tabSal">💰 تقرير تسليم الرواتب</button>
+            <button type="button" class="report-tab-btn" onclick="switchReportTab('fin_custody')" id="tabFinCust">💵 تقرير العهد المالية</button>
+        </div>
+
+        <!-- القسم الثاني: تقارير الطلاب -->
+        <div class="report-category-title" id="t_cat_students">🎓 تقارير الطلاب</div>
+        <div class="report-tabs">
+            <button type="button" class="report-tab-btn" onclick="switchReportTab('quran_att')" id="tabQuranAtt">📖 حضور حلقات التحفيظ</button>
+            <button type="button" class="report-tab-btn" onclick="switchReportTab('quran_ach')" id="tabQuranAch">🌟 تقرير الحفظ والإنجاز القرآني</button>
+            <button type="button" class="report-tab-btn" onclick="switchReportTab('academic_att')" id="tabAcadAtt">📚 حضور الدراسات الأكاديمية</button>
+            <button type="button" class="report-tab-btn" onclick="switchReportTab('academic_ach')" id="tabAcadAch">🏆 الإنجاز الأكاديمي</button>
+            <button type="button" class="report-tab-btn" onclick="switchReportTab('lab_att')" id="tabLabAtt">💻 حضور معمل الحاسب</button>
+            <button type="button" class="report-tab-btn" onclick="switchReportTab('hostel_att')" id="tabHostelAtt">🏠 حضور سكن الطلاب (الهوستل)</button>
+            <button type="button" class="report-tab-btn" onclick="switchReportTab('delays')" id="tabDel">⏰ تقرير التأخير والإنذارات</button>
+            <button type="button" class="report-tab-btn" onclick="switchReportTab('student_custody')" id="tabStudCust">📦 تقارير عهد الطلاب</button>
+        </div>
+
+        <!-- القسم الثالث: تقارير المدرسة والمسجد -->
+        <div class="report-category-title" id="t_cat_admin">🏫 تقارير المدرسة والمسجد</div>
+        <div class="report-tabs">
+            <button type="button" class="report-tab-btn" onclick="switchReportTab('donations_rep')" id="tabDonRep">💰 تقارير التبرعات والمانحين</button>
+            <button type="button" class="report-tab-btn" onclick="switchReportTab('inventory_rep')" id="tabInvRep">📦 تقارير المستودعات والمخازن</button>
+            <button type="button" class="report-tab-btn" onclick="switchReportTab('mosque_rep')" id="tabMosqRep">🕌 تقارير مصروفات المسجد</button>
+        </div>
+
+        <!-- عرض التقرير النشط مع محرك البحث وطباعة PDF -->
+        <div class="report-section-box">
+            <div class="search-filter-bar">
+                <h3 id="currentReportTitle" style="margin:0; color:var(--primary-navy); font-size:18px; flex:1;">📋 تقرير حضور المعلمين الشهري</h3>
+                
+                <!-- خيارات الشهر والسنة والبحث -->
+                <div id="monthYearFilterContainer" style="display:flex; gap:8px;">
+                    <select id="reportMonth" style="padding:7px; border-radius:6px; border:1px solid #cbd5e1; font-weight:bold;" onchange="renderActiveReport()">
+                        <option value="09" selected>سبتمبر (09)</option>
+                        <option value="10">أكتوبر (10)</option>
+                        <option value="11">نوفمبر (11)</option>
+                        <option value="12">ديسمبر (12)</option>
+                    </select>
+                    <select id="reportYear" style="padding:7px; border-radius:6px; border:1px solid #cbd5e1; font-weight:bold;" onchange="renderActiveReport()">
+                        <option value="2026" selected>2026</option>
+                        <option value="2027">2027</option>
+                    </select>
+                </div>
+
+                <div id="studentSearchContainer" style="display:none; gap:6px;">
+                    <input type="text" id="reportSearchInput" placeholder="بحث برقم الجلوس أو اسم الطالب..." style="padding:7px; border-radius:6px; border:1px solid #cbd5e1; width:240px;" oninput="renderActiveReport()">
+                </div>
+
+                <button type="button" class="btn-print" onclick="printActiveDetailedReport()" id="btnPrintReport">🖨️ طباعة التقرير (أو حفظ PDF)</button>
+            </div>
+            
+            <div id="dynamicReportContainer">
+                <!-- يُملأ برمجياً -->
+            </div>
+        </div>
+
+        <a href="index.html" class="back-btn" id="t_back">⬅ عودة للرئيسية</a>
+    </div>
+
+    <!-- منطقة الطباعة الرسمية المعتمدة -->
+    <div id="printReportArea">
+        <div style="padding:25px; font-family:Tahoma; direction:rtl;" id="printReportContainer">
+            <h2 style="text-align:center; color:#0b4f6c; margin-bottom:5px;">مدرسة ومسجد سيدنا أمير حمزة رضي الله عنه</h2>
+            <p style="text-align:center; font-size:12px; color:#64748b; margin-top:0;">تأسست عام 1891م - باكستان | التقرير الإداري والأكاديمي الشامل للمدير العام</p>
+            <hr style="border:1px solid #cbd5e1; margin:15px 0;">
+            <div id="printReportDetails"></div>
+            <br><br>
+            <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:13px; margin-top:40px;">
+                <div>مشرف الشؤون التعليمية والمحاسبة</div>
+                <div style="text-align:center; border:1px dashed #d4af37; padding:10px 20px; border-radius:6px;">[ الختم الرسمي الإلكتروني للمجمع ]</div>
+                <div>المدير العام: الشيخ الدكتور محمد بن حق نواز بن محمد نواز اسراء</div>
+            </div>
+            <div style="font-size:10.5px; color:#64748b; text-align:center; margin-top:40px; border-top:1px dashed #cbd5e1; padding-top:8px;">
+                إصدار معتمد إلكترونياً من النظام الآلي ولا يحتاج إلى توقيع ورقي تقليدي.
+            </div>
+        </div>
+    </div>
+
+    <!-- استدعاء ملف الربط المشترك app.js -->
+    <script src="app.js"></script>
+
+    <script>
+        let activeReportType = 'teachers_att';
+
+        function switchReportTab(type) {
+            activeReportType = type;
+            document.querySelectorAll('.report-tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            let searchCont = document.getElementById('studentSearchContainer');
+            let dateCont = document.getElementById('monthYearFilterContainer');
+
+            // التقارير التي تحتاج بحث أو فلترة شهرية
+            if (['student_custody'].includes(type)) {
+                searchCont.style.display = 'flex';
+                dateCont.style.display = 'none';
+            } else if (['quran_att', 'quran_ach', 'academic_att', 'academic_ach', 'lab_att', 'hostel_att', 'delays'].includes(type)) {
+                searchCont.style.display = 'flex';
+                dateCont.style.display = 'flex'; // تفعيل الشهر والسنة لتقارير الطلاب الشهرية
+            } else {
+                searchCont.style.display = 'none';
+                dateCont.style.display = 'flex';
+            }
+
+            renderActiveReport();
+        }
+
+        function fetchStudentsData() {
+            let data = localStorage.getItem('hamza_students_db');
+            if (data) { try { return JSON.parse(data); } catch(e) {} }
+            return [
+                { seatNo: "HM1891-01", name: "محمد أحمد الفكي", level: "المستوى الأول" },
+                { seatNo: "HM1891-02", name: "إبراهيم عثمان حمزة", level: "المستوى التأسيسي" }
+            ];
+        }
+
+        function renderActiveReport() {
+            let container = document.getElementById('dynamicReportContainer');
+            let titleEl = document.getElementById('currentReportTitle');
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = reportsTranslations[lang] || reportsTranslations.ar;
+
+            let searchVal = document.getElementById('reportSearchInput') ? document.getElementById('reportSearchInput').value.trim().toLowerCase() : '';
+            let month = document.getElementById('reportMonth').value;
+            let year = document.getElementById('reportYear').value;
+
+            if (activeReportType === 'teachers_att') {
+                titleEl.innerText = t.title_tea_att;
+                container.innerHTML = `
+                    <p style="color:var(--text-muted); font-size:13px;">${t.desc_tea_att} (${month} / ${year})</p>
+                    <table>
+                        <thead>
+                            <tr><th>${t.th_seq}</th><th>${t.th_teacher}</th><th>${t.th_circle}</th><th>${t.th_days_att}</th><th>${t.th_status}</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td><strong>الشيخ / أحمد محمود</strong></td><td>حلقة التحفيظ الكبرى</td><td>26 يوم</td><td><span style="background:#dcfce7; color:#166534; padding:3px 8px; border-radius:4px; font-weight:bold;">${t.st_regular}</span></td></tr>
+                            <tr><td>2</td><td><strong>الشيخ / عثمان إبراهيم</strong></td><td>حلقة القاعدة النورانية</td><td>25 يوم</td><td><span style="background:#dcfce7; color:#166534; padding:3px 8px; border-radius:4px; font-weight:bold;">${t.st_regular}</span></td></tr>
+                        </tbody>
+                    </table>
+                `;
+            } else if (activeReportType === 'salaries') {
+                titleEl.innerText = t.title_sal;
+                container.innerHTML = `
+                    <p style="color:var(--text-muted); font-size:13px;">${t.desc_sal} (${month} / ${year})</p>
+                    <table>
+                        <thead>
+                            <tr><th>${t.th_seq}</th><th>${t.th_teacher}</th><th>${t.th_amount_pkr}</th><th>${t.th_purpose}</th><th>${t.th_date}</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td><strong>الشيخ / أحمد محمود</strong></td><td style="color:#b91c1c; font-weight:bold;">45,000 PKR</td><td>صرف راتب شهر ${month}</td><td>${year}-${month}-28</td></tr>
+                        </tbody>
+                    </table>
+                `;
+            } else if (activeReportType === 'fin_custody') {
+                titleEl.innerText = t.title_fin_cust;
+                let cashData = JSON.parse(localStorage.getItem('hamza_cash_custody_db') || '[]');
+                container.innerHTML = `
+                    <p style="color:var(--text-muted); font-size:13px;">${t.desc_fin_cust}</p>
+                    <table>
+                        <thead>
+                            <tr><th>${t.th_seq}</th><th>المسلم إليه</th><th>المبلغ (PKR)</th><th>أوجه الصرف</th><th>التاريخ</th></tr>
+                        </thead>
+                        <tbody>
+                            ${cashData.map((c, i) => `<tr><td>${i+1}</td><td><strong>${c.title} /${c.name}</strong></td><td style="color:#b91c1c; font-weight:bold;">${Number(c.amount).toLocaleString()} PKR</td><td>${c.purpose}</td><td>${c.date}</td></tr>`).join('') || '<tr><td colspan="5">لا توجد عهد مالية مسجلة</td></tr>'}
+                        </tbody>
+                    </table>
+                `;
+            } else if (['quran_att', 'quran_ach', 'academic_att', 'academic_ach', 'lab_att', 'hostel_att', 'delays'].includes(activeReportType)) {
+                let students = fetchStudentsData();
+                if (searchVal) {
+                    students = students.filter(s => s.name.toLowerCase().includes(searchVal) || s.seatNo.toLowerCase().includes(searchVal));
+                }
+
+                let titleKey = 'title_' + activeReportType;
+                titleEl.innerText = `${t[titleKey] || "تقرير الطلاب"} (${month} / ${year})`;
+
+                let rowsHTML = '';
+                students.forEach((s, idx) => {
+                    let detailsText = activeReportType === 'quran_ach' ? 'إنجاز 15 جزءاً مع التجويد' :
+                                      activeReportType === 'academic_ach' ? 'تقدير ممتاز في كافة المواد' :
+                                      activeReportType === 'delays' ? '0 حالات تأخير (منضبط تماماً)' : 'حضور منتظم بالشهر المحدد';
+                    rowsHTML += `
+                        <tr>
+                            <td>${idx + 1}</td>
+                            <td><strong>${s.seatNo}</strong></td>
+                            <td><strong>${s.name}</strong></td>
+                            <td>${detailsText}</td>
+                            <td><span style="color:var(--success-green); font-weight:bold;">ممتاز</span></td>
+                        </tr>
+                    `;
+                });
+
+                container.innerHTML = `
+                    <p style="color:var(--text-muted); font-size:13px;">ترتيب النتائج (المسلسل، رقم الجلوس، اسم الطالب) لشهر ${month} / ${year}:</p>
+                    <table>
+                        <thead>
+                            <tr><th>${t.th_seq}</th><th>${t.th_seat_no}</th><th>${t.th_student_name}</th><th>${t.th_details}</th><th>${t.th_eval}</th></tr>
+                        </thead>
+                        <tbody>
+                            ${rowsHTML || `<tr><td colspan="5" style="padding:15px; color:red;">لا توجد نتائج مطابقة للبحث.</td></tr>`}
+                        </tbody>
+                    </table>
+                `;
+            } else if (activeReportType === 'student_custody') {
+                titleEl.innerText = t.title_stud_cust;
+                let store = JSON.parse(localStorage.getItem('hamza_school_store_db') || '[]');
+                if (searchVal) {
+                    store = store.filter(i => i.recipient && i.recipient.toLowerCase().includes(searchVal));
+                }
+                container.innerHTML = `
+                    <p style="color:var(--text-muted); font-size:13px;">تقرير مستقل لعهد المستودعات المسلمة للطلاب:</p>
+                    <table>
+                        <thead><tr><th>${t.th_seq}</th><th>المستودع</th><th>اسم الصنف</th><th>الكمية</th><th>الطالب المستلم</th><th>التاريخ</th></tr></thead>
+                        <tbody>
+                            ${store.map((s, i) => `<tr><td>${i+1}</td><td>${s.warehouse}</td><td><strong>${s.name}</strong></td><td>${s.qty}</td><td>${s.recipient}</td><td>${s.date}</td></tr>`).join('') || '<tr><td colspan="6">لا توجد عهد مسجلة للطلاب</td></tr>'}
+                        </tbody>
+                    </table>
+                `;
+            } else if (activeReportType === 'donations_rep') {
+                titleEl.innerText = t.title_don;
+                let donations = JSON.parse(localStorage.getItem('hamza_donations_db') || '[]');
+                container.innerHTML = `
+                    <table>
+                        <thead><tr><th>${t.th_seq}</th><th>رقم السند</th><th>المتبرع</th><th>القيمة / الوصف</th><th>المشروع</th><th>التاريخ</th></tr></thead>
+                        <tbody>
+                            ${donations.map((d, i) => `<tr><td>${i+1}</td><td>${d.receiptNo}</td><td>${d.title || ''} / ${d.donor}</td><td>${d.type==='cash'?d.amount+' PKR':d.item}</td><td>${d.project}</td><td>${d.date}</td></tr>`).join('') || '<tr><td colspan="6">لا توجد بيانات تبرعات</td></tr>'}
+                        </tbody>
+                    </table>
+                `;
+            } else if (activeReportType === 'inventory_rep') {
+                titleEl.innerText = t.title_inv;
+                let store = JSON.parse(localStorage.getItem('hamza_school_store_db') || '[]');
+                container.innerHTML = `
+                    <table>
+                        <thead><tr><th>${t.th_seq}</th><th>المستودع</th><th>اسم الصنف</th><th>الكمية</th><th>العهدة / الطالب</th><th>التاريخ</th></tr></thead>
+                        <tbody>
+                            ${store.map((s, i) => `<tr><td>${i+1}</td><td>${s.warehouse}</td><td><strong>${s.name}</strong></td><td>${s.qty}</td><td>${s.recipient}</td><td>${s.date}</td></tr>`).join('') || '<tr><td colspan="6">لا توجد بيانات مستودعات</td></tr>'}
+                        </tbody>
+                    </table>
+                `;
+            } else if (activeReportType === 'mosque_rep') {
+                titleEl.innerText = t.title_mosq;
+                let mosqueExp = JSON.parse(localStorage.getItem('hamza_mosque_expenses_db') || '[]');
+                container.innerHTML = `
+                    <table>
+                        <thead><tr><th>${t.th_seq}</th><th>بند المصروف</th><th>المبلغ</th><th>طريقة الدفع</th><th>الجهة المستفيدة</th><th>المستلم</th><th>التاريخ</th></tr></thead>
+                        <tbody>
+                            ${mosqueExp.map((m, i) => `<tr><td>${i+1}</td><td>${m.category}</td><td>${Number(m.amount).toLocaleString()} PKR</td><td>${m.method}</td><td>${m.beneficiary}</td><td>${m.recipient}</td><td>${m.date}</td></tr>`).join('') || '<tr><td colspan="7">لا توجد مصروفات مسجلة للمسجد</td></tr>'}
+                        </tbody>
+                    </table>
+                `;
+            }
+        }
+
+        function printActiveDetailedReport() {
+            let container = document.getElementById('dynamicReportContainer').innerHTML;
+            document.getElementById('printReportDetails').innerHTML = container;
+            window.print();
+        }
+
+        const reportsTranslations = {
+            ar: {
+                dir: "rtl",
+                t_header: "📊 لوحة التقارير الشاملة للمدير العام",
+                t_cat_teachers: "👨‍🏫 تقارير المعلمين",
+                t_cat_students: "🎓 تقارير الطلاب",
+                t_cat_admin: "🏫 تقارير المدرسة والمسجد",
+                tabTeaAtt: "📅 تقرير حضور المعلمين الشهري",
+                tabSal: "💰 تقرير تسليم الرواتب",
+                tabFinCust: "💵 تقرير العهد المالية",
+                tabQuranAtt: "📖 حضور حلقات التحفيظ",
+                tabQuranAch: "🌟 تقرير الحفظ والإنجاز القرآني",
+                tabAcadAtt: "📚 حضور الدراسات الأكاديمية",
+                tabAcadAch: "🏆 الإنجاز في الدراسات الأكاديمية",
+                tabLabAtt: "💻 حضور معمل الحاسب",
+                tabHostelAtt: "🏠 حضور سكن الطلاب (الهوستل)",
+                tabDel: "⏰ تقرير التأخير والإنذارات",
+                tabStudCust: "📦 تقارير عهد الطلاب",
+                tabDonRep: "💰 تقارير التبرعات والمانحين",
+                tabInvRep: "📦 تقارير المستودعات والمخازن",
+                tabMosqRep: "🕌 تقارير مصروفات المسجد",
+                title_tea_att: "📅 تقرير حضور المعلمين الشهري",
+                desc_tea_att: "متابعة أيام الحضور والتواجد الرسمي للمعلمين خلال شهر:",
+                title_sal: "💰 تقرير تسليم الرواتب الشهرية",
+                desc_sal: "سجل المدفوعات والرواتب المسلمة للمعلمين والموظفين مع بيان السبب والتاريخ.",
+                title_fin_cust: "💵 تقرير العهد المالية التفصيلي",
+                desc_fin_cust: "تفاصيل العهد النقدية المسلمة للمشايخ وأوجه صرفها.",
+                title_quran_att: "📖 تقرير حضور وغياب الطلاب في حلقات التحفيظ (شهري)",
+                title_quran_ach: "🌟 تقرير الحفظ والإنجاز القرآني (شهري)",
+                title_academic_att: "📚 تقرير حضور وغياب الطلاب في الدراسات الأكاديمية (شهري)",
+                title_academic_ach: "🏆 تقرير الإنجاز في الدراسات الأكاديمية (شهري)",
+                title_lab_att: "💻 تقرير حضور وغياب الطلاب في معمل الحاسب (شهري)",
+                title_hostel_att: "🏠 تقرير حضور وانضباط سكن الطلاب الهوستل (شهري)",
+                title_del: "⏰ تقرير التأخير والإنذارات الطلابية (شهري)",
+                title_stud_cust: "📦 تقرير عهد المستودعات المخصصة للطلاب",
+                title_don_rep: "💰 تقارير التبرعات والمانحين التفصيلية",
+                title_inv_rep: "📦 تقارير المستودعات والمخازن الشاملة",
+                title_mosq_rep: "🕌 تقارير مصروفات ومصاريف المسجد والمرافق",
+                th_seq: "م",
+                th_seat_no: "رقم الجلوس",
+                th_student_name: "اسم الطالب",
+                th_details: "تفاصيل السجل والإنجاز",
+                th_eval: "التقدير والمستوى",
+                th_teacher: "اسم المعلم",
+                th_circle: "الحلقة / القسم",
+                th_days_att: "أيام الحضور",
+                th_status: "الحالة",
+                th_amount_pkr: "المبلغ (PKR)",
+                th_purpose: "البيان والسبب",
+                th_date: "التاريخ",
+                st_regular: "منتظم ومستمر",
+                btnPrintReport: "🖨️ طباعة التقرير (أو حفظ PDF)",
+                t_back: "⬅ عودة للرئيسية"
+            },
+            ur: {
+                dir: "rtl",
+                t_header: "📊 ڈائریکٹر جنرل کا جامع رپورٹس ڈیش بورڈ",
+                t_cat_teachers: "👨‍🏫 اساتذہ کی رپورٹس",
+                t_cat_students: "🎓 طلباء کی رپورٹس",
+                t_cat_admin: "🏫 اسکول اور مسجد کی رپورٹس",
+                tabTeaAtt: "📅 اساتذہ کی ماہانہ حاضری",
+                tabSal: "💰 تنخواہوں کی رپورٹ",
+                tabFinCust: "💵 مالی امانتوں کی رپورٹ",
+                tabQuranAtt: "📖 حفظ حلقات کی حاضری",
+                tabQuranAch: "🌟 حفظ قرآن اور کامیابی",
+                tabAcadAtt: "📚 تعلیمی حاضری",
+                tabAcadAch: "🏆 تعلیمی کارکردگی",
+                tabLabAtt: "💻 کمپیوٹر لیب حاضری",
+                tabHostelAtt: "🏠 ہاسٹل حاضری",
+                tabDel: "⏰ تاخیر اور انتباہات",
+                tabStudCust: "📦 طلباء کی امانتیں",
+                tabDonRep: "💰 عطیات کی رپورٹس",
+                tabInvRep: "📦 گودام کی رپورٹس",
+                tabMosqRep: "🕌 مسجد کے اخراجات",
+                title_tea_att: "📅 اساتذہ کی ماہانہ حاضری",
+                title_sal: "💰 تنخواہوں کی ادائیگی کا ریکارڈ",
+                title_fin_cust: "💵 مالی امانتوں کی تفصیل",
+                title_stud_cust: "📦 طلباء کی امانتوں کی رپورٹ",
+                th_seq: "نمبر",
+                th_seat_no: "رول نمبر",
+                th_student_name: "طالب علم کا نام",
+                th_details: "تفصیلات",
+                th_eval: "گریڈ",
+                th_teacher: "استاد کا نام",
+                th_circle: "حلقہ",
+                th_days_att: "حاضری کے دن",
+                th_status: "حالت",
+                th_amount_pkr: "رقم",
+                th_purpose: "مقصد",
+                th_date: "تاریخ",
+                st_regular: "باقاعدہ",
+                btnPrintReport: "🖨️ رپورٹ پرنٹ کریں",
+                t_back: "⬅ واپس"
+            },
+            en: {
+                dir: "ltr",
+                t_header: "📊 General Director's Comprehensive Reports Dashboard",
+                t_cat_teachers: "👨‍🏫 Teachers Reports",
+                t_cat_students: "🎓 Students Reports",
+                t_cat_admin: "🏫 School & Mosque Reports",
+                tabTeaAtt: "📅 Monthly Teachers Attendance",
+                tabSal: "💰 Salaries Delivery Report",
+                tabFinCust: "💵 Financial Custody Report",
+                tabQuranAtt: "📖 Quran Circles Attendance",
+                tabQuranAch: "🌟 Quran Memorization Achievement",
+                tabAcadAtt: "📚 Academic Attendance",
+                tabAcadAch: "🏆 Academic Achievement",
+                tabLabAtt: "💻 Computer Lab Attendance",
+                tabHostelAtt: "🏠 Hostel Attendance",
+                tabDel: "⏰ Delays & Warnings",
+                tabStudCust: "📦 Student Custody Reports",
+                tabDonRep: "💰 Donations Reports",
+                tabInvRep: "📦 Inventory Reports",
+                tabMosqRep: "🕌 Mosque Expenses Reports",
+                title_tea_att: "📅 Monthly Teachers Attendance Report",
+                title_sal: "💰 Salaries Delivery Report",
+                title_fin_cust: "💵 Financial Custody Details Report",
+                title_stud_cust: "📦 Student Custody Report",
+                th_seq: "No.",
+                th_seat_no: "Seat No",
+                th_student_name: "Student Name",
+                th_details: "Details & Achievement",
+                th_eval: "Evaluation",
+                th_teacher: "Teacher Name",
+                th_circle: "Circle",
+                th_days_att: "Attendance Days",
+                th_status: "Status",
+                th_amount_pkr: "Amount (PKR)",
+                th_purpose: "Purpose",
+                th_date: "Date",
+                st_regular: "Regular",
+                btnPrintReport: "🖨️ Print Report (or Save PDF)",
+                t_back: "Back to Home"
+            }
+        };
+
+        function switchLanguage(lang) {
+            localStorage.setItem('hamza_sys_lang', lang);
+            let t = reportsTranslations[lang] || reportsTranslations.ar;
+            document.getElementById('htmlRoot').setAttribute('dir', t.dir);
+            document.getElementById('htmlRoot').setAttribute('lang', lang);
+            
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            if (lang === 'ar') document.querySelectorAll('.lang-btn')[0].classList.add('active');
+            if (lang === 'ur') document.querySelectorAll('.lang-btn')[1].classList.add('active');
+            if (lang === 'en') document.querySelectorAll('.lang-btn')[2].classList.add('active');
+
+            for (let key in t) {
+                if (key !== 'dir') {
+                    let el = document.getElementById(key);
+                    if (el) el.innerHTML = t[key];
+                }
+            }
+            renderActiveReport();
+        }
+
+        window.onload = function() {
+            let initialLang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            switchLanguage(initialLang);
+            renderActiveReport();
+        };
+    </script>
+</body>
+</html>

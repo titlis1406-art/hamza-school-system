@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageMainTitle">نظام الشهادات والتقارير المعتمدة - مدرسة ومسجد سيدنا أمير حمزة</title>
+    <!-- استدعاء خطوط رسمية فاخرة وواضحة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@500;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-navy: #0b4f6c;
+            --primary-light: #01baef;
+            --secondary-dark: #083b50;
+            --accent-gold: #d4af37;
+            --bg-body: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
+            --success-green: #27ae60;
+        }
+
+        body {
+            font-family: 'Cairo', Tahoma, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            direction: rtl;
+            text-align: right;
+        }
+
+        html[lang="ur"] body {
+            font-family: 'Noto Nastaliq Urdu', 'Cairo', Tahoma, sans-serif;
+        }
+
+        .container {
+            max-width: 1450px;
+            background: var(--bg-card);
+            margin: 0 auto;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(11, 79, 108, 0.08);
+            border-top: 6px solid var(--accent-gold);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-family: 'Amiri', 'Cairo', serif;
+            color: var(--primary-navy);
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 6px;
+        }
+
+        .lang-btn {
+            padding: 7px 16px;
+            background: var(--bg-body);
+            color: var(--primary-navy);
+            border: 1.5px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13.5px;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--primary-navy);
+            color: #ffffff;
+            border-color: var(--primary-navy);
+            box-shadow: 0 3px 8px rgba(11, 79, 108, 0.2);
+        }
+
+        .control-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .control-group label {
+            font-weight: bold;
+            color: var(--primary-navy);
+            font-size: 13px;
+        }
+
+        .control-group select, .control-group input {
+            padding: 10px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 13.5px;
+            font-family: inherit;
+            font-weight: bold;
+            color: var(--text-main);
+            background: #fff;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+            grid-column: 1 / -1;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-print {
+            background: var(--primary-navy);
+            color: #fff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13.5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-print:hover { background: var(--primary-light); color: var(--primary-navy); }
+
+        .btn-pdf {
+            background: #27ae60;
+            color: #fff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13.5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-pdf:hover { background: #219653; }
+
+        .btn-save-archive {
+            background: #7c2d12;
+            color: #fff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13.5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-save-archive:hover { background: #9a3412; }
+
+        .btn-search {
+            background: #0284c7;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .btn-search:hover { background: #0369a1; }
+
+        .btn-update-date {
+            background: #d97706;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .btn-update-date:hover { background: #b45309; }
+
+        /* معاينة الشهادة الحية بمقاس A4 أفقي آمن ومتناسق للطباعة */
+        .preview-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: #e2e8f0;
+            padding: 30px;
+            border-radius: 12px;
+            box-sizing: border-box;
+            overflow-x: auto;
+        }
+
+        .cert-page {
+            width: 297mm;
+            height: 210mm;
+            background: #fffcf5;
+            border: 6px double var(--accent-gold);
+            padding: 25mm 30mm;
+            box-sizing: border-box;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .cert-page::before {
+            content: "";
+            position: absolute;
+            top: 8mm; left: 8mm; right: 8mm; bottom: 8mm;
+            border: 1.5px solid var(--primary-navy);
+            pointer-events: none;
+        }
+
+        .cert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 12px;
+        }
+
+        .cert-header-right h1 {
+            font-family: 'Amiri', serif;
+            color: var(--primary-navy);
+            font-size: 26px;
+            margin: 0;
+        }
+
+        .cert-header-right h3 {
+            color: var(--secondary-dark);
+            font-size: 15px;
+            margin: 4px 0 0 0;
+            font-weight: 600;
+        }
+
+        .cert-header-left {
+            text-align: center;
+        }
+
+        .cert-header-left img {
+            width: 65px;
+            height: 65px;
+            border: 1px solid var(--accent-gold);
+            padding: 3px;
+            border-radius: 6px;
+            background: #fff;
+        }
+
+        .cert-body {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .cert-title-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-navy), var(--secondary-dark));
+            color: var(--accent-gold);
+            font-family: 'Amiri', serif;
+            font-size: 30px;
+            padding: 6px 35px;
+            border-radius: 50px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(11, 79, 108, 0.2);
+            border: 2px solid var(--accent-gold);
+        }
+
+        .cert-text {
+            font-size: 18px;
+            color: var(--text-main);
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .student-name-highlight {
+            font-family: 'Amiri', serif;
+            font-size: 34px;
+            color: var(--primary-navy);
+            font-weight: 900;
+            border-bottom: 3px dashed var(--accent-gold);
+            display: inline-block;
+            padding: 0 20px;
+            margin: 5px 0;
+        }
+
+        .dynamic-highlight-text {
+            color: #9a3412;
+            font-family: 'Amiri', serif;
+            font-weight: 800;
+            font-size: 22px;
+            background: #ffedd5;
+            padding: 2px 10px;
+            border-radius: 6px;
+            border: 1px dashed #f97316;
+            display: inline-block;
+        }
+
+        .cert-footer-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-top: 2px solid #e2e8f0;
+            padding-top: 15px;
+        }
+
+        .cert-signatures {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .signature-box {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--primary-navy);
+            min-width: 180px;
+        }
+
+        .signature-box .name {
+            font-family: 'Amiri', serif;
+            font-size: 16px;
+            color: var(--text-main);
+            margin-top: 4px;
+        }
+
+        .official-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+            background: #f8fafc;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px dashed var(--border-color);
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            background: #64748b;
+            color: white;
+            padding: 9px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 25px;
+            font-weight: 700;
+            font-size: 13.5px;
+        }
+        .back-btn:hover { background: #475569; }
+
+        @media print {
+            body { 
+                background: none !important; 
+                padding: 0 !important; 
+                margin: 0 !important; 
+            }
+            .container > *:not(.preview-container), .header-top, .control-panel, .back-btn { 
+                display: none !important; 
+            }
+            .preview-container { 
+                background: none !important; 
+                padding: 0 !important; 
+                margin: 0 !important; 
+                display: block !important; 
+                width: 100% !important; 
+                height: 100% !important; 
+            }
+            .cert-page { 
+                width: 297mm !important; 
+                height: 210mm !important; 
+                margin: 0 !important; 
+                border: 6px double var(--accent-gold) !important; 
+                page-break-after: avoid !important;
+                page-break-inside: avoid !important;
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important;
+            }
+            @page { 
+                size: A4 landscape; 
+                margin: 0mm; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- شريط الرأس واللغات -->
+        <div class="header-top">
+            <h2 id="t_header">📜 نظام الشهادات والتقارير المعتمدة (A4 أفقي)</h2>
+            <div class="lang-switch">
+                <button type="button" class="lang-btn" onclick="switchLanguage('ar')">العربية</button>
+                <button type="button" class="lang-btn" onclick="switchLanguage('ur')">اردو</button>
+                <button type="button" class="lang-btn" onclick="switchLanguage('en')">English</button>
+            </div>
+        </div>
+
+        <!-- لوحة التحكم الديناميكية التفاعلية -->
+        <div class="control-panel">
+            <div class="control-group">
+                <label id="t_lblSearch">بحث برقم الجلوس (مثلاً: 01):</label>
+                <div style="display:flex; gap:6px;">
+                    <span style="padding:10px; background:#e2e8f0; border-radius:6px; font-weight:bold; font-size:13px; display:flex; align-items:center;">HM1891-</span>
+                    <input type="text" id="searchSeatSuffix" placeholder="01" style="width: 80px;" onkeypress="if(event.key==='Enter') filterStudentBySeat();">
+                    <button type="button" class="btn-search" onclick="filterStudentBySeat()">🔍 بحث</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="selectStudent" id="t_lblStudent">اختر الطالب:</label>
+                <select id="selectStudent" onchange="updateCertificatePreview()">
+                    <!-- يُملأ برمجياً -->
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="selectCertType" id="t_lblCertType">نوع الشهادة المعتمدة:</label>
+                <select id="selectCertType" onchange="toggleDynamicFields(); updateCertificatePreview();">
+                    <option value="quran_full">📖 شهادة حفظ القرآن الكريم (كامل)</option>
+                    <option value="quran_achievement">🟢 شهادة إنجاز (جزء / سورة / نورانية)</option>
+                    <option value="appreciation">🌟 شهادة شكر وتقدير</option>
+                    <option value="academic">📚 شهادة إتمام الدراسة الأكاديمية والمراحل</option>
+                    <option value="lab">💻 شهادة مهارات الحاسب الآلي (مع اسم البرنامج)</option>
+                    <option value="hostel">🏠 شهادة التميز والانضباط بالسكن الداخلي</option>
+                    <option value="comprehensive">🏆 الشهادة الشاملة الموحدة</option>
+                </select>
+            </div>
+
+            <!-- الحقل الديناميكي المخصص بحسب نوع الشهادة -->
+            <div class="control-group" id="dynamicFieldGroup" style="grid-column: 1 / -1; background:#fff; padding:12px; border-radius:8px; border:1px solid #cbd5e1;">
+                <label id="dynamicLabel" style="color:var(--primary-navy); font-size:13px;">تخصيص محتوى الشهادة (الجزء، المادة، البرنامج...):</label>
+                <input type="text" id="dynamicInput" placeholder="اكتب هنا..." oninput="updateCertificatePreview()">
+            </div>
+
+            <div class="control-group">
+                <label for="issueDate" id="t_lblDate">تاريخ الإصدار:</label>
+                <div style="display:flex; gap:6px;">
+                    <input type="date" id="issueDate" style="flex:1;">
+                    <button type="button" class="btn-update-date" onclick="updateCertificatePreview()">💾 تحديث</button>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button type="button" class="btn-print" onclick="printCertificate()">🖨️ طباعة</button>
+                <button type="button" class="btn-pdf" onclick="printCertificate()">📄 حفظ PDF</button>
+                <button type="button" class="btn-save-archive" onclick="saveCertificateToStudentFile()">💾 حفظ في ملف الطالب</button>
+            </div>
+        </div>
+
+        <!-- معاينة الشهادة الحية (A4 أفقي Landscape) -->
+        <div class="preview-container">
+            <div class="cert-page" id="certPageContent">
+                <!-- يُملأ برمجياً بالكامل -->
+            </div>
+        </div>
+
+        <a href="index.html" class="back-btn" id="t_back">⬅ عودة للرئيسية</a>
+    </div>
+
+    <!-- استدعاء ملف الربط المشترك app.js -->
+    <script src="app.js"></script>
+
+    <script>
+        function fetchSystemStudents() {
+            let data = localStorage.getItem('hamza_students_db');
+            if (data) {
+                try { return JSON.parse(data); } catch(e) {}
+            }
+            return [
+                { seatNo: "HM1891-01", name: "محمد أحمد الفكي", level: "المستوى الأول", dept: "القرآن والأكاديمي", certs: [] },
+                { seatNo: "HM1891-02", name: "إبراهيم عثمان حمزة", level: "المستوى التأسيسي", dept: "معمل الحاسب والهوستل", certs: [] }
+            ];
+        }
+
+        function initStudentsDropdown(filterSuffix = "") {
+            let students = fetchSystemStudents();
+            let select = document.getElementById('selectStudent');
+            select.innerHTML = '';
+            
+            let filtered = students.filter(s => {
+                if(!filterSuffix) return true;
+                return s.seatNo.toLowerCase().includes(filterSuffix.toLowerCase()) || s.seatNo.endsWith(filterSuffix);
+            });
+
+            if (filtered.length === 0) {
+                filtered = students;
+            }
+
+            filtered.forEach(s => {
+                let opt = document.createElement('option');
+                opt.value = s.seatNo;
+                opt.setAttribute('data-name', s.name);
+                opt.setAttribute('data-level', s.level || 'المستوى الأول');
+                opt.innerText = `${s.name} (${s.seatNo})`;
+                select.appendChild(opt);
+            });
+            updateCertificatePreview();
+        }
+
+        function filterStudentBySeat() {
+            let suffix = document.getElementById('searchSeatSuffix').value.trim();
+            initStudentsDropdown(suffix);
+        }
+
+        function setDefaultDate() {
+            let today = new Date().toISOString().slice(0, 10);
+            document.getElementById('issueDate').value = today;
+        }
+
+        function toggleDynamicFields() {
+            let certType = document.getElementById('selectCertType').value;
+            let group = document.getElementById('dynamicFieldGroup');
+            let label = document.getElementById('dynamicLabel');
+            let input = document.getElementById('dynamicInput');
+
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+
+            if (certType === 'quran_achievement') {
+                group.style.display = 'flex';
+                label.innerText = lang === 'ur' ? "قرآنی کامیابی (مثلاً: پارہ عم / قاعدہ نورانیہ):" : lang === 'en' ? "Quran Achievement (e.g., Juz Amma / Noorani Qaida):" : "اسم الإنجاز القرآني (مثال: إنجاز جزء عمّ المبارك / القاعدة النورانية / سورة الملك):";
+                input.value = input.value || "إنجاز جزء عمّ المبارك";
+            } else if (certType === 'appreciation') {
+                group.style.display = 'flex';
+                label.innerText = lang === 'ur' ? "تعریف کی وجہ:" : lang === 'en' ? "Reason for Appreciation:" : "سبب شهادة الشكر والتقدير (مثال: للتميز المستمر / التفوق في الحفظ والأخلاق):";
+                input.value = input.value || "للتميز المستمر والانضباط الأخلاقي المثالي";
+            } else if (certType === 'academic') {
+                group.style.display = 'flex';
+                label.innerText = lang === 'ur' ? "تعلیمی تفصیلات:" : lang === 'en' ? "Academic Details:" : "تفاصيل الإنجاز الأكاديمي (مثال: إتمام مادة العلوم / إتمام الفصل الدراسي الأول):";
+                input.value = input.value || "إتمام المقررات الدراسية واجتياز الامتحانات بتقدير ممتاز";
+            } else if (certType === 'lab') {
+                group.style.display = 'flex';
+                label.innerText = lang === 'ur' ? "کمپیوٹر پروگرام کا نام:" : lang === 'en' ? "Computer Program Name:" : "اسم البرنامج أو الدورة (مثال: مهارات الحاسب الآلي [برنامج Excel و Word]):";
+                input.value = input.value || "مهارات الحاسب الآلي [برامج الأوفيس والطباعة]";
+            } else {
+                group.style.display = 'none';
+            }
+        }
+
+        function updateCertificatePreview() {
+            let selectStu = document.getElementById('selectStudent');
+            if (!selectStu || selectStu.options.length === 0) return;
+
+            let selectedOpt = selectStu.options[selectStu.selectedIndex];
+            let studentName = selectedOpt.getAttribute('data-name');
+            let seatNo = selectedOpt.value;
+            let certType = document.getElementById('selectCertType').value;
+            let issueDate = document.getElementById('issueDate').value;
+            let customText = document.getElementById('dynamicInput').value;
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = certTranslations[lang] || certTranslations.ar;
+
+            let certTitle = "";
+            let certDescription = "";
+
+            if (certType === 'quran_full') {
+                certTitle = t.quran_full_title;
+                certDescription = t.quran_full_desc;
+            } else if (certType === 'quran_achievement') {
+                certTitle = t.quran_ach_title;
+                certDescription = `${t.p_ach_prefix} <span class="dynamic-highlight-text">${customText}</span>`;
+            } else if (certType === 'appreciation') {
+                certTitle = t.app_title;
+                certDescription = `${t.p_app_prefix} <span class="dynamic-highlight-text">${customText}</span>`;
+            } else if (certType === 'academic') {
+                certTitle = t.acad_title;
+                certDescription = `${t.p_acad_prefix} <span class="dynamic-highlight-text">${customText}</span>`;
+            } else if (certType === 'lab') {
+                certTitle = t.lab_title;
+                certDescription = `${t.p_lab_prefix} <span class="dynamic-highlight-text">${customText}</span>`;
+            } else if (certType === 'hostel') {
+                certTitle = t.hostel_title;
+                certDescription = t.hostel_desc;
+            } else if (certType === 'comprehensive') {
+                certTitle = t.comp_title;
+                certDescription = t.comp_desc;
+            }
+
+            let seatSuffix = seatNo.split('-')[1] || '01';
+            let certNumber = "HM1891-CERT-101-" + seatSuffix;
+            let qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=55x55&data=HamzaSchool_Certificate_${seatNo}_${certType}`;
+
+            let page = document.getElementById('certPageContent');
+            page.innerHTML = `
+                <div class="cert-header">
+                    <div class="cert-header-right">
+                        <h1>${t.school_name}</h1>
+                        <h3>${t.school_sub}</h3>
+                    </div>
+                    <div class="cert-header-left">
+                        <img src="${qrCodeUrl}" alt="QR Code">
+                        <div style="font-size:7.5px; color:var(--text-muted); margin-top:2px;">VERIFIED QR</div>
+                    </div>
+                </div>
+
+                <div class="cert-body">
+                    <div class="cert-title-badge">${certTitle}</div>
+                    <p class="cert-text">${t.p_to_certify}</p>
+                    <div class="student-name-highlight">${studentName}</div>
+                    <p class="cert-text">${certDescription}</p>
+                    <p style="font-size:14px; color:var(--secondary-dark); font-weight:bold; margin-top:3px;">${t.p_congrats}</p>
+                </div>
+
+                <div class="cert-footer-section">
+                    <div class="cert-signatures">
+                        <div class="signature-box">
+                            <div>${t.lbl_teacher}</div>
+                            <div class="name">الشيخ / أحمد محمود</div>
+                        </div>
+
+                        <div class="signature-box">
+                            <div>${t.lbl_supervisor}</div>
+                            <div class="name">الشيخ / عثمان إبراهيم</div>
+                        </div>
+
+                        <div style="text-align:center; min-width:110px;">
+                            <div style="font-size:11px; font-weight:bold; color:var(--primary-navy); border: 1.5px dashed var(--accent-gold); padding: 5px 10px; border-radius: 6px; background:#fefce8;">${t.lbl_seal}</div>
+                        </div>
+
+                        <div class="signature-box">
+                            <div>${t.lbl_principal}</div>
+                            <div class="name" style="font-weight:900;">الشيخ الدكتور محمد بن حق نواز اسراء</div>
+                        </div>
+                    </div>
+
+                    <div class="official-meta">
+                        <span><strong>رقم الشهادة:</strong> ${certNumber}</span>
+                        <span><strong>تاريخ الإصدار:</strong> ${issueDate}</span>
+                        <span><strong>${t.official_notice}</strong></span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function printCertificate() {
+            window.print();
+        }
+
+        function saveCertificateToStudentFile() {
+            let selectStu = document.getElementById('selectStudent');
+            if (!selectStu || selectStu.options.length === 0) return;
+            let seatNo = selectStu.value;
+            let certType = document.getElementById('selectCertType').value;
+            let issueDate = document.getElementById('issueDate').value;
+            let customText = document.getElementById('dynamicInput') ? document.getElementById('dynamicInput').value : '';
+
+            let students = fetchSystemStudents();
+            let student = students.find(s => s.seatNo === seatNo);
+            if (student) {
+                if (!student.certs) student.certs = [];
+                student.certs.push({
+                    type: certType,
+                    details: customText,
+                    date: issueDate,
+                    certNo: "HM1891-CERT-101-" + seatNo.split('-')[1]
+                });
+                localStorage.setItem('hamza_students_db', JSON.stringify(students));
+                alert(`✅ تم حفظ الشهادة بنجاح في السلسلة الأرشفية لملف الطالب (${student.name})!`);
+            } else {
+                alert("❌ تعذر العثور على ملف الطالب للحفظ.");
+            }
+        }
+
+        const certTranslations = {
+            ar: {
+                dir: "rtl",
+                school_name: "مدرسة ومسجد سيدنا أمير حمزة رضي الله عنه",
+                school_sub: "تأسست عام 1891م - باكستان (النظام التعليمي الموحد)",
+                t_lblSearch: "بحث برقم الجلوس (مثلاً: 01):",
+                t_lblStudent: "اختر الطالب:",
+                t_lblCertType: "نوع الشهادة المعتمدة:",
+                t_lblDate: "تاريخ الإصدار:",
+                p_to_certify: "تشهد إدارة مدرسة ومسجد سيدنا أمير حمزة بأن الطالب المتميز:",
+                p_congrats: "وذلك لقاء جهوده المباركة والتزامه التام، متمنين له دوام التوفيق والتقدم.",
+                official_notice: "إصدار معتمد إلكترونياً من النظام الآلي ولا يحتاج إلى توقيع.",
+                lbl_teacher: "معلم المادة / الحلقة",
+                lbl_supervisor: "المشرف التعليمي",
+                lbl_seal: "الختم الرسمي",
+                lbl_principal: "مدير المدرسة (المهتمم)",
+                quran_full_title: "شهادة حفظ القرآن الكريم",
+                quran_full_desc: "أتم بنجاح حفظ القرآن الكريم كاملاً مع التجويد ضمن حلقات المجمع.",
+                quran_ach_title: "شهادة إنجاز قرآني",
+                p_ach_prefix: "تشهد إدارة المجمع بأن الطالب قد أتم بنجاح وتفوق متطلبات:",
+                app_title: "شهادة شكر وتقدير",
+                p_app_prefix: "تتقدم إدارة المدرسة بخالص الشكر والتقدير للطالب المتميز نظير:",
+                acad_title: "شهادة إتمام الدراسة الأكاديمية",
+                p_acad_prefix: "تشهد المدرسة بأن الطالب قد اجتاز بنجاح تام متطلبات:",
+                lab_title: "شهادة مهارات الحاسب الآلي",
+                p_lab_prefix: "أتم الطالب بكفاءة عالية متطلبات التدريب العملي في:",
+                hostel_title: "شهادة التميز والانضباط بالسكن الداخلي",
+                hostel_desc: "حصل على تقدير ممتاز في الانضباط والنظافة والمحافظة على مرافق الهوستل.",
+                comp_title: "الشهادة الشاملة الموحدة للمجمع",
+                comp_desc: "حقق التفوق الشامل في كافة أقسام وبرامج المجمع التعليمية بتقدير ممتاز."
+            },
+            ur: {
+                dir: "rtl",
+                school_name: "مدرسہ و مسجد سیدنا امیر حمزہ رضی اللہ عنہ",
+                school_sub: "تاسیس 1891ء - پاکستان",
+                t_lblSearch: "رول نمبر سے تلاش کریں:",
+                t_lblStudent: "طالب علم منتخب کریں:",
+                t_lblCertType: "سرٹیفکیٹ کی قسم:",
+                t_lblDate: "تاریخ اجراء:",
+                p_to_certify: "مدرسہ و مسجد سیدنا امیر حمزہ کی انتظامیہ تصدیق کرتی ہے کہ ہونہار طالب علم:",
+                p_congrats: "مبارک ہو! آپ کی محنت قابل ستائش ہے۔",
+                official_notice: "یہ ایک خودکار مصدقہ سند ہے، دستخط کی ضرورت نہیں۔",
+                lbl_teacher: "مضامین / حلقہ کے استاد",
+                lbl_supervisor: "تعلیمی نگران",
+                lbl_seal: "سرکاری مہر",
+                lbl_principal: "مہتمم جامعہ",
+                quran_full_title: "حفظ القرآن الكريم سرٹیفکیٹ",
+                quran_full_desc: "قرآن پاک کا حفظ کامیابی سے مکمل کیا۔",
+                quran_ach_title: "قرآنی کامیابی کا سرٹیفکیٹ",
+                p_ach_prefix: "انتظامیہ تصدیق کرتی ہے کہ طالب علم نے کامیابی سے مکمل کیا:",
+                app_title: "تعریف اور تحسین کا سرٹیفکیٹ",
+                p_app_prefix: "بہترین کارکردگی اور اخلاق پر پیش کیا جاتا ہے:",
+                acad_title: "تعلیمی سرٹیفکیٹ",
+                p_acad_prefix: "تعلیمی نصاب کامیابی کے ساتھ مکمل کیا:",
+                lab_title: "کمپیوٹر لیب کا سرٹیفکیٹ",
+                p_lab_prefix: "عملی تربیت کامیابی سے مکمل کی:",
+                hostel_title: "ہاسٹل کی بہترین کارکردگی کا سرٹیفکیٹ",
+                hostel_desc: "ہاسٹل کے اصولوں اور صفائی میں بہترین کارکردگی۔",
+                comp_title: "جامع سرٹیفکیٹ",
+                comp_desc: "تمام شعبہ جات میں شاندار کارکردگی کا مظاہرہ کیا۔"
+            },
+            en: {
+                dir: "ltr",
+                school_name: "Syedna Amir Hamza School & Mosque",
+                school_sub: "Est. 1891 - Pakistan (Unified Educational System)",
+                t_lblSearch: "Search Seat Suffix:",
+                t_lblStudent: "Select Student:",
+                t_lblCertType: "Certificate Type:",
+                t_lblDate: "Issue Date:",
+                p_to_certify: "This is to certify that the distinguished student:",
+                p_congrats: "In recognition of dedicated efforts and excellence. We wish you success.",
+                official_notice: "Electronically verified official certificate issued by the automated system.",
+                lbl_teacher: "Subject/Circle Teacher",
+                lbl_supervisor: "Educational Supervisor",
+                lbl_seal: "Official Seal",
+                lbl_principal: "School Principal (Mohtamim)",
+                quran_full_title: "Certificate of Quran Memorization",
+                quran_full_desc: "Successfully completed full Quran memorization with Tajweed.",
+                quran_ach_title: "Quran Achievement Certificate",
+                p_ach_prefix: "Successfully completed requirements of:",
+                app_title: "Certificate of Appreciation",
+                p_app_prefix: "Awarded in recognition of exemplary conduct and efforts:",
+                acad_title: "Certificate of Academic Completion",
+                p_acad_prefix: "Successfully passed academic requirements of:",
+                lab_title: "Computer Lab Certificate",
+                p_lab_prefix: "Completed practical training in:",
+                hostel_title: "Hostel Excellence & Discipline Certificate",
+                hostel_desc: "Demonstrated outstanding compliance with hostel rules and cleanliness.",
+                comp_title: "Comprehensive Unified Certificate",
+                comp_desc: "Achieved overall excellence across all departments and programs."
+            }
+        };
+
+        function switchLanguage(lang) {
+            localStorage.setItem('hamza_sys_lang', lang);
+            let t = certTranslations[lang] || certTranslations.ar;
+            document.getElementById('htmlRoot').setAttribute('dir', t.dir);
+            document.getElementById('htmlRoot').setAttribute('lang', lang);
+            
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            if (lang === 'ar') document.querySelectorAll('.lang-btn')[0].classList.add('active');
+            if (lang === 'ur') document.querySelectorAll('.lang-btn')[1].classList.add('active');
+            if (lang === 'en') document.querySelectorAll('.lang-btn')[2].classList.add('active');
+
+            for (let key in t) {
+                if (key !== 'dir' && !key.startsWith('p_') && !key.startsWith('lbl_') && !key.startsWith('quran_') && !key.startsWith('comp_') && !key.startsWith('app_') && !key.startsWith('acad_') && !key.startsWith('lab_')) {
+                    let el = document.getElementById(key);
+                    if (el) el.innerHTML = t[key];
+                }
+            }
+            updateCertificatePreview();
+        }
+
+        window.onload = function() {
+            let initialLang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            initStudentsDropdown();
+            setDefaultDate();
+            toggleDynamicFields();
+            switchLanguage(initialLang);
+        };
+    </script>
+</body>
+</html>

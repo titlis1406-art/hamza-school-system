@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>الفصول الأكاديمية - مدرسة ومسجد سيدنا أمير حمزة</title>
+    <style>
+        body { font-family: Tahoma, sans-serif; background-color: #f4f6f9; margin: 0; padding: 30px; direction: rtl; text-align: right; }
+        .container { max-width: 800px; background: #fff; margin: 0 auto; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h2 { color: #0b4f6c; }
+        .btn { background: #0b4f6c; color: white; padding: 8px 15px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 15px; }
+        .class-box { background: #f9f9f9; border: 1px solid #ddd; padding: 15px; margin-top: 15px; border-radius: 5px; border-right: 4px solid #01baef; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>إدارة الفصول الأكاديمية والمناهج</h2>
+        <p>هنا يمكنك متابعة الفصول الدراسية وجداول المواد والدرجات.</p>
+        
+        <div class="class-box">
+            <h3>الصف الأول الإعدادي</h3>
+            <p>عدد الطلاب: 35 طالباً | المرشد: أ. محمد طارق</p>
+        </div>
+
+        <div class="class-box">
+            <h3>الصف الثاني الإعدادي</h3>
+            <p>عدد الطلاب: 30 طالباً | المرشد: الشيخ عبد الرحمن</p>
+        </div>
+
+        <a href="index.html" class="btn">⬅ عودة للرئيسية</a>
+    </div>
+</body>
+</html>

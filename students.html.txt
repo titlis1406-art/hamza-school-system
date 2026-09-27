@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الطلاب - مدرسة ومسجد سيدنا أمير حمزة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0b4f6c;
+            --secondary-green: #01baef;
+            --bg-white: #ffffff;
+            --text-dark: #333333;
+            --light-gray: #f4f6f9;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 750px;
+            background-color: var(--bg-white);
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid var(--primary-blue);
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .back-btn {
+            background-color: #6c757d;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        h2 {
+            color: var(--primary-blue);
+            margin: 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .auto-id {
+            background-color: #e9ecef;
+            font-weight: bold;
+            color: var(--primary-blue);
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-blue);
+            color: var(--bg-white);
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #083b50;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-nav">
+            <h2 id="pageTitle">استمارة تسجيل طالب جديد</h2>
+            <a href="index.html" class="back-btn" id="backBtn">⬅ عودة للرئيسية</a>
+        </div>
+        
+        <form id="studentForm" onsubmit="registerStudent(event)">
+            <div class="form-grid">
+                <!-- رقم التسجيل الثابت والتلقائي -->
+                <div class="form-group">
+                    <label id="labelRegNum">رقم القيد التسلسلي</label>
+                    <input type="text" id="regNumber" class="auto-id" value="HM1891-01" readonly>
+                </div>
+
+                <!-- الفرع -->
+                <div class="form-group">
+                    <label id="labelBranch">الفرع التعليمي</label>
+                    <select id="branchSelect">
+                        <option value="male_branch">قسم الذكور (الرئيسي)</option>
+                        <option value="female_branch" disabled>قسم الإناث (مستقبلي)</option>
+                    </select>
+                </div>
+
+                <!-- اسم الطالب -->
+                <div class="form-group full-width">
+                    <label id="labelName">اسم الطالب الرباعي</label>
+                    <input type="text" id="studentName" required placeholder="أدخل اسم الطالب كاملاً">
+                </div>
+
+                <!-- رقم الهوية -->
+                <div class="form-group">
+                    <label id="labelNationalId">رقم الهوية / السجل المدني</label>
+                    <input type="text" id="nationalId" placeholder="اختياري">
+                </div>
+
+                <!-- العمر -->
+                <div class="form-group">
+                    <label id="labelAge">عمر الطالب</label>
+                    <input type="number" id="studentAge" required placeholder="مثال: 12">
+                </div>
+
+                <!-- نوع السكن -->
+                <div class="form-group">
+                    <label id="labelAccommodation">نوع السكن</label>
+                    <select id="accommodationType">
+                        <option value="Internal_Hostel">طالب داخلي (هوستل)</option>
+                        <option value="External">طالب خارجي</option>
+                    </select>
+                </div>
+
+                <!-- واتساب ولي الأمر -->
+                <div class="form-group">
+                    <label id="labelWhatsapp">رقم ولي الأمر (واتساب)</label>
+                    <input type="text" id="parentWhatsapp" placeholder="+92XXXXXXXXXX" required>
+                </div>
+
+                <!-- رفع الصورة -->
+                <div class="form-group full-width">
+                    <label id="labelPhoto">صورة الطالب الشخصية</label>
+                    <input type="file" id="studentPhoto" accept="image/*">
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">حفظ وتسجيل الطالب</button>
+        </form>
+    </div>
+
+    <script>
+        function registerStudent(event) {
+            event.preventDefault();
+            const name = document.getElementById("studentName").value;
+            alert("تم تسجيل الطالب (" + name + ") بنجاح برقم القيد HM1891-01 وحفظ البيانات في النظام!");
+            document.getElementById("studentForm").reset();
+        }
+    </script>
+</body>
+</html>

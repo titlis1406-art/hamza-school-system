@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageMainTitle">السكن الداخلي (الهوستل) - مدرسة ومسجد سيدنا أمير حمزة</title>
+    <!-- استدعاء خطوط رسمية فاخرة وواضحة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@500;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-navy: #0b4f6c;
+            --primary-light: #01baef;
+            --secondary-dark: #083b50;
+            --accent-gold: #d4af37;
+            --bg-body: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
+            --danger-red: #e74c3c;
+            --success-green: #27ae60;
+            --warning-orange: #f39c12;
+
+            --room-bg: #faf5ff;
+            --room-border: #e9d5ff;
+            --care-bg: #fdf4ff;
+            --care-border: #f5d0fe;
+        }
+
+        body {
+            font-family: 'Cairo', Tahoma, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 15px;
+            direction: rtl;
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        html[lang="ur"] body {
+            font-family: 'Noto Nastaliq Urdu', 'Cairo', Tahoma, sans-serif;
+            line-height: 2.3;
+        }
+
+        .container {
+            max-width: 1780px;
+            background: var(--bg-card);
+            margin: 0 auto;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(11, 79, 108, 0.08);
+            border-top: 6px solid var(--primary-navy);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-family: 'Amiri', 'Cairo', serif;
+            color: var(--primary-navy);
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 6px;
+        }
+
+        .lang-btn {
+            padding: 7px 16px;
+            background: var(--bg-body);
+            color: var(--primary-navy);
+            border: 1.5px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13.5px;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--primary-navy);
+            color: #ffffff;
+            border-color: var(--primary-navy);
+            box-shadow: 0 3px 8px rgba(11, 79, 108, 0.2);
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            background: #eef2f7;
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .date-display {
+            font-weight: bold;
+            color: var(--primary-navy);
+            font-size: 14.5px;
+        }
+
+        .filter-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+            background: #f8fafc;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            border-right: 5px solid var(--accent-gold);
+        }
+
+        .filter-box select {
+            padding: 8px 12px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 6px;
+            min-width: 230px;
+            font-weight: bold;
+            font-size: 13px;
+            font-family: inherit;
+            color: var(--primary-navy);
+            background: #fff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 8px 5px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: var(--primary-navy);
+            color: white;
+            font-weight: 700;
+            font-size: 12.5px;
+            padding: 10px 5px;
+        }
+
+        tr:nth-child(even) { background-color: #f8fafc; }
+        tr:hover { background-color: #f1f5f9; }
+
+        .unified-col-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-width: 230px;
+            height: 140px;
+            padding: 6px;
+            border-radius: 8px;
+            box-sizing: border-box;
+            border: 1.5px solid transparent;
+        }
+
+        .box-room {
+            background: var(--room-bg);
+            border-color: var(--room-border);
+        }
+
+        .box-care {
+            background: var(--care-bg);
+            border-color: var(--care-border);
+        }
+
+        .top-spacer {
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .details-row {
+            display: flex;
+            gap: 4px;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .inp-room-num {
+            width: 55px;
+            padding: 4px;
+            text-align: center;
+            border: 1.5px solid #9333ea;
+            border-radius: 4px;
+            font-size: 11.5px;
+            background: #fff;
+            font-weight: bold;
+            color: #7e22ce;
+        }
+
+        .inp-bed-num {
+            width: 45px;
+            padding: 4px;
+            text-align: center;
+            border: 1.5px solid #9333ea;
+            border-radius: 4px;
+            font-size: 11.5px;
+            background: #fff;
+            font-weight: bold;
+            color: #7e22ce;
+        }
+
+        .status-select {
+            padding: 5px;
+            font-size: 11px;
+            font-weight: 800;
+            border-radius: 5px;
+            border: 1.5px solid #94a3b8;
+            background: #ffffff;
+            color: var(--primary-navy);
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .inp-health-note {
+            width: 100%;
+            padding: 4px;
+            text-align: center;
+            border: 1.5px solid #e11d48;
+            border-radius: 4px;
+            font-size: 10.5px;
+            background: #fff1f2;
+            color: #9f1239;
+            margin-top: 3px;
+            box-sizing: border-box;
+        }
+
+        .final-eval-badge {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 12.5px;
+            color: white;
+            background: #27ae60;
+            min-width: 85px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .attendance-btn {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 12px;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .status-present { background-color: var(--success-green); }
+        .status-absent { background-color: var(--danger-red); }
+        .status-late { background-color: var(--warning-orange); }
+
+        .save-btn {
+            background: var(--primary-navy);
+            color: white;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .save-btn:hover {
+            background: var(--primary-light);
+            color: var(--primary-navy);
+        }
+
+        .locked-badge {
+            background: #64748b;
+            color: white;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 10.5px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .back-btn {
+            background: #64748b;
+            color: white;
+            padding: 9px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: 700;
+            font-size: 13.5px;
+        }
+
+        .back-btn:hover { background: #475569; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- شريط الرأس واللغات -->
+        <div class="header-top">
+            <h2 id="t_header">🏠 السكن الداخلي (الهوستل ومتابعة المقيمين اليومية)</h2>
+            <div class="lang-switch">
+                <button type="button" class="lang-btn" onclick="switchLanguage('ar')">العربية</button>
+                <button type="button" class="lang-btn" onclick="switchLanguage('ur')">اردو</button>
+                <button type="button" class="lang-btn" onclick="switchLanguage('en')">English</button>
+            </div>
+        </div>
+
+        <div class="top-bar">
+            <div class="date-display" id="currentDateText">📅 جاري تحديث التاريخ...</div>
+            <span style="font-size: 13px; color: var(--text-muted); font-weight: bold;" id="t_sys_badge">نظام الإشراف اليومي السريع للمقيمين</span>
+        </div>
+
+        <p id="t_desc" style="color: var(--text-muted); margin-top: -10px; margin-bottom: 15px; font-size: 13.5px;">تسجيل حضور المقيمين، تفتيش نظافة الغرف وترتيب السرير، ومتابعة الحالة الصحية بشكل مستقل تماماً في ثوانٍ معدودة.</p>
+        
+        <!-- شريط الفلترة السريع -->
+        <div class="filter-box">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <label for="selectRoom" id="t_lblFilter" style="font-weight: bold; color: var(--primary-navy); font-size: 13.5px;">تصفية الغرف:</label>
+                <select id="selectRoom" onchange="filterHostelStudents()">
+                    <option value="all" id="opt_allRooms">-- كافة غرف السكن --</option>
+                    <option value="غرفة 1">الغرفة الأولى (Room 1)</option>
+                    <option value="غرفة 2">الغرفة الثانية (Room 2)</option>
+                    <option value="غرفة 3">الغرفة الثالثة (Room 3)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- جدول السكن الداخلي اليومي -->
+        <table id="hostelTable">
+            <thead>
+                <tr>
+                    <th id="th_no">م</th>
+                    <th id="th_seat">رقم الجلوس</th>
+                    <th id="th_name">اسم الطالب المقيم</th>
+                    <th id="th_room_assigned">رقم الغرفة والسرير</th>
+                    <th id="th_attendance">حضور السكن اليومي</th>
+                    <th id="th_clean">نظافة الغرفة وترتيب السرير</th>
+                    <th id="th_care">الحالة الصحية المستقلة</th>
+                    <th id="th_eval">تقييم النظافة الإشرافي</th>
+                    <th id="th_status24">حالة السجل</th>
+                    <th id="th_action">الإجراء</th>
+                </tr>
+            </thead>
+            <tbody id="hostelTbody">
+                <!-- يُملأ ديناميكياً من الطلاب المقيمين -->
+            </tbody>
+        </table>
+
+        <a href="index.html" class="back-btn" id="t_back">⬅ عودة للرئيسية</a>
+    </div>
+
+    <!-- استدعاء ملف الربط المشترك app.js -->
+    <script src="app.js"></script>
+
+    <script>
+        function fetchSystemStudents() {
+            let data = localStorage.getItem('hamza_students_db');
+            if (data) {
+                try { return JSON.parse(data); } catch(e) {}
+            }
+            return [
+                { seatNo: "HM1891-01", name: "محمد أحمد الفكي", hostel: "نعم", level: "المستوى الأول", supervisor: "الشيخ عثمان" },
+                { seatNo: "HM1891-02", name: "إبراهيم عثمان حمزة", hostel: "نعم", level: "المستوى التأسيسي (KG)", supervisor: "الشيخ عثمان" }
+            ];
+        }
+
+        function setTodayDate() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date();
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let locale = (lang === 'en') ? 'en-US' : (lang === 'ur') ? 'ur-PK' : 'ar-SA';
+            let el = document.getElementById('currentDateText');
+            if (el) el.innerText = "📅 " + today.toLocaleDateString(locale, options);
+        }
+
+        function loadHostelStudents() {
+            let students = fetchSystemStudents();
+            let tbody = document.getElementById('hostelTbody');
+            tbody.innerHTML = '';
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = translations[lang] || translations.ar;
+
+            let hostelStudents = students.filter(s => s.hostel === 'نعم');
+
+            if (hostelStudents.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="10" style="padding:25px; color:#64748b; font-weight:bold; font-size:13.5px;">لا يوجد طلاب مقيمون بالسكن الداخلي حالياً. (تأكد من تفعيل خيار "مقيم بالسكن: نعم" عند تسجيل الطالب في صفحة الطلاب).</td></tr>`;
+                return;
+            }
+
+            hostelStudents.forEach((s, idx) => {
+                let saved = localStorage.getItem('hostel_log_' + s.seatNo);
+                let defaultRoom = "غرفة 1";
+                let defaultBed = "0" + (idx + 1);
+                let logData = saved ? JSON.parse(saved) : { 
+                    roomNum: defaultRoom, bedNum: defaultBed, cleanStatus: 'clean_great', careStatus: 'care_great', healthNote: '',
+                    att: t.att_present 
+                };
+
+                let attClass = logData.att.includes('غائب') || logData.att.includes('Absent') ? 'status-absent' :
+                               logData.att.includes('استئذان') || logData.att.includes('Late') ? 'status-late' : 'status-present';
+
+                let row = tbody.insertRow();
+                row.setAttribute('data-room', logData.roomNum || defaultRoom);
+                row.innerHTML = `
+                    <td class="row-index">${idx + 1}</td>
+                    <td><strong style="color:var(--primary-navy); font-size:13px;">${s.seatNo}</strong></td>
+                    <td><strong style="font-size:13px;">${s.name}</strong></td>
+                    
+                    <td>
+                        <div class="details-row">
+                            <select id="room_num_${s.seatNo}" class="device-type-select" onchange="updateRowRoomAttr('${s.seatNo}')">
+                                <option value="غرفة 1" ${logData.roomNum === 'غرفة 1' ? 'selected' : ''}>غرفة 1</option>
+                                <option value="غرفة 2" ${logData.roomNum === 'غرفة 2' ? 'selected' : ''}>غرفة 2</option>
+                                <option value="غرفة 3" ${logData.roomNum === 'غرفة 3' ? 'selected' : ''}>غرفة 3</option>
+                            </select>
+                            <input type="text" id="bed_num_${s.seatNo}" class="inp-bed-num" value="${logData.bedNum || defaultBed}" placeholder="سرير">
+                        </div>
+                    </td>
+
+                    <td>
+                        <button type="button" class="attendance-btn ${attClass}" onclick="toggleAttendance(this)">${t.att_present}</button>
+                    </td>
+
+                    <!-- 1. نظافة الغرفة وترتيب السرير (مستقلة) -->
+                    <td>
+                        <div class="unified-col-box box-room">
+                            <div class="top-spacer">
+                                <span style="font-size:11px; font-weight:bold; color:#7e22ce;">🧹 ${t.lbl_room_title}</span>
+                            </div>
+                            <select id="clean_status_${s.seatNo}" class="status-select" onchange="calculateHostelAutoGrade('${s.seatNo}')">
+                                <option value="clean_great" ${logData.cleanStatus === 'clean_great' ? 'selected' : ''}>${t.clean_great}</option>
+                                <option value="clean_good" ${logData.cleanStatus === 'clean_good' ? 'selected' : ''}>${t.clean_good}</option>
+                                <option value="clean_bad" ${logData.cleanStatus === 'clean_bad' ? 'selected' : ''}>${t.clean_bad}</option>
+                            </select>
+                            <div style="font-size:10px; color:#6b21a8; font-weight:bold;">تفتيش يومي منظم</div>
+                        </div>
+                    </td>
+
+                    <!-- 2. الحالة الصحية المستقلة تماماً -->
+                    <td>
+                        <div class="unified-col-box box-care">
+                            <div class="top-spacer">
+                                <span style="font-size:11px; font-weight:bold; color:#a21caf;">🏥 ${t.lbl_care_title}</span>
+                            </div>
+                            <select id="care_status_${s.seatNo}" class="status-select" onchange="toggleHealthNoteInput('${s.seatNo}')">
+                                <option value="care_great" ${logData.careStatus === 'care_great' ? 'selected' : ''}>${t.care_great}</option>
+                                <option value="care_bad" ${logData.careStatus === 'care_bad' ? 'selected' : ''}>${t.care_bad}</option>
+                            </select>
+                            <input type="text" id="health_note_${s.seatNo}" class="inp-health-note" placeholder="${t.ph_health_note}" value="${logData.healthNote || ''}" style="${logData.careStatus === 'care_bad' ? 'display:block;' : 'display:none;'}">
+                        </div>
+                    </td>
+
+                    <!-- 3. تقييم النظافة الإشرافي التلقائي -->
+                    <td>
+                        <span id="final_badge_${s.seatNo}" class="final-eval-badge">ممتاز</span>
+                    </td>
+                    <td><span class="locked-badge" style="background:#27ae60;">${t.status_open}</span></td>
+                    <td><button type="button" class="save-btn" onclick="saveHostelProgress('${s.seatNo}', '${s.name}')">${t.btn_save}</button></td>
+                </tr>
+                `;
+
+                calculateHostelAutoGrade(s.seatNo);
+            });
+        }
+
+        function updateRowRoomAttr(seatNo) {
+            let roomSel = document.getElementById(`room_num_${seatNo}`);
+            let row = roomSel.closest('tr');
+            if(row) row.setAttribute('data-room', roomSel.value);
+        }
+
+        function toggleHealthNoteInput(seatNo) {
+            let careSel = document.getElementById(`care_status_${seatNo}`);
+            let noteInp = document.getElementById(`health_note_${seatNo}`);
+            if (careSel.value === 'care_bad') {
+                noteInp.style.display = 'block';
+            } else {
+                noteInp.style.display = 'none';
+                noteInp.value = '';
+            }
+        }
+
+        function calculateHostelAutoGrade(seatNo) {
+            let cleanSel = document.getElementById(`clean_status_${seatNo}`);
+            let badge = document.getElementById(`final_badge_${seatNo}`);
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = translations[lang] || translations.ar;
+
+            let cVal = cleanSel ? cleanSel.value : 'clean_great';
+
+            if (cVal === 'clean_bad') {
+                badge.innerText = t.eval_4; // يحتاج متابعة
+                badge.style.background = "#e74c3c";
+            } else if (cVal === 'clean_good') {
+                badge.innerText = t.eval_2; // جيد جداً
+                badge.style.background = "#2980b9";
+            } else {
+                badge.innerText = t.eval_1; // ممتاز
+                badge.style.background = "#27ae60";
+            }
+        }
+
+        function saveHostelProgress(seatNo, name) {
+            let roomNum = document.getElementById(`room_num_${seatNo}`).value;
+            let bedNum = document.getElementById(`bed_num_${seatNo}`).value;
+            let cleanStatus = document.getElementById(`clean_status_${seatNo}`).value;
+            let careStatus = document.getElementById(`care_status_${seatNo}`).value;
+            let healthNote = document.getElementById(`health_note_${seatNo}`).value;
+            let attBtn = document.querySelector(`button[onclick*="toggleAttendance(this)"]`);
+            
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = translations[lang] || translations.ar;
+
+            let logData = {
+                seatNo: seatNo,
+                studentName: name,
+                roomNum: roomNum,
+                bedNum: bedNum,
+                cleanStatus: cleanStatus,
+                careStatus: careStatus,
+                healthNote: healthNote,
+                att: attBtn ? attBtn.innerText : t.att_present,
+                date: new Date().toISOString().slice(0, 10)
+            };
+
+            localStorage.setItem('hostel_log_' + seatNo, JSON.stringify(logData));
+            let finalScore = document.getElementById(`final_badge_${seatNo}`).innerText;
+            alert(t.msg_saved + " (" + name + ") - تقييم النظافة: " + finalScore);
+        }
+
+        function toggleAttendance(btn) {
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = translations[lang] || translations.ar;
+            if(btn.classList.contains('status-present')) {
+                btn.className = 'attendance-btn status-absent';
+                btn.innerText = t.att_absent;
+            } else if(btn.classList.contains('status-absent')) {
+                btn.className = 'attendance-btn status-late';
+                btn.innerText = t.att_late;
+            } else {
+                btn.className = 'attendance-btn status-present';
+                btn.innerText = t.att_present;
+            }
+        }
+
+        function filterHostelStudents() {
+            let selectedRoom = document.getElementById('selectRoom').value;
+            let rows = document.querySelectorAll('#hostelTable tbody tr');
+            let counter = 1;
+            
+            rows.forEach(row => {
+                let roomAttr = row.getAttribute('data-room');
+                if (selectedRoom === 'all' || roomAttr === selectedRoom) {
+                    row.style.display = "";
+                    let idx = row.querySelector('.row-index');
+                    if (idx) idx.innerText = counter++;
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+
+        const translations = {
+            ar: {
+                dir: "rtl",
+                t_header: "🏠 السكن الداخلي (الهوستل ومتابعة المقيمين اليومية)",
+                t_sys_badge: "نظام الإشراف اليومي السريع للمقيمين",
+                t_desc: "تسجيل حضور المقيمين، تفتيش نظافة الغرف، ومتابعة الحالة الصحية بشكل مستقل تماماً في ثوانٍ معدودة.",
+                t_lblFilter: "تصفية الغرف:",
+                opt_allRooms: "-- كافة غرف السكن --",
+                th_no: "م",
+                th_seat: "رقم الجلوس",
+                th_name: "اسم الطالب المقيم",
+                th_room_assigned: "رقم الغرفة والسرير",
+                th_attendance: "حضور السكن اليومي",
+                th_clean: "نظافة الغرفة وترتيب السرير",
+                th_care: "الحالة الصحية المستقلة",
+                th_eval: "تقييم النظافة الإشرافي",
+                th_status24: "حالة السجل",
+                th_action: "الإجراء",
+                t_back: "⬅ عودة للرئيسية",
+                lbl_room_title: "نظافة الغرفة والسرير",
+                lbl_care_title: "الحالة الصحية",
+                clean_great: "✨ نظافة تامة وترتيب ممتاز",
+                clean_good: "👍 نظافة مقبولة ومنتظمة",
+                clean_bad: "⚠️ تحتاج إلى تنبيه ونظافة",
+                care_great: "✔ سليم وبحالة جيدة",
+                care_bad: "🏥 مريض / تعبان",
+                ph_health_note: "اكتب المرض باختصار (مثلاً: سخونة).. الطوارئ",
+                eval_1: "ممتاز",
+                eval_2: "جيد جداً",
+                eval_3: "جيد",
+                eval_4: "يحتاج متابعة",
+                att_present: "مقيم ✔",
+                att_absent: "غائب ❌",
+                att_late: "استئذان ⏱️",
+                status_open: "مفتوح (24س)",
+                btn_save: "حفظ السجل",
+                msg_saved: "تم حفظ سجل السكن الداخلي بنجاح للطالب"
+            },
+            ur: {
+                dir: "rtl",
+                t_header: "🏠 ہاسٹل اور مقیم طلبہ کا روزانہ ریکارڈ",
+                t_sys_badge: "مقیم طلبہ کا تیز رفتار نگرانی نظام",
+                t_desc: "حاضری، کمرے کی صفائی، اور صحت کی حالت الگ الگ اور تیز رفتار انداز میں۔",
+                t_lblFilter: "کمرے منتخب کریں:",
+                opt_allRooms: "-- تمام ہاسٹل رومز --",
+                th_no: "نمبر",
+                th_seat: "رول نمبر",
+                th_name: "طالب علم کا نام",
+                th_room_assigned: "کمرہ اور بیڈ نمبر",
+                th_attendance: "ہاسٹل حاضری",
+                th_clean: "کمرے کی صفائی",
+                th_care: "صحت کی حالت",
+                th_eval: "صفائی کا نگران درجہ",
+                th_status24: "ریکارڈ کی حالت",
+                th_action: "کارروائی",
+                t_back: "⬅ واپس مرکزی صفحہ",
+                lbl_room_title: "کمرے کی صفائی",
+                lbl_care_title: "صحت کی حالت",
+                clean_great: "✨ بہترین صفائی اور ترتیب",
+                clean_good: "👍 مناسب صفائی",
+                clean_bad: "⚠️ صفائی درکار ہے",
+                care_great: "✔ تندرست اور اچھے حال میں",
+                care_bad: "🏥 بیمار / تکلیف",
+                ph_health_note: "مختصر بیماری درج کریں (بخار وغیرہ)",
+                eval_1: "بہترین",
+                eval_2: "بہت اچھا",
+                eval_3: "مناسب",
+                eval_4: "توجہ درکار ہے",
+                att_present: "مقيم ✔",
+                att_absent: "غیر حاضر ❌",
+                att_late: "اجازت ⏱️",
+                status_open: "کھلا ہے (24گھنٹے)",
+                btn_save: "محفوظ کریں",
+                msg_saved: "ہاسٹل کا ریکارڈ کامیابی سے محفوظ ہو گیا"
+            },
+            en: {
+                dir: "ltr",
+                t_header: "💻 Hostel & Resident Students Daily Log",
+                t_sys_badge: "Fast Resident Supervision System",
+                t_desc: "Daily resident attendance, room cleanliness, and independent health status tracking in seconds.",
+                t_lblFilter: "Filter Rooms:",
+                opt_allRooms: "-- All Hostel Rooms --",
+                th_no: "No.",
+                th_seat: "Seat No",
+                th_name: "Resident Student Name",
+                th_room_assigned: "Room & Bed No",
+                th_attendance: "Hostel Attendance",
+                th_clean: "Room Cleanliness",
+                th_care: "Health Status",
+                th_eval: "Cleanliness Supervisor Grade",
+                th_status24: "Status",
+                th_action: "Action",
+                t_back: "Back to Home",
+                lbl_room_title: "Room Cleanliness",
+                lbl_care_title: "Health Status",
+                clean_great: "✨ Spotless & Excellent",
+                clean_good: "👍 Acceptable & Regular",
+                clean_bad: "⚠️ Needs Cleaning",
+                care_great: "✔ Healthy & Fine",
+                care_bad: "🏥 Sick / Unwell",
+                ph_health_note: "Type illness briefly (e.g., Fever)..",
+                eval_1: "Excellent",
+                eval_2: "Very Good",
+                eval_3: "Good",
+                eval_4: "Needs Improvement",
+                att_present: "Resident ✔",
+                att_absent: "Absent ❌",
+                att_late: "Permission ⏱️",
+                status_open: "Open (24h)",
+                btn_save: "Save Record",
+                msg_saved: "Hostel record saved successfully for"
+            }
+        };
+
+        function switchLanguage(lang) {
+            localStorage.getItem('hamza_sys_lang');
+            localStorage.setItem('hamza_sys_lang', lang);
+            let t = translations[lang] || translations.ar;
+            document.getElementById('htmlRoot').setAttribute('dir', t.dir);
+            document.getElementById('htmlRoot').setAttribute('lang', lang);
+            
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            if (lang === 'ar') document.querySelectorAll('.lang-btn')[0].classList.add('active');
+            if (lang === 'ur') document.querySelectorAll('.lang-btn')[1].classList.add('active');
+            if (lang === 'en') document.querySelectorAll('.lang-btn')[2].classList.add('active');
+
+            for (let key in t) {
+                if (key !== 'dir' && !key.startsWith('eval_') && !key.startsWith('att_') && !key.startsWith('opt_') && !key.startsWith('ph_') && !key.startsWith('lbl_') && key !== 'status_open' && key !== 'btn_save' && key !== 'msg_saved' && !key.startsWith('clean_') && !key.startsWith('care_')) {
+                    let el = document.getElementById(key);
+                    if (el) el.innerHTML = t[key];
+                }
+            }
+
+            loadHostelStudents();
+            setTodayDate();
+        }
+
+        window.onload = function() {
+            let initialLang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            switchLanguage(initialLang);
+        };
+    </script>
+</body>
+</html>

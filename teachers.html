@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageMainTitle">إدارة الكادر التعليمي والشؤون الإدارية - مدرسة ومسجد سيدنا أمير حمزة</title>
+    <!-- استدعاء خطوط رسمية فاخرة وواضحة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@500;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-navy: #0b4f6c;
+            --primary-light: #01baef;
+            --secondary-dark: #083b50;
+            --accent-gold: #d4af37;
+            --bg-body: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
+            --danger-red: #e74c3c;
+            --success-green: #27ae60;
+            --warning-orange: #f39c12;
+        }
+
+        body {
+            font-family: 'Cairo', Tahoma, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 15px;
+            direction: rtl;
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        html[lang="ur"] body {
+            font-family: 'Noto Nastaliq Urdu', 'Cairo', Tahoma, sans-serif;
+            line-height: 2.3;
+        }
+
+        .container {
+            max-width: 1950px;
+            background: var(--bg-card);
+            margin: 0 auto;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(11, 79, 108, 0.08);
+            border-top: 6px solid var(--primary-navy);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-family: 'Amiri', 'Cairo', serif;
+            color: var(--primary-navy);
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 6px;
+        }
+
+        .lang-btn {
+            padding: 7px 16px;
+            background: var(--bg-body);
+            color: var(--primary-navy);
+            border: 1.5px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13.5px;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--primary-navy);
+            color: #ffffff;
+            border-color: var(--primary-navy);
+            box-shadow: 0 3px 8px rgba(11, 79, 108, 0.2);
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            background: #eef2f7;
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .date-display {
+            font-weight: bold;
+            color: var(--primary-navy);
+            font-size: 14.5px;
+        }
+
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+            background: #f8fafc;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            border-right: 5px solid var(--accent-gold);
+        }
+
+        .btn-action {
+            background: var(--primary-navy);
+            color: #fff;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-action:hover { background: var(--primary-light); color: var(--primary-navy); }
+
+        .btn-unlock-finance {
+            background: #7c2d12;
+            color: #fff;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .btn-unlock-finance:hover { background: #9a3412; }
+
+        .btn-attendance-log {
+            background: #0d9488;
+            color: #fff;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .btn-attendance-log:hover { background: #0f766e; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 10px 6px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: var(--primary-navy);
+            color: white;
+            font-weight: 700;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        tr:nth-child(even) { background-color: #f8fafc; }
+        tr:hover { background-color: #f1f5f9; }
+
+        .inp-text {
+            width: 100%;
+            padding: 5px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 11.5px;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+
+        .inp-salary {
+            width: 90px;
+            padding: 5px;
+            border: 1.5px solid #d97706;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: #b45309;
+            background: #fffbeb;
+        }
+
+        .whatsapp-btn {
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 11.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+        .whatsapp-btn:hover { background: #20ba5a; }
+
+        .paid-badge {
+            background: #dcfce7;
+            color: #166534;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .pending-badge {
+            color: #b91c1c;
+            font-weight: bold;
+            background: #fee2e2;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .locked-badge {
+            font-weight: bold;
+            color: #b45309;
+            background: #fffbeb;
+            padding: 4px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 10.5px;
+            white-space: nowrap;
+        }
+
+        .user-id-badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .btn-save-row {
+            background: var(--success-green);
+            color: #fff;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+        .btn-delete-row {
+            background: var(--danger-red);
+            color: #fff;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+        .back-btn {
+            background: #64748b;
+            color: white;
+            padding: 9px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: 700;
+            font-size: 13.5px;
+        }
+        .back-btn:hover { background: #475569; }
+
+        /* تصميم بوكسات الساعات والدقائق و AM/PM الأنيقة */
+        .time-box-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            background: #f8fafc;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            min-width: 270px;
+        }
+        .time-row-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 11.5px;
+            font-weight: bold;
+            color: var(--primary-navy);
+        }
+        .time-inputs-group {
+            display: flex;
+            gap: 3px;
+            align-items: center;
+        }
+        .time-inputs-group select {
+            padding: 3px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            background: #fff;
+            font-size: 11.5px;
+            font-weight: bold;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 79, 108, 0.65);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .modal-card {
+            background: #fff;
+            width: 100%;
+            max-width: 1550px;
+            max-height: 88vh;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            overflow-y: auto;
+            padding: 25px;
+            direction: rtl;
+            border-top: 6px solid var(--accent-gold);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- شريط الرأس واللغات -->
+        <div class="header-top">
+            <h2 id="t_header">👥 إدارة الكادر التعليمي والشؤون الإدارية</h2>
+            <div class="lang-switch">
+                <button type="button" class="lang-btn" onclick="switchLanguage('ar')">العربية</button>
+                <button type="button" class="lang-btn" onclick="switchLanguage('ur')">اردو</button>
+                <button type="button" class="lang-btn" onclick="switchLanguage('en')">English</button>
+            </div>
+        </div>
+
+        <div class="top-bar">
+            <div class="date-display" id="currentDateText">📅 جاري تحديث التاريخ...</div>
+            <span style="font-size: 13px; color: var(--text-muted); font-weight: bold;" id="t_sys_badge">نظام شؤون المعلمين، اليوزرات التلقائية، الحضور الثلاثي، والملف المالي السري</span>
+        </div>
+
+        <p id="t_desc" style="color: var(--text-muted); margin-top: -10px; margin-bottom: 15px; font-size: 13.5px;">إدارة الكادر مع يوزر تلقائي، تحديد فترات المعلم، وتتبع الحضور اليومي المستقل ببوكسات AM/PM مع تحكم الإدارة الكامل في الأوقات وفترات السماح (10 دقائق).</p>
+        
+        <!-- شريط الإجراءات والتحكم -->
+        <div class="action-bar">
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                <button type="button" class="btn-action" onclick="addNewTeacher()" id="btnAddTeacher">＋ إضافة معلم / موظف جديد</button>
+                <button type="button" class="btn-attendance-log" id="btnOpenAttModal">⏰ سجل حضور الفترات الثلاث (بوكسات AM/PM)</button>
+            </div>
+            <div>
+                <button type="button" class="btn-unlock-finance" onclick="unlockFinanceSection()" id="btnUnlockFinance">🔒 فتح الملف المالي السري (الرواتب)</button>
+            </div>
+        </div>
+
+        <!-- جدول الكادر التعليمي والإداري -->
+        <table id="teachersTable">
+            <thead>
+                <tr>
+                    <th id="th_no" style="width: 35px;">م</th>
+                    <th id="th_user_id" style="min-width: 90px;">يوزر المعلم</th>
+                    <th id="th_title" style="min-width: 90px;">اللقب</th>
+                    <th id="th_name" style="min-width: 150px;">اسم المعلم</th>
+                    <th id="th_id_num" style="min-width: 120px;">رقم الهوية (CNIC)</th>
+                    <th id="th_dept" style="min-width: 130px;">الأقسام</th>
+                    <th id="th_duties" style="min-width: 160px;">المهام المتعددة</th>
+                    <th id="th_shifts_type" style="min-width: 130px;">نظام الفترات المطلوبة</th>
+                    <th id="th_phone" style="min-width: 120px;">رقم الواتساب</th>
+                    <th id="th_salary" style="min-width: 100px;">الراتب (PKR) 🔒</th>
+                    <th id="th_status" style="min-width: 90px;">حالة الصرف</th>
+                    <th id="th_whatsapp" style="min-width: 120px;">إشعار واتساب</th>
+                    <th id="th_action" style="min-width: 110px;">الإجراء</th>
+                </tr>
+            </thead>
+            <tbody id="teachersTbody">
+                <!-- يُملأ برمجياً -->
+            </tbody>
+        </table>
+
+        <a href="index.html" class="back-btn" id="t_back">⬅ عودة للرئيسية</a>
+    </div>
+
+    <!-- نافذة المودال: سجل الحضور للفترات الثلاث مع تحكم الإدارة الكامل في الأوقات -->
+    <div id="attendanceModalOverlay" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header" style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:10px; margin-bottom:10px;">
+                <h3 id="modalAttTitle" style="margin:0; color:var(--primary-navy);">⏰ سجل الحضور والفترات الثلاث (الصباح، بعد الظهر، المساء) مع التحكم الإداري في المواعيد</h3>
+                <button type="button" id="btnCloseAttModal" style="background:#e2e8f0; border:none; padding:5px 12px; border-radius:5px; font-weight:bold; cursor:pointer;">✕ إغلاق</button>
+            </div>
+
+            <!-- عرض التاريخ التلقائي فقط بدون كلمة "التاريخ واليوم" -->
+            <div id="attDateBadge" style="background:var(--primary-navy); color:#fff; padding:6px 14px; border-radius:6px; font-size:13px; font-weight:bold; margin-bottom:12px; display:inline-block;">
+                📅 جاري تحميل التاريخ...
+            </div>
+            
+            <!-- لوحة تحكم الإدارة العليا لضبط المواعيد الرسمية (من وإلى لكل فترة) -->
+            <div style="background:#f8fafc; border:1.5px solid #cbd5e1; padding:12px; border-radius:8px; margin-bottom:15px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div>
+                    <strong id="t_lblShiftSet" style="color:var(--primary-navy); font-size:13px;">⚙️ لوحة الإدارة العليا لضبط المواعيد الرسمية (مع فترة سماح 10 دقائق):</strong>
+                </div>
+                <div style="display:flex; gap:15px; font-size:11.5px; font-weight:bold; flex-wrap:wrap; align-items:center;">
+                    <div>الصباح: من <span id="span_mor_from"></span> إلى <span id="span_mor_to"></span></div>
+                    <div>بعد الظهر: من <span id="span_aft_from"></span> إلى <span id="span_aft_to"></span></div>
+                    <div>المساء: من <span id="span_eve_from"></span> إلى <span id="span_eve_to"></span></div>
+                    <button type="button" id="btnOpenShiftSettings" style="background:var(--accent-gold); color:#1e293b; border:none; padding:5px 12px; border-radius:4px; cursor:pointer; font-weight:bold;">تعديل المواعيد ⚙️</button>
+                </div>
+            </div>
+
+            <table id="attendanceGridTable">
+                <thead>
+                    <tr>
+                        <th id="th_att_user">يوزر</th>
+                        <th id="th_att_name">اسم المعلم</th>
+                        <th id="th_att_type">نظام الفترات</th>
+                        <th id="th_att_mor">الفترة الصباحية وحفظ</th>
+                        <th id="th_att_aft">فترة بعد الظهر وحفظ</th>
+                        <th id="th_att_eve">الفترة المسائية وحفظ</th>
+                        <th id="th_att_cctv">التحقق (CCTV)</th>
+                    </tr>
+                </thead>
+                <tbody id="attendanceGridTbody">
+                    <!-- يُملأ برمجياً -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- نافذة فرعية لضبط وتعديل المواعيد الرسمية للإدارة -->
+    <div id="shiftSettingsModalOverlay" class="modal-overlay" style="z-index: 1100;">
+        <div class="modal-card" style="max-width: 600px;">
+            <div class="modal-header" style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:10px; margin-bottom:15px;">
+                <h3 style="margin:0; color:var(--primary-navy);">⚙️ تعديل المواعيد الرسمية للدوام</h3>
+                <button type="button" id="btnCloseShiftSettings" style="background:#e2e8f0; border:none; padding:5px 12px; border-radius:5px; font-weight:bold; cursor:pointer;">✕ إغلاق</button>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:12px; font-size:13px; font-weight:bold;">
+                <div>
+                    <label>الفترة الصباحية (من - إلى):</label>
+                    <div style="display:flex; gap:5px; margin-top:4px;" id="morLimitBoxes">
+                        <!-- يُولد برمجياً -->
+                    </div>
+                </div>
+                <div>
+                    <label>فترة بعد الظهر (من - إلى):</label>
+                    <div style="display:flex; gap:5px; margin-top:4px;" id="aftLimitBoxes">
+                        <!-- يُولد برمجياً -->
+                    </div>
+                </div>
+                <div>
+                    <label>الفترة المسائية (من - إلى):</label>
+                    <div style="display:flex; gap:5px; margin-top:4px;" id="eveLimitBoxes">
+                        <!-- يُولد برمجياً -->
+                    </div>
+                </div>
+                <button type="button" id="btnSaveOfficialLimits" style="background:var(--success-green); color:#fff; border:none; padding:8px 20px; border-radius:6px; cursor:pointer; font-weight:bold; font-size:14px; margin-top:10px;">💾 حفظ المواعيد واعتمادها</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- استدعاء ملف الربط المشترك app.js -->
+    <script src="app.js"></script>
+
+    <script>
+        let isFinanceUnlocked = false;
+
+        const teacherTitles = {
+            ar: ["الشيخ", "الأستاذ", "المهندس", "المعلم"],
+            ur: ["شیخ", "استاد", "انجینئر", "معلم"],
+            en: ["Sheikh", "Professor", "Engineer", "Teacher"]
+        };
+
+        const schoolDepartments = {
+            ar: ["القرآن الكريم", "الدراسة الأكاديمية", "معمل الحاسب الآلي", "السكن الداخلي (الهوستل)"],
+            ur: ["قرآن پاک", "تعلیمی مطالعہ", "کمپیوٹر لیب", "ہاسٹل"],
+            en: ["Quranic Studies", "Academic Study", "Computer Lab", "Hostel"]
+        };
+
+        const shiftTypes = {
+            ar: ["فترة صباحية فقط", "فترتان (صباح + ظهر)", "ثلاث فترات كاملة"],
+            ur: ["صرف صبح کی شفٹ", "دو شفٹیں (صبح + دوپہر)", "تینوں شفٹیں"],
+            en: ["Morning Only", "Two Shifts (Morning + Afternoon)", "Three Full Shifts"]
+        };
+
+        function fetchTeachersData() {
+            let data = localStorage.getItem('hamza_teachers_db');
+            if (data) {
+                try { return JSON.parse(data); } catch(e) {}
+            }
+            return [
+                { id: 1, userId: "1001", title: "الشيخ", name: "أحمد محمود", idNum: "31001-2345678-1", dept: "الدراسة الأكاديمية", duties: "معلم الصف الأول", shiftMode: "ثلاث فترات كاملة", phone: "+923001234567", salary: 35000, paid: false, morH: "08", morM: "00", morA: "AM", morH2: "12", morM2: "00", morA2: "PM", aftH: "02", aftM: "00", aftA: "PM", aftH2: "04", aftM2: "30", aftA2: "PM", eveH: "06", eveM: "30", eveA: "PM", eveH2: "08", eveM2: "30", eveA2: "PM", cctv: "متحقق عبر الكاميرا ✔️" }
+            ];
+        }
+
+        function saveTeachersData(data) {
+            localStorage.setItem('hamza_teachers_db', JSON.stringify(data));
+        }
+
+        function setTodayDate() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date();
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let locale = (lang === 'en') ? 'en-US' : (lang === 'ur') ? 'ur-PK' : 'ar-SA';
+            let dateStr = today.toLocaleDateString(locale, options);
+            let el = document.getElementById('currentDateText');
+            if (el) el.innerText = "📅 " + dateStr;
+            let badgeEl = document.getElementById('attDateBadge');
+            if (badgeEl) badgeEl.innerText = "📅 " + dateStr;
+        }
+
+        function unlockFinanceSection() {
+            let pwd = prompt("🔐 أدخل كلمة مرور المدير العام لفتح الملف المالي السري للرواتب:");
+            if (pwd === "1891") {
+                isFinanceUnlocked = true;
+                alert("🔓 تم فتح الملف المالي السري بنجاح! الرواتب الآن ظاهرة لك وحدك.");
+                loadTeachersList();
+            } else if (pwd !== null) {
+                alert("❌ كلمة المرور غير صحيحة!");
+            }
+        }
+
+        function loadTeachersList() {
+            let teachers = fetchTeachersData();
+            let tbody = document.getElementById('teachersTbody');
+            tbody.innerHTML = '';
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = translations[lang] || translations.ar;
+            let titles = teacherTitles[lang] || teacherTitles.ar;
+            let depts = schoolDepartments[lang] || schoolDepartments.ar;
+            let shifts = shiftTypes[lang] || shiftTypes.ar;
+
+            teachers.forEach((tch, idx) => {
+                let salaryInputHtml = isFinanceUnlocked ? 
+                    `<input type="number" class="inp-salary" id="sal_${tch.id}" value="${tch.salary}" onchange="updateSalary(${tch.id}, this.value)">` :
+                    `<span class="locked-badge">${t.status_locked}</span>`;
+
+                let paymentStatusHtml = tch.paid ? 
+                    `<span class="paid-badge">${t.status_paid}</span>` : 
+                    `<span class="pending-badge">${t.status_pending}</span>`;
+
+                let titleOptions = titles.map(tit => `<option value="${tit}" ${tch.title === tit ? 'selected' : ''}>${tit}</option>`).join('');
+                let deptOptions = depts.map(d => `<option value="${d}" ${tch.dept === d ? 'selected' : ''}>${d}</option>`).join('');
+                let shiftOptions = shifts.map(sh => `<option value="${sh}" ${tch.shiftMode === sh ? 'selected' : ''}>${sh}</option>`).join('');
+
+                let row = tbody.insertRow();
+                row.innerHTML = `
+                    <td>${idx + 1}</td>
+                    <td><span class="user-id-badge">${tch.userId || '1001'}</span></td>
+                    <td>
+                        <select id="title_${tch.id}" class="inp-text" style="font-weight:bold; color:var(--primary-navy);">
+                            ${titleOptions}
+                        </select>
+                    </td>
+                    <td><input type="text" class="inp-text" id="name_${tch.id}" value="${tch.name}" placeholder="اسم المعلم"></td>
+                    <td><input type="text" class="inp-text" id="idNum_${tch.id}" value="${tch.idNum || ''}" placeholder="CNIC"></td>
+                    <td>
+                        <select id="dept_${tch.id}" class="inp-text" style="font-weight:bold; color:var(--primary-navy);">
+                            ${deptOptions}
+                        </select>
+                    </td>
+                    <td><input type="text" class="inp-text" id="duties_${tch.id}" value="${tch.duties}" placeholder="المهام المتعددة.."></td>
+                    <td>
+                        <select id="shiftMode_${tch.id}" class="inp-text" style="font-weight:bold; color:#7e22ce;">
+                            ${shiftOptions}
+                        </select>
+                    </td>
+                    <td><input type="text" class="inp-text" id="phone_${tch.id}" value="${tch.phone}" placeholder="+92..."></td>
+                    <td>${salaryInputHtml}</td>
+                    <td>${paymentStatusHtml}</td>
+                    <td>
+                        <button type="button" class="whatsapp-btn" onclick="sendWhatsAppSalaryNotice(${tch.id}, '${tch.name}', '${tch.phone}')">
+                            💬 إشعار واتساب
+                        </button>
+                    </td>
+                    <td>
+                        <div style="display:flex; gap:3px; justify-content:center;">
+                            <button type="button" class="btn-save-row" onclick="saveTeacherRow(${tch.id})">${t.btn_save}</button>
+                            <button type="button" class="btn-delete-row" onclick="deleteTeacher(${tch.id})">${t.btn_delete}</button>
+                        </div>
+                    </td>
+                `;
+            });
+        }
+
+        function saveTeacherRow(id) {
+            let teachers = fetchTeachersData();
+            let tch = teachers.find(item => item.id === id);
+            if (tch) {
+                tch.title = document.getElementById(`title_${id}`).value;
+                tch.name = document.getElementById(`name_${id}`).value;
+                tch.idNum = document.getElementById(`idNum_${id}`).value;
+                tch.dept = document.getElementById(`dept_${id}`).value;
+                tch.duties = document.getElementById(`duties_${id}`).value;
+                tch.shiftMode = document.getElementById(`shiftMode_${id}`).value;
+                tch.phone = document.getElementById(`phone_${id}`).value;
+                saveTeachersData(teachers);
+                alert("تم حفظ وتحديث بيانات المعلم بنجاح!");
+                loadTeachersList();
+            }
+        }
+
+        function updateSalary(id, val) {
+            let teachers = fetchTeachersData();
+            let tch = teachers.find(item => item.id === id);
+            if(tch) {
+                tch.salary = parseInt(val) || 0;
+                saveTeachersData(teachers);
+            }
+        }
+
+        function addNewTeacher() {
+            let teachers = fetchTeachersData();
+            let maxId = teachers.length > 0 ? Math.max(...teachers.map(t => parseInt(t.userId) || 1000)) : 1000;
+            let newUserId = String(maxId + 1);
+            let newId = teachers.length > 0 ? Math.max(...teachers.map(t => t.id)) + 1 : 1;
+            let titles = teacherTitles.ar;
+            let depts = schoolDepartments.ar;
+            let shifts = shiftTypes.ar;
+
+            teachers.push({
+                id: newId,
+                userId: newUserId,
+                title: titles[0],
+                name: "معلم جديد",
+                idNum: "",
+                dept: depts[0],
+                duties: "تحديد المهام المتعددة",
+                shiftMode: shifts[0],
+                phone: "+923000000000",
+                salary: 30000,
+                paid: false,
+                morH: "08", morM: "00", morA: "AM", morH2: "12", morM2: "00", morA2: "PM",
+                aftH: "", aftM: "", aftA: "PM", aftH2: "", aftM2: "", aftA2: "PM",
+                eveH: "", eveM: "", eveA: "PM", eveH2: "", eveM2: "", eveA2: "PM",
+                cctv: "متحقق عبر الكاميرا ✔️"
+            });
+            saveTeachersData(teachers);
+            loadTeachersList();
+        }
+
+        function deleteTeacher(id) {
+            if(confirm("هل أنت متأكد من حذف هذا المعلم؟")) {
+                let teachers = fetchTeachersData().filter(item => item.id !== id);
+                saveTeachersData(teachers);
+                loadTeachersList();
+            }
+        }
+
+        function sendWhatsAppSalaryNotice(id, name, phone) {
+            let cleanPhone = phone.replace(/[^0-9+]/g, '');
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            
+            let msg = lang === 'en' ? 
+                `Hello ${name},\nYour monthly salary has been successfully transferred/processed by Syedna Amir Hamza School & Mosque.\nPlease confirm receipt.\nThank you.` :
+                lang === 'ur' ? 
+                `السلام علیکم ${name} صاحب،\nمدرسہ و مسجد سیدنا امیر حمزہ کی طرف سے آپ کی ماہانہ تنخواہ منتقل کر دی گئی ہے۔\nبراہ کرم وصولی کی تصدیق کریں۔` :
+                `السلام عليكم ${name}،\nنود إعلامكم بأنه تم صرف وتحويل راتبكم الشهري لشهر الحالي من مدرسة ومسجد سيدنا أمير حمزة رضي الله عنه.\nيرجى تأكيد الاستلام دون توقيع.\nشكراً لجهودكم.`;
+
+            let whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`;
+            
+            let teachers = fetchTeachersData();
+            let tch = teachers.find(item => item.id === id);
+            if(tch) {
+                tch.paid = true;
+                saveTeachersData(teachers);
+                loadTeachersList();
+            }
+
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function generateAMPMBox(prefix, selH, selM, selA) {
+            let hOpts = '<option value="">ساعة</option>';
+            for(let i=1; i<=12; i++) {
+                let hs = (i < 10 ? '0' : '') + i;
+                hOpts += `<option value="${hs}" ${selH === hs ? 'selected' : ''}>${hs}</option>`;
+            }
+            let mOpts = '<option value="">دقيقة</option>';
+            for(let m=0; m<60; m+=5) {
+                let ms = (m < 10 ? '0' : '') + m;
+                mOpts += `<option value="${ms}" ${selM === ms ? 'selected' : ''}>${ms}</option>`;
+            }
+            let aOpts = `<option value="AM" ${selA === 'AM' ? 'selected' : ''}>AM</option><option value="PM" ${selA === 'PM' ? 'selected' : ''}>PM</option>`;
+
+            return `<div class="time-inputs-group">
+                <select id="${prefix}H">${hOpts}</select>:<select id="${prefix}M">${mOpts}</select><select id="${prefix}A">${aOpts}</select>
+            </div>`;
+        }
+
+        function saveOfficialShiftLimits() {
+            let limits = {
+                morFromH: document.getElementById('set_mor_from_H').value,
+                morFromM: document.getElementById('set_mor_from_M').value,
+                morFromA: document.getElementById('set_mor_from_A').value,
+                morToH: document.getElementById('set_mor_to_H').value,
+                morToM: document.getElementById('set_mor_to_M').value,
+                morToA: document.getElementById('set_mor_to_A').value,
+
+                aftFromH: document.getElementById('set_aft_from_H').value,
+                aftFromM: document.getElementById('set_aft_from_M').value,
+                aftFromA: document.getElementById('set_aft_from_A').value,
+                aftToH: document.getElementById('set_aft_to_H').value,
+                aftToM: document.getElementById('set_aft_to_M').value,
+                aftToA: document.getElementById('set_aft_to_A').value,
+
+                eveFromH: document.getElementById('set_eve_from_H').value,
+                eveFromM: document.getElementById('set_eve_from_M').value,
+                eveFromA: document.getElementById('set_eve_from_A').value,
+                eveToH: document.getElementById('set_eve_to_H').value,
+                eveToM: document.getElementById('set_eve_to_M').value,
+                eveToA: document.getElementById('set_eve_to_A').value
+            };
+            localStorage.setItem('official_shift_limits_ampm', JSON.stringify(limits));
+            alert("تم حفظ المواعيد الرسمية المعتمدة للإدارة بنجاح!");
+            closeShiftSettingsModal();
+            openAttendanceModal();
+        }
+
+        function openShiftSettingsModal() {
+            let limits = JSON.parse(localStorage.getItem('official_shift_limits_ampm') || '{"morFromH":"08","morFromM":"00","morFromA":"AM","morToH":"12","morToM":"00","morToA":"PM","aftFromH":"02","aftFromM":"00","aftFromA":"PM","aftToH":"04","aftToM":"30","aftToA":"PM","eveFromH":"06","eveFromM":"30","eveFromA":"PM","eveToH":"08","eveToM":"30","eveToA":"PM"}');
+            
+            document.getElementById('morLimitBoxes').innerHTML = generateAMPMBox('set_mor_from_', limits.morFromH, limits.morFromM, limits.morFromA) + " إلى " + generateAMPMBox('set_mor_to_', limits.morToH, limits.morToM, limits.morToA);
+            document.getElementById('aftLimitBoxes').innerHTML = generateAMPMBox('set_aft_from_', limits.aftFromH, limits.aftFromM, limits.aftFromA) + " إلى " + generateAMPMBox('set_aft_to_', limits.aftToH, limits.aftToM, limits.aftToA);
+            document.getElementById('eveLimitBoxes').innerHTML = generateAMPMBox('set_eve_from_', limits.eveFromH, limits.eveFromM, limits.eveFromA) + " إلى " + generateAMPMBox('set_eve_to_', limits.eveToH, limits.eveToM, limits.eveToA);
+
+            document.getElementById('shiftSettingsModalOverlay').style.display = 'flex';
+        }
+
+        function closeShiftSettingsModal() {
+            document.getElementById('shiftSettingsModalOverlay').style.display = 'none';
+        }
+
+        function toMinutes(h, m, a) {
+            if(!h || !m) return null;
+            let hh = parseInt(h);
+            let mm = parseInt(m);
+            if(a === 'PM' && hh !== 12) hh += 12;
+            if(a === 'AM' && hh === 12) hh = 0;
+            return hh * 60 + mm;
+        }
+
+        function evaluateShiftStatus(inH, inM, inA, limitH, limitM, limitA, isRequired) {
+            if(!isRequired) return "<span style='color:#64748b;'>غير مطلوب</span>";
+            if(!inH || !inM) return "<span style='color:#b91c1c; font-weight:bold;'>غايب ❌</span>";
+            
+            let entryMin = toMinutes(inH, inM, inA);
+            let limitMin = toMinutes(limitH, limitM, limitA) + 10; // 10 دقائق سماح تلقائية
+
+            if(entryMin <= limitMin) return "<span style='color:green; font-weight:bold;'>✔ منتظم</span>";
+            return "<span style='color:red; font-weight:bold;'>⚠️ متأخر</span>";
+        }
+
+        function openAttendanceModal() {
+            let teachers = fetchTeachersData();
+            let tbody = document.getElementById('attendanceGridTbody');
+            tbody.innerHTML = '';
+            let lang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            let t = translations[lang] || translations.ar;
+
+            let limits = JSON.parse(localStorage.getItem('official_shift_limits_ampm') || '{"morFromH":"08","morFromM":"00","morFromA":"AM","morToH":"12","morToM":"00","morToA":"PM","aftFromH":"02","aftFromM":"00","aftFromA":"PM","aftToH":"04","aftToM":"30","aftToA":"PM","eveFromH":"06","eveFromM":"30","eveFromA":"PM","eveToH":"08","eveToM":"30","eveToA":"PM"}');
+            
+            document.getElementById('span_mor_from').innerText = `${limits.morFromH}:${limits.morFromM} ${limits.morFromA}`;
+            document.getElementById('span_mor_to').innerText = `${limits.morToH}:${limits.morToM} ${limits.morToA}`;
+            document.getElementById('span_aft_from').innerText = `${limits.aftFromH}:${limits.aftFromM} ${limits.aftFromA}`;
+            document.getElementById('span_aft_to').innerText = `${limits.aftToH}:${limits.aftToM} ${limits.aftToA}`;
+            document.getElementById('span_eve_from').innerText = `${limits.eveFromH}:${limits.eveFromM} ${limits.eveFromA}`;
+            document.getElementById('span_eve_to').innerText = `${limits.eveToH}:${limits.eveToM} ${limits.eveToA}`;
+
+            teachers.forEach(tch => {
+                let isMorningRequired = true;
+                let isAfternoonRequired = tch.shiftMode && (tch.shiftMode.includes('فترتان') || tch.shiftMode.includes('ثلاث') || tch.shiftMode.includes('Two') || tch.shiftMode.includes('Three'));
+                let isEveningRequired = tch.shiftMode && (tch.shiftMode.includes('ثلاث') || tch.shiftMode.includes('Three'));
+
+                let morStatus = evaluateShiftStatus(tch.morH, tch.morM, tch.morA, limits.morFromH, limits.morFromM, limits.morFromA, isMorningRequired);
+                let aftStatus = evaluateShiftStatus(tch.aftH, tch.aftM, tch.aftA, limits.aftFromH, limits.aftFromM, limits.aftFromA, isAfternoonRequired);
+                let eveStatus = evaluateShiftStatus(tch.eveH, tch.eveM, tch.eveA, limits.eveFromH, limits.eveFromM, limits.eveFromA, isEveningRequired);
+
+                let row = tbody.insertRow();
+                row.innerHTML = `
+                    <td><strong>${tch.userId}</strong></td>
+                    <td><strong>${tch.title} / ${tch.name}</strong></td>
+                    <td><span style="font-size:10px; color:#0284c7; font-weight:bold;">${tch.shiftMode || 'عادي'}</span></td>
+                    
+                    <!-- الفترة الصباحية -->
+                    <td>
+                        <div class="time-box-container">
+                            <div class="time-row-flex"><span>دخول:</span> ${generateAMPMBox(`morIn_${tch.id}_`, tch.morH, tch.morM, tch.morA)}</div>
+                            <div class="time-row-flex"><span>خروج:</span> ${generateAMPMBox(`morOut_${tch.id}_`, tch.morH2, tch.morM2, tch.morA2)}</div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
+                                ${morStatus}
+                                <button type="button" onclick="saveSingleShift(${tch.id}, 'mor')" style="background:var(--success-green); color:#fff; border:none; padding:3px 8px; border-radius:3px; font-size:10.5px; cursor:pointer; font-weight:bold;">${t.btn_save_shift}</button>
+                            </div>
+                        </div>
+                    </td>
+
+                    <!-- فترة بعد الظهر -->
+                    <td>
+                        <div class="time-box-container" style="${!isAfternoonRequired ? 'opacity:0.4; background:#f1f5f9;' : ''}">
+                            <div class="time-row-flex"><span>دخول:</span> ${generateAMPMBox(`aftIn_${tch.id}_`, tch.aftH, tch.aftM, tch.aftA)}</div>
+                            <div class="time-row-flex"><span>خروج:</span> ${generateAMPMBox(`aftOut_${tch.id}_`, tch.aftH2, tch.aftM2, tch.aftA2)}</div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
+                                ${isAfternoonRequired ? aftStatus : ''}
+                                <button type="button" onclick="saveSingleShift(${tch.id}, 'aft')" style="background:var(--success-green); color:#fff; border:none; padding:3px 8px; border-radius:3px; font-size:10.5px; cursor:pointer; font-weight:bold;" ${!isAfternoonRequired ? 'disabled' : ''}>${t.btn_save_shift}</button>
+                            </div>
+                        </div>
+                    </td>
+
+                    <!-- الفترة المسائية -->
+                    <td>
+                        <div class="time-box-container" style="${!isEveningRequired ? 'opacity:0.4; background:#f1f5f9;' : ''}">
+                            <div class="time-row-flex"><span>دخول:</span> ${generateAMPMBox(`eveIn_${tch.id}_`, tch.eveH, tch.eveM, tch.eveA)}</div>
+                            <div class="time-row-flex"><span>خروج:</span> ${generateAMPMBox(`eveOut_${tch.id}_`, tch.eveH2, tch.eveM2, tch.eveA2)}</div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
+                                ${isEveningRequired ? eveStatus : ''}
+                                <button type="button" onclick="saveSingleShift(${tch.id}, 'eve')" style="background:var(--success-green); color:#fff; border:none; padding:3px 8px; border-radius:3px; font-size:10.5px; cursor:pointer; font-weight:bold;" ${!isEveningRequired ? 'disabled' : ''}>${t.btn_save_shift}</button>
+                            </div>
+                        </div>
+                    </td>
+
+                    <!-- التحقق المرئي CCTV -->
+                    <td>
+                        <select id="cctv_${tch.id}" style="padding:4px; font-size:11px; background:#f0fdf4; color:#166534; font-weight:bold; border-radius:4px; border:1px solid #cbd5e1;">
+                            <option value="متحقق عبر الكاميرا ✔️" ${tch.cctv === 'متحقق عبر الكاميرا ✔️' ? 'selected' : ''}>${t.opt_cctv_yes}</option>
+                            <option value="غير متأكد ⚠️" ${tch.cctv === 'غير متأكد ⚠️' ? 'selected' : ''}>${t.opt_cctv_no}</option>
+                        </select>
+                    </td>
+                `;
+            });
+
+            document.getElementById('attendanceModalOverlay').style.display = 'flex';
+        }
+
+        function closeAttendanceModal() {
+            document.getElementById('attendanceModalOverlay').style.display = 'none';
+        }
+
+        function saveSingleShift(id, part) {
+            let teachers = fetchTeachersData();
+            let tch = teachers.find(item => item.id === id);
+            if(tch) {
+                if (part === 'mor') {
+                    tch.morH = document.getElementById(`morIn_${id}_H`).value;
+                    tch.morM = document.getElementById(`morIn_${id}_M`).value;
+                    tch.morA = document.getElementById(`morIn_${id}_A`).value;
+                    tch.morH2 = document.getElementById(`morOut_${id}_H`).value;
+                    tch.morM2 = document.getElementById(`morOut_${id}_M`).value;
+                    tch.morA2 = document.getElementById(`morOut_${id}_A`).value;
+                } else if (part === 'aft') {
+                    tch.aftH = document.getElementById(`aftIn_${id}_H`).value;
+                    tch.aftM = document.getElementById(`aftIn_${id}_M`).value;
+                    tch.aftA = document.getElementById(`aftIn_${id}_A`).value;
+                    tch.aftH2 = document.getElementById(`aftOut_${id}_H`).value;
+                    tch.aftM2 = document.getElementById(`aftOut_${id}_M`).value;
+                    tch.aftA2 = document.getElementById(`aftOut_${id}_A`).value;
+                } else if (part === 'eve') {
+                    tch.eveH = document.getElementById(`eveIn_${id}_H`).value;
+                    tch.eveM = document.getElementById(`eveIn_${id}_M`).value;
+                    tch.eveA = document.getElementById(`eveIn_${id}_A`).value;
+                    tch.eveH2 = document.getElementById(`eveOut_${id}_H`).value;
+                    tch.eveM2 = document.getElementById(`eveOut_${id}_M`).value;
+                    tch.eveA2 = document.getElementById(`eveOut_${id}_A`).value;
+                }
+                tch.cctv = document.getElementById(`cctv_${id}`).value;
+                saveTeachersData(teachers);
+                alert("تم حفظ الفترة بنجاح!");
+                openAttendanceModal();
+            }
+        }
+
+        const translations = {
+            ar: {
+                dir: "rtl",
+                t_header: "👥 إدارة الكادر التعليمي والشؤون الإدارية",
+                t_sys_badge: "نظام شؤون المعلمين، اليوزرات التلقائية، الحضور الثلاثي، والملف المالي السري",
+                t_desc: "إدارة الكادر مع يوزر تلقائي، تحديد فترات المعلم، وتتبع الحضور اليومي المستقل ببوكسات AM/PM مع تحكم الإدارة الكامل في الأوقات وفترات السماح (10 دقائق).",
+                btnAddTeacher: "＋ إضافة معلم / موظف جديد",
+                btnAttendanceLog: "⏰ سجل حضور الفترات الثلاث (بوكسات AM/PM)",
+                btnUnlockFinance: "🔒 فتح الملف المالي السري (الرواتب)",
+                th_no: "م",
+                th_user_id: "يوزر المعلم",
+                th_title: "اللقب",
+                th_name: "اسم المعلم",
+                th_id_num: "رقم الهوية (CNIC)",
+                th_dept: "الأقسام",
+                th_duties: "المهام المتعددة",
+                th_shifts_type: "نظام الفترات المطلوبة",
+                th_phone: "رقم الواتساب",
+                th_salary: "الراتب (PKR) 🔒",
+                th_status: "حالة الصرف",
+                th_whatsapp: "إشعار واتساب",
+                th_action: "الإجراء",
+                t_back: "⬅ عودة للرئيسية",
+                modalAttTitle: "⏰ سجل الحضور والفترات الثلاث (الصباح، بعد الظهر، المساء) مع التحكم الإداري في المواعيد",
+                modalAttSub: "تسجيل أوقات الدخول والخروج للفترات بشكل مستقل، مع فحص التأخير التلقائي والتحقق المرئي (CCTV):",
+                t_lblShiftSet: "⚙️ لوحة الإدارة العليا لضبط المواعيد الرسمية (مع فترة سماح 10 دقائق):",
+                opt_cctv_yes: "متحقق عبر الكاميرا ✔️",
+                opt_cctv_no: "غير متأكد ⚠️",
+                status_locked: "🔒 سري للغاية",
+                status_paid: "تم الاستلام ✔️",
+                status_pending: "معلق ⏳",
+                btn_save: "💾 حفظ",
+                btn_delete: "🗑️ حذف",
+                btn_save_shift: "حفظ الفترة"
+            },
+            ur: {
+                dir: "rtl",
+                t_header: "👥 تدریسی عملہ اور انتظامی امور کا انتظام",
+                t_sys_badge: "اساتذہ کا ریکارڈ، خودکار یوزر، تین اوقات میں حاضری، اور خفیہ مالیاتی فائل",
+                t_desc: "اساتذہ کا ڈیٹا شفٹوں کے انتخاب، اور AM/PM بکس کے ساتھ۔",
+                btnAddTeacher: "＋ نیا استاد / ملازم شامل کریں",
+                btnAttendanceLog: "⏰ تین اوقات کی حاضری (AM/PM بکس)",
+                btnUnlockFinance: "🔒 خفیہ مالیاتی فائل کھولیں (تنخواہیں)",
+                th_no: "نمبر",
+                th_user_id: "یوزر آئی ڈی",
+                th_title: "لقب",
+                th_name: "استاد کا نام",
+                th_id_num: "شناختی کارڈ (CNIC)",
+                th_dept: "شعبہ جات",
+                th_duties: "متعدد ذمہ داریاں",
+                th_shifts_type: "شفٹس کی قسم",
+                th_phone: "واٹس ایپ نمبر",
+                th_salary: "تنخواہ (PKR) 🔒",
+                th_status: "تنخواہ کی حالت",
+                th_whatsapp: "واٹس ایپ نوٹس",
+                th_action: "کارروائی",
+                t_back: "⬅ واپس مرکزی صفحہ",
+                modalAttTitle: "⏰ تین اوقات کی حاضری (AM/PM)",
+                modalAttSub: "ہر شفٹ کے لیے الگ الگ حاضری درج کریں:",
+                t_lblShiftSet: "⚙️ سرکاری اوقات اور 10 منٹ کی رعایت:",
+                opt_cctv_yes: "کیمرے سے تصدیق شدہ ✔️",
+                opt_cctv_no: "غیر یقینی ⚠️",
+                status_locked: "🔒 خفیہ",
+                status_paid: "وصول ہو گیا ✔️",
+                status_pending: "التواء کا شکار ⏳",
+                btn_save: "💾 محفوظ",
+                btn_delete: "🗑️ حذف",
+                btn_save_shift: "شفٹ محفوظ"
+            },
+            en: {
+                dir: "ltr",
+                t_header: "👥 Teachers Staff & Administrative Affairs",
+                t_sys_badge: "Staff Affairs, Auto User IDs, Triple-Shift Attendance, and Confidential Payroll",
+                t_desc: "Manage teachers with shift modes, AM/PM time boxes, and automatic 10-minute grace period lates.",
+                btnAddTeacher: "＋ Add New Teacher / Staff",
+                btnAttendanceLog: "⏰ Triple-Shift Attendance (AM/PM Boxes)",
+                btnUnlockFinance: "🔒 Unlock Confidential Payroll",
+                th_no: "No.",
+                th_user_id: "User ID",
+                th_title: "Title",
+                th_name: "Teacher Name",
+                th_id_num: "CNIC ID No",
+                th_dept: "Departments",
+                th_duties: "Multiple Duties",
+                th_shifts_type: "Shift Mode",
+                th_phone: "WhatsApp No",
+                th_salary: "Salary (PKR) 🔒",
+                th_status: "Payment Status",
+                th_whatsapp: "WhatsApp Notice",
+                th_action: "Action",
+                t_back: "Back to Home",
+                modalAttTitle: "⏰ Triple-Shift Attendance & AM/PM Time Boxes",
+                modalAttSub: "Independent shift control with AM/PM format, 10-minute grace period and CCTV verification:",
+                t_lblShiftSet: "⚙️ Official Shift Limits (10 min grace period):",
+                opt_cctv_yes: "Verified via CCTV ✔️",
+                opt_cctv_no: "Uncertain ⚠️",
+                status_locked: "🔒 Confidential",
+                status_paid: "Received ✔️",
+                status_pending: "Pending ⏳",
+                btn_save: "💾 Save",
+                btn_delete: "🗑️ Delete",
+                btn_save_shift: "Save Shift"
+            }
+        };
+
+        function switchLanguage(lang) {
+            localStorage.setItem('hamza_sys_lang', lang);
+            let t = translations[lang] || translations.ar;
+            document.getElementById('htmlRoot').setAttribute('dir', t.dir);
+            document.getElementById('htmlRoot').setAttribute('lang', lang);
+            
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            if (lang === 'ar') document.querySelectorAll('.lang-btn')[0].classList.add('active');
+            if (lang === 'ur') document.querySelectorAll('.lang-btn')[1].classList.add('active');
+            if (lang === 'en') document.querySelectorAll('.lang-btn')[2].classList.add('active');
+
+            for (let key in t) {
+                if (key !== 'dir') {
+                    let el = document.getElementById(key);
+                    if (el) el.innerHTML = t[key];
+                }
+            }
+            loadTeachersList();
+            setTodayDate();
+        }
+
+        window.onload = function() {
+            let initialLang = localStorage.getItem('hamza_sys_lang') || 'ar';
+            switchLanguage(initialLang);
+
+            // ربط الأزرار برمجياً لضمان عملها 100%
+            document.getElementById('btnOpenAttModal').onclick = function() {
+                openAttendanceModal();
+            };
+            document.getElementById('btnCloseAttModal').onclick = function() {
+                closeAttendanceModal();
+            };
+            document.getElementById('btnOpenShiftSettings').onclick = function() {
+                openShiftSettingsModal();
+            };
+            document.getElementById('btnCloseShiftSettings').onclick = function() {
+                closeShiftSettingsModal();
+            };
+            document.getElementById('btnSaveOfficialLimits').onclick = function() {
+                saveOfficialShiftLimits();
+            };
+        };
+    </script>
+</body>
+</html>
